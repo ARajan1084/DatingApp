@@ -16,11 +16,7 @@ public class Person {
     private boolean single;
     private String gender;
 
-    public Person (String name, int age, String gender, String email, String password, boolean single)
-            throws InvalidAgeException, IOException {
-        if (age < 16) {
-            throw new InvalidAgeException(age);
-        }
+    public Person (String name, int age, String gender, String email, String password, boolean single) throws IOException {
         this.name = name;
         this.age = age;
         this.gender = gender;
