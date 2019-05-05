@@ -15,6 +15,7 @@ public class Person {
     private boolean loggedIn = false;
     private boolean single;
     private String gender;
+    private String bio;
 
     public Person (String name, int age, String gender, String email, String password, boolean single) throws IOException {
         this.name = name;
