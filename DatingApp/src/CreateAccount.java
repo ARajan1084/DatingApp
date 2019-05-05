@@ -3,7 +3,7 @@ import java.io.IOException;
 public class CreateAccount {
 
     public Person isValid (String firstName, String lastName, String email, String password, String confirmPassword,
-                            String age, String gender, String sexuality, boolean single)
+                            String age, String gender, String sexuality, boolean single, String bio)
             throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException, PasswordMismatchException,
                     InvalidPasswordException, IOException, InvalidEmailAddressException {
         if (firstName.length() <= 2)
@@ -34,12 +34,13 @@ public class CreateAccount {
         if (password.length() < 4 || password.length() > 10) {
             throw new InvalidPasswordException();
         }
-        return createAccount(firstName + " " + lastName, intAge, gender, email, password, single);
+        return createAccount(firstName + " " + lastName, intAge, gender, email, password, single, bio);
     }
 
-    private Person createAccount(String name, int age, String gender, String email, String password, boolean single)
+    private Person createAccount(String name, int age, String gender, String email, String password, boolean single,
+                                 String bio)
         throws IOException {
-        Person person = new Person(name, age, gender, email, password, single);
+        Person person = new Person(name, age, gender, email, password, single, bio);
         return person;
     }
 }

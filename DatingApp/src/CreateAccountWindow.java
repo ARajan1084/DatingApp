@@ -146,7 +146,7 @@ public class CreateAccountWindow extends JFrame {
                 new CreateAccount().isValid(fieldFirstName.getText(), fieldLastName.getText(), fieldEmail.getText(),
                         new String(fieldPassword.getPassword()), new String(fieldConfirmPassword.getPassword()),
                         fieldAge.getText(), (String) comboBoxGender.getSelectedItem(),
-                        (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected());
+                        (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText());
             } catch (InvalidFirstNameException ex) {
                 labelError.setText("Error: Invalid First Name.");
                 fieldFirstName.setText("");

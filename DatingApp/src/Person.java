@@ -17,7 +17,8 @@ public class Person {
     private String gender;
     private String bio;
 
-    public Person (String name, int age, String gender, String email, String password, boolean single) throws IOException {
+    public Person (String name, int age, String gender, String email, String password, boolean single, String bio)
+            throws IOException {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -27,6 +28,7 @@ public class Person {
         BufferedWriter br = new BufferedWriter(new FileWriter(data));
         br.write(email + ", " + password);
         this.single = single;
+        this.bio = bio;
         loggedIn = true;
     }
 
