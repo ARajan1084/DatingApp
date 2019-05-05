@@ -1,7 +1,11 @@
+import java.io.IOException;
+
 public class CreateAccount {
-    public boolean isValid (String firstName, String lastName, String email, String password, String confirmPassword,
-                            String age, String gender, String sexuality)
-            throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException {
+
+    public Person isValid (String firstName, String lastName, String email, String password, String confirmPassword,
+                            String age, String gender, String sexuality, boolean single)
+            throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException, PasswordMismatchException,
+                    InvalidPasswordException, IOException, InvalidEmailAddressException {
         if (firstName.length() <= 2)
         {
             throw new InvalidFirstNameException();
@@ -20,6 +24,22 @@ public class CreateAccount {
         {
             throw new InvalidAgeException(intAge);
         }
-        return false; // TODO: fix
+        if (!email.contains("@") || !email.contains(".com"))
+        {
+            throw new InvalidEmailAddressException();
+        }
+        if (!password.equals(confirmPassword)) {
+            throw new PasswordMismatchException();
+        }
+        if (password.length() < 4 || password.length() > 10) {
+            throw new InvalidPasswordException();
+        }
+        return createAccount(firstName + " " + lastName, intAge, gender, email, password, single);
+    }
+
+    private Person createAccount(String name, int age, String gender, String email, String password, boolean single)
+        throws IOException {
+        Person person = new Person(name, age, gender, email, password, single);
+        return person;
     }
 }
