@@ -12,7 +12,7 @@ public class Login {
      */
     public boolean isValid (String email, String password) throws IOException, AccountNotFoundException
     {
-        File loginData = new File("C:\\Users\\rajan\\Dropbox\\DatingApp\\src\\LoginData.txt");
+        File loginData = new File("C:\\Users\\rajan\\OneDrive\\Documents\\src\\DatingApp\\DatingApp\\src\\LoginData.txt");
         HashMap<String, Account> accounts = new HashMap<>();
 
         BufferedReader br = new BufferedReader(new FileReader(loginData));

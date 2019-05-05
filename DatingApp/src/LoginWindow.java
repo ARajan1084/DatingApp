@@ -4,6 +4,8 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import static javax.swing.SwingConstants.BOTTOM;
+
 /**
  *  Provides GUI for registering and logging in users.
  */
@@ -12,16 +14,16 @@ public class LoginWindow extends JFrame {
     private JLabel labelEmail, labelPassword;
     private JTextField fieldEmail;
     private JPasswordField passwordField;
-    private JButton buttonLogin, buttonCreateAccount;
+    private JButton buttonLogin, buttonCreateAccount, buttonForgotPassword;
     private JFrame loginWindow;
 
     public LoginWindow () {
         createView();
 
         loginWindow = this;
-        setTitle("Welcome to TinderButBetter!");
+        setTitle("Welcome!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        pack();
+        setSize(300, 200);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
@@ -35,18 +37,24 @@ public class LoginWindow extends JFrame {
 
         labelEmail = new JLabel("Email: ");
         labelPassword = new JLabel("Password: ");
+        // TODO: Fix Alignment
 
         fieldEmail = new JTextField();
         fieldEmail.setPreferredSize(new Dimension (175, 20));
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension (175, 20));
+        // TODO: Fix Alignment
 
         JPanel panelEmail = new JPanel();
         panelEmail.setBackground(Color.PINK);
+        panelEmail.setMaximumSize(new Dimension(300, 30));
         panelEmail.add(labelEmail);
         panelEmail.add(fieldEmail);
+
         JPanel panelPassword = new JPanel();
         panelPassword.setBackground(Color.PINK);
+        panelPassword.setMaximumSize(new Dimension(300, 30));
+        panelPassword.setAlignmentY(Component.TOP_ALIGNMENT);
         panelPassword.add(labelPassword);
         panelPassword.add(passwordField);
 
@@ -54,11 +62,17 @@ public class LoginWindow extends JFrame {
         buttonLogin.addActionListener(new ButtonLoginActionListener());
         buttonCreateAccount = new JButton("Create a New Account");
         buttonCreateAccount.addActionListener(new ButtonCreateAccountActionListener());
+        buttonForgotPassword = new JButton("Forgot Your Password?");
+        buttonForgotPassword.addActionListener(new ButtonForgotPasswordActionListener());
+        buttonLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonCreateAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonForgotPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(panelEmail);
         panel.add(panelPassword);
         panel.add(buttonLogin);
         panel.add(buttonCreateAccount);
+        panel.add(buttonForgotPassword);
     }
 
     public static void main(String[]args) {
@@ -91,6 +105,14 @@ public class LoginWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
             new CreateAccountWindow(loginWindow);
+        }
+    }
+
+    private class ButtonForgotPasswordActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setVisible(false);
+            new ChangePasswordWindow(loginWindow);
         }
     }
 }
