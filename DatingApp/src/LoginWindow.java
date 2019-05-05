@@ -13,10 +13,12 @@ public class LoginWindow extends JFrame {
     private JTextField fieldEmail;
     private JPasswordField passwordField;
     private JButton buttonLogin, buttonCreateAccount;
+    private JFrame loginWindow;
 
     public LoginWindow () {
         createView();
 
+        loginWindow = this;
         setTitle("Welcome to TinderButBetter!");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         pack();
@@ -27,6 +29,7 @@ public class LoginWindow extends JFrame {
 
     private void createView() {
         JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(Color.PINK);
         getContentPane().add(panel);
 
@@ -38,15 +41,22 @@ public class LoginWindow extends JFrame {
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension (175, 20));
 
+        JPanel panelEmail = new JPanel();
+        panelEmail.setBackground(Color.PINK);
+        panelEmail.add(labelEmail);
+        panelEmail.add(fieldEmail);
+        JPanel panelPassword = new JPanel();
+        panelPassword.setBackground(Color.PINK);
+        panelPassword.add(labelPassword);
+        panelPassword.add(passwordField);
+
         buttonLogin = new JButton("Login");
         buttonLogin.addActionListener(new ButtonLoginActionListener());
         buttonCreateAccount = new JButton("Create a New Account");
         buttonCreateAccount.addActionListener(new ButtonCreateAccountActionListener());
 
-        panel.add(labelEmail);
-        panel.add(fieldEmail);
-        panel.add(labelPassword);
-        panel.add(passwordField);
+        panel.add(panelEmail);
+        panel.add(panelPassword);
         panel.add(buttonLogin);
         panel.add(buttonCreateAccount);
     }
@@ -80,7 +90,7 @@ public class LoginWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            new CreateAccountWindow();
+            new CreateAccountWindow(loginWindow);
         }
     }
 }

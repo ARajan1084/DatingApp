@@ -10,10 +10,13 @@ public class CreateAccountWindow extends JFrame {
     private JPasswordField fieldPassword, fieldConfirmPassword;
     private JComboBox comboBoxGender, comboBoxSexuality;
     private JButton buttonCreate, buttonCancel;
+    private JFrame loginWindow, createAccountWindow;
 
-    public CreateAccountWindow () {
+    public CreateAccountWindow (JFrame loginWindow) {
         createView();
 
+        this.loginWindow = loginWindow;
+        createAccountWindow = this;
         setTitle("Welcome to TinderButBetter! - Create an Account");
         setSize(500, 500);
         setLocationRelativeTo(null);
@@ -93,7 +96,8 @@ public class CreateAccountWindow extends JFrame {
     private class buttonCancelActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            createAccountWindow.setVisible(false);
+            loginWindow.setVisible(true);
         }
     }
 }
