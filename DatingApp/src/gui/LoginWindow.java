@@ -1,3 +1,5 @@
+package gui;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -81,14 +83,12 @@ public class LoginWindow extends JFrame {
     private class ButtonLoginActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            char[] passArr =  passwordField.getPassword();
-            String password = "";
-            for (char c: passArr)
-            {
-                password += c;
-            }
             try {
-                new Login().isValid(fieldEmail.getText(), password);
+                boolean login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
+                if (login) {
+                    new DashboardWindow();
+                    setVisible(false);
+                }
             } catch (AccountNotFoundException exception) {
                 fieldEmail.setText("");
                 passwordField.setText("");

@@ -1,3 +1,5 @@
+import exceptions.*;
+
 import java.io.IOException;
 
 public class CreateAccount {
@@ -5,7 +7,7 @@ public class CreateAccount {
     public Person isValid (String firstName, String lastName, String email, String password, String confirmPassword,
                             String age, String gender, String sexuality, boolean single, String bio)
             throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException, PasswordMismatchException,
-                    InvalidPasswordException, IOException, InvalidEmailAddressException {
+            InvalidPasswordException, IOException, InvalidEmailAddressException {
         if (firstName.length() <= 2)
         {
             throw new InvalidFirstNameException();

@@ -1,3 +1,5 @@
+import exceptions.AccountNotFoundException;
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -22,6 +24,7 @@ public class Login {
             String[] loginInfo = input.split(", ");
             Account ac = new Account(loginInfo[0], loginInfo[1]);
             accounts.put( email, ac );
+            input = br.readLine();
         }
 
         Account ac = accounts.get(email);
