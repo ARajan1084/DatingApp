@@ -1,5 +1,3 @@
-package gui;
-
 import exceptions.*;
 
 import javax.swing.*;
@@ -72,7 +70,7 @@ public class CreateAccountWindow extends JFrame {
 
         JPanel panelConfirmPassword = new JPanel();
         panelConfirmPassword.setBackground(backgroundColor);
-        panelConfirmPassword.setMaximumSize(new Dimension(300, 30));
+        panelConfirmPassword.setMaximumSize(new Dimension(310, 30));
         labelConfirmPassword = new JLabel("Confirm Password: ");
         fieldConfirmPassword = new JPasswordField();
         fieldConfirmPassword.setPreferredSize(new Dimension(175, 20));
@@ -81,11 +79,11 @@ public class CreateAccountWindow extends JFrame {
 
         JPanel panelInfo = new JPanel();
         panelInfo.setBackground(backgroundColor);
-        panelInfo.setMaximumSize(new Dimension (400, 30));
+        panelInfo.setMaximumSize(new Dimension (480, 30));
         // age
         labelAge = new JLabel("Age: ");
         fieldAge = new JTextField();
-        fieldAge.setPreferredSize(new Dimension(20, 20));
+        fieldAge.setPreferredSize(new Dimension(40, 20));
         // gender
         labelGender = new JLabel("Gender:");
         comboBoxGender = new JComboBox();

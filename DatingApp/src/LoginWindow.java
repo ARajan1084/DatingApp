@@ -1,6 +1,5 @@
-package gui;
-
 import exceptions.AccountNotFoundException;
+import gui.ChangePasswordWindow;
 
 import java.awt.*;
 import java.awt.event.*;

@@ -1,14 +1,16 @@
-package gui;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class DashboardWindow extends JFrame {
 
+    private Person myPerson;
+
     public DashboardWindow() {
         createView();
         setSize(new Dimension(700, 500));
         setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     private void createView() {
@@ -16,11 +18,11 @@ public class DashboardWindow extends JFrame {
         getContentPane().add(dashboard);
     }
 
-    private void eastPanel() {
-
+    private Panel eastPanel() {
+        return null; // TODO: fix
     }
 
-    private void westPanel() {
-
+    private Panel westPanel() {
+        return null; // TODO: fix
     }
 }
