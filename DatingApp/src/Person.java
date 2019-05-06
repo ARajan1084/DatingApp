@@ -24,9 +24,11 @@ public class Person {
         this.gender = gender;
         this.email = email;
         this.password = password;
-        File data = new File("C:\\Users\\rajan\\Dropbox\\DatingApp\\src\\Login.java");
+        File data = new File("C:\\Users\\rajan\\OneDrive\\Documents\\src\\DatingApp\\DatingApp\\src\\LoginData.txt");
         BufferedWriter br = new BufferedWriter(new FileWriter(data));
         br.write(email + ", " + password);
+        br.newLine();
+        br.close();
         this.single = single;
         this.bio = bio;
         loggedIn = true;

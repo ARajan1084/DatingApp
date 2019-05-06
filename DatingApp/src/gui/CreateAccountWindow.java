@@ -1,3 +1,7 @@
+package gui;
+
+import exceptions.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +34,7 @@ public class CreateAccountWindow extends JFrame {
 
     private void createView() {
         JPanel panel = new JPanel();
-        panel.setBackground(Color.PINK);
+        panel.setBackground(backgroundColor);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         getContentPane().add(panel);
 
@@ -147,6 +151,8 @@ public class CreateAccountWindow extends JFrame {
                         new String(fieldPassword.getPassword()), new String(fieldConfirmPassword.getPassword()),
                         fieldAge.getText(), (String) comboBoxGender.getSelectedItem(),
                         (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText());
+                dispose();
+                loginWindow.setVisible(true);
             } catch (InvalidFirstNameException ex) {
                 labelError.setText("Error: Invalid First Name.");
                 fieldFirstName.setText("");

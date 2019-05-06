@@ -1,10 +1,9 @@
+package gui;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import javax.swing.*;
-import javax.swing.border.*;
-
-import static javax.swing.SwingConstants.BOTTOM;
 
 /**
  *  Provides GUI for registering and logging in users.
@@ -16,6 +15,7 @@ public class LoginWindow extends JFrame {
     private JPasswordField passwordField;
     private JButton buttonLogin, buttonCreateAccount, buttonForgotPassword;
     private JFrame loginWindow;
+    private final Color backgroundColor = Color.PINK;
 
     public LoginWindow () {
         createView();
@@ -32,7 +32,7 @@ public class LoginWindow extends JFrame {
     private void createView() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.PINK);
+        panel.setBackground(backgroundColor);
         getContentPane().add(panel);
 
         labelEmail = new JLabel("Email: ");
@@ -46,13 +46,13 @@ public class LoginWindow extends JFrame {
         // TODO: Fix Alignment
 
         JPanel panelEmail = new JPanel();
-        panelEmail.setBackground(Color.PINK);
+        panelEmail.setBackground(backgroundColor);
         panelEmail.setMaximumSize(new Dimension(300, 30));
         panelEmail.add(labelEmail);
         panelEmail.add(fieldEmail);
 
         JPanel panelPassword = new JPanel();
-        panelPassword.setBackground(Color.PINK);
+        panelPassword.setBackground(backgroundColor);
         panelPassword.setMaximumSize(new Dimension(300, 30));
         panelPassword.setAlignmentY(Component.TOP_ALIGNMENT);
         panelPassword.add(labelPassword);
@@ -83,14 +83,12 @@ public class LoginWindow extends JFrame {
     private class ButtonLoginActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            char[] passArr =  passwordField.getPassword();
-            String password = "";
-            for (char c: passArr)
-            {
-                password += c;
-            }
             try {
-                new Login().isValid(fieldEmail.getText(), password);
+                boolean login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
+                if (login) {
+                    new DashboardWindow();
+                    setVisible(false);
+                }
             } catch (AccountNotFoundException exception) {
                 fieldEmail.setText("");
                 passwordField.setText("");

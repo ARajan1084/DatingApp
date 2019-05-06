@@ -1,3 +1,5 @@
+package exceptions;
+
 public class InvalidAgeException extends Exception{
 
     private int age;
