@@ -1,2 +1,8 @@
 DatingApp/out/**
 DatingApp/.idea/**
+DatingApp/.idea/workspace.xml
+DatingApp/out/production/DatingApp/InvalidEmailAddressException.class
+*.class
+*.class
+*.class
+DatingApp/out/production/DatingApp/Person.class

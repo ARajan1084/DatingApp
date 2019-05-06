@@ -1,5 +1,7 @@
 package gui;
 
+import exceptions.AccountNotFoundException;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;

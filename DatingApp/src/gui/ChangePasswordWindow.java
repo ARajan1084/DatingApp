@@ -1,3 +1,5 @@
+package gui;
+
 import javafx.scene.control.TextFormatter;
 
 import javax.swing.*;
