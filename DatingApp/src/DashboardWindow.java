@@ -7,15 +7,14 @@ public class DashboardWindow extends JFrame {
 
     public DashboardWindow() {
         createView();
-        setSize(new Dimension(700, 500));
+        setSize(new Dimension(1000, 800));
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void createView() {
-        JPanel dashboard = new JPanel();
-        getContentPane().add(dashboard);
+        BorderLayout layout = new BorderLayout();
     }
 
     private Panel eastPanel() {
