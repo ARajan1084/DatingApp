@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Person implements Serializable {
 
@@ -7,12 +8,12 @@ public class Person implements Serializable {
     private int age;
     private String email;
     private String password;
-    private Window myWindow;
-    private Graphics g;
     private boolean loggedIn = false;
     private boolean single;
     private String gender;
     private String bio;
+    private String poolRootName;
+    ArrayList<Integer> path;
 
     public Person (String name, int age, String gender, String email, String password, boolean single, String bio)
             throws IOException {
@@ -53,5 +54,26 @@ public class Person implements Serializable {
      */
     public boolean getStatus () {
         return single;
+    }
+
+    public void updatePath (int path) {
+        this.path.add(path);
+    }
+
+    public String toString () {
+        String output = "";
+        output += "Name: " + name + "\n";
+        output += "Age: " + age + "\n";
+        output += "Email: " + email + "\n";
+        output += "Password: " + password + "\n";
+        output += "Status: " + single + "\n";
+        output += "Gender: " + gender + "\n";
+        output += "Bio: " + bio + "\n";
+        output += "TreeID: "+ poolRootName + "\n";
+        output += "Path: ";
+        for (Integer i: path) {
+            output += i;
+        }
+        return output;
     }
 }
