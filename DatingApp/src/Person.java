@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class Person implements Serializable {
@@ -22,11 +25,20 @@ public class Person implements Serializable {
         this.gender = gender;
         this.email = email;
         this.password = password;
-        File data = new File("C:\\Users\\rajan\\OneDrive\\Documents\\src\\DatingApp\\DatingApp\\src\\LoginData.txt");
+        /*
+        File data = new File("/Users/achintya/DatingApp/DatingApp/src/LoginData.txt");
         BufferedWriter br = new BufferedWriter(new FileWriter(data));
-        br.write(email + ", " + password);
-        br.newLine();
+        PrintWriter pr = new PrintWriter(br);
+        String out = email + ", " + password;
+        pr.println(out);
         br.close();
+        */
+        try {
+            Files.write(Paths.get("/Users/achintya/DatingApp/DatingApp/src/LoginData.txt"),
+                    (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.single = single;
         this.bio = bio;
         loggedIn = true;
