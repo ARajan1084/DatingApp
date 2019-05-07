@@ -85,10 +85,14 @@ public class LoginWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                boolean login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
-                if (login) {
-                    new DashboardWindow();
-                    setVisible(false);
+                try {
+                    Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
+                    if (login != null) {
+                        new DashboardWindow(login);
+                        setVisible(false);
+                    }
+                } catch (ClassNotFoundException ex) {
+                    throw new AccountNotFoundException();
                 }
             } catch (AccountNotFoundException exception) {
                 fieldEmail.setText("");

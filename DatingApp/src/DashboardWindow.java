@@ -5,7 +5,7 @@ public class DashboardWindow extends JFrame {
 
     private Person myPerson;
 
-    public DashboardWindow() {
+    public DashboardWindow(Person person) {
         createView();
         setSize(new Dimension(1000, 800));
         setResizable(false);

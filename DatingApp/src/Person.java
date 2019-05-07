@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,7 +10,6 @@ public class Person implements Serializable {
     private int age;
     private String email;
     private String password;
-    private boolean loggedIn = false;
     private boolean single;
     private String gender;
     private String bio;
@@ -25,23 +23,15 @@ public class Person implements Serializable {
         this.gender = gender;
         this.email = email;
         this.password = password;
-        /*
-        File data = new File("/Users/achintya/DatingApp/DatingApp/src/LoginData.txt");
-        BufferedWriter br = new BufferedWriter(new FileWriter(data));
-        PrintWriter pr = new PrintWriter(br);
-        String out = email + ", " + password;
-        pr.println(out);
-        br.close();
-        */
         try {
-            Files.write(Paths.get("/Users/achintya/DatingApp/DatingApp/src/LoginData.txt"),
+            Files.write(Paths.get("/Users.txt/achintya/DatingApp/DatingApp/src/LoginData.txt"),
                     (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        writeToFile();
         this.single = single;
         this.bio = bio;
-        loggedIn = true;
     }
 
     /**
@@ -68,8 +58,24 @@ public class Person implements Serializable {
         return single;
     }
 
+    public String getEmail () {
+        return email;
+    }
+
     public void updatePath (int path) {
         this.path.add(path);
+    }
+
+    public void writeToFile () {
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream("/Users/achintya/DatingApp/DatingApp/src/Users.txt");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(this);
+            objectOut.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public String toString () {

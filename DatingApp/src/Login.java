@@ -1,6 +1,8 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import exceptions.AccountNotFoundException;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // import
@@ -12,7 +14,7 @@ public class Login {
      * @param password given password
      * @return true if login was successful, false otherwise
      */
-    public boolean isValid (String email, String password) throws IOException, AccountNotFoundException
+    public Person isValid (String email, String password) throws IOException, AccountNotFoundException, ClassNotFoundException
     {
         File loginData = new File("/Users/achintya/DatingApp/DatingApp/src/LoginData.txt");
         HashMap<String, Account> accounts = new HashMap<>();
@@ -32,8 +34,29 @@ public class Login {
             throw new AccountNotFoundException();
         }
         if (ac.getPassword().equals(password)) {
-            return true;
+            return fetchUser(email);
         }
-        return false;
+        return null;
+    }
+
+    private Person fetchUser (String email) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream fi = new FileInputStream(new File("/Users/achintya/DatingApp/DatingApp/src/Users.txt"));
+        ObjectInputStream oi = new ObjectInputStream(fi);
+        Object ob = oi.readObject();
+        ArrayList<Person> users = new ArrayList<>();
+        while (ob != null) {
+            users.add((Person)ob);
+            ob = oi.readObject();
+        }
+        return findUser(users, email);
+    }
+
+    private Person findUser(ArrayList<Person> users, String email) {
+        for (Person user: users) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
     }
 }
