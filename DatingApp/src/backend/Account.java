@@ -17,4 +17,10 @@ public class Account {
     public String getPassword() {
         return password;
     }
+
+    public String toString() {
+        String output = "Email: " + email + "\n";
+        output += "Password: " + password + "\n";
+        return output;
+    }
 }

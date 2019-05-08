@@ -10,8 +10,7 @@ public class Person implements Serializable {
 
     private String name;
     private int age;
-    private String email;
-    private String password;
+    private Account account;
     private boolean single;
     private String gender;
     private String bio;
@@ -23,8 +22,7 @@ public class Person implements Serializable {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.email = email;
-        this.password = password;
+        this.account = new Account(email, password);
         try {
             Files.write(Paths.get("src/data/LoginData.txt"),
                     (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
@@ -60,7 +58,7 @@ public class Person implements Serializable {
     }
 
     public String getEmail () {
-        return email;
+        return account.getEmail();
     }
 
     public void updatePath (int path) {
@@ -83,8 +81,7 @@ public class Person implements Serializable {
         String output = "";
         output += "Name: " + name + "\n";
         output += "Age: " + age + "\n";
-        output += "Email: " + email + "\n";
-        output += "Password: " + password + "\n";
+        output += account.toString();
         output += "Status: " + single + "\n";
         output += "Gender: " + gender + "\n";
         output += "Bio: " + bio + "\n";
@@ -93,6 +90,7 @@ public class Person implements Serializable {
         for (Integer i: path) {
             output += i;
         }
+        output += "\n";
         return output;
     }
 }
