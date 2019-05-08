@@ -1,4 +1,4 @@
-package backend;
+package program;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -34,7 +34,7 @@ public class Person implements Serializable {
     }
 
     /**
-     * returns the name of this backend.Person
+     * returns the name of this program.Person
      * @return name
      */
     public String getName () {
@@ -42,7 +42,7 @@ public class Person implements Serializable {
     }
 
     /**
-     * returns the age of this backend.Person
+     * returns the age of this program.Person
      * @return age
      */
     public int getAge () {
@@ -50,7 +50,7 @@ public class Person implements Serializable {
     }
 
     /**
-     * returns the status of this backend.Person (single or not)
+     * returns the status of this program.Person (single or not)
      * @return single
      */
     public boolean getStatus () {

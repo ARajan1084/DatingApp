@@ -1,10 +1,9 @@
 package backend;
 
-import backend.Person;
+import program.Person;
 import exceptions.*;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class CreateAccount {
@@ -27,7 +26,7 @@ public class CreateAccount {
             throw new InvalidAgeException(0);
         }
         int intAge = Integer.parseInt(age);
-        if (intAge <= 16)
+        if (intAge < 16)
         {
             throw new InvalidAgeException(intAge);
         }

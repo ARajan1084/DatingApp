@@ -9,6 +9,6 @@ public class AccountNotFoundException extends Exception {
 
     public String toString()
     {
-        return "backend.Account not recognized.";
+        return "program.Account not recognized.";
     }
 }

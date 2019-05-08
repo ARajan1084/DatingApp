@@ -1,6 +1,8 @@
-package backend;
+package program;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     private String email;
     private String password;
 

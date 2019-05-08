@@ -1,6 +1,6 @@
 package gui;
 
-import backend.Person;
+import program.Person;
 
 import javax.swing.*;
 import java.awt.*;

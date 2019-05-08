@@ -1,6 +1,7 @@
 package backend;
-import backend.Account;
+import program.Account;
 import exceptions.AccountNotFoundException;
+import program.Person;
 
 import java.io.*;
 import java.util.ArrayList;

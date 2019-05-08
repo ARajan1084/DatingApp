@@ -1,7 +1,7 @@
 package gui;
 
 import backend.Login;
-import backend.Person;
+import program.Person;
 import exceptions.AccountNotFoundException;
 
 import java.awt.*;
@@ -77,6 +77,10 @@ public class LoginWindow extends JFrame {
         panel.add(buttonLogin);
         panel.add(buttonCreateAccount);
         panel.add(buttonForgotPassword);
+    }
+
+    public static void main (String[]args) {
+        new LoginWindow();
     }
 
     private class ButtonLoginActionListener implements ActionListener {
