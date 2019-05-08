@@ -1,5 +1,8 @@
+package gui;
+
+import backend.Login;
+import backend.Person;
 import exceptions.AccountNotFoundException;
-import gui.ChangePasswordWindow;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -59,9 +62,9 @@ public class LoginWindow extends JFrame {
         panelPassword.add(labelPassword);
         panelPassword.add(passwordField);
 
-        buttonLogin = new JButton("Login");
+        buttonLogin = new JButton("backend.Login");
         buttonLogin.addActionListener(new ButtonLoginActionListener());
-        buttonCreateAccount = new JButton("Create a New Account");
+        buttonCreateAccount = new JButton("Create a New backend.Account");
         buttonCreateAccount.addActionListener(new ButtonCreateAccountActionListener());
         buttonForgotPassword = new JButton("Forgot Your Password?");
         buttonForgotPassword.addActionListener(new ButtonForgotPasswordActionListener());

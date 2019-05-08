@@ -1,4 +1,6 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+package backend;
+
+import backend.Account;
 import exceptions.AccountNotFoundException;
 
 import java.io.*;
