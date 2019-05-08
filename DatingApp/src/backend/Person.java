@@ -26,12 +26,11 @@ public class Person implements Serializable {
         this.email = email;
         this.password = password;
         try {
-            Files.write(Paths.get("/data/Users.txt/achintya/DatingApp/DatingApp/src/LoginData.txt"),
+            Files.write(Paths.get("src/data/LoginData.txt"),
                     (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        writeToFile();
         this.single = single;
         this.bio = bio;
     }
@@ -68,10 +67,10 @@ public class Person implements Serializable {
         this.path.add(path);
     }
 
-    public void writeToFile () {
+    public void writeToFile (File file) {
         try {
 
-            FileOutputStream fileOut = new FileOutputStream("/Users/achintya/DatingApp/DatingApp/src/Users.txt");
+            FileOutputStream fileOut = new FileOutputStream(file.getPath());
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(this);
             objectOut.close();

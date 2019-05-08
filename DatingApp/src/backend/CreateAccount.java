@@ -3,6 +3,8 @@ package backend;
 import backend.Person;
 import exceptions.*;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class CreateAccount {
@@ -46,6 +48,7 @@ public class CreateAccount {
                                  String bio)
         throws IOException {
         Person person = new Person(name, age, gender, email, password, single, bio);
+        person.writeToFile(new File("src/data/Users.txt"));
         return person;
     }
 }

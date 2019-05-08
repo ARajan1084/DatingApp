@@ -62,9 +62,9 @@ public class LoginWindow extends JFrame {
         panelPassword.add(labelPassword);
         panelPassword.add(passwordField);
 
-        buttonLogin = new JButton("backend.Login");
+        buttonLogin = new JButton("Login");
         buttonLogin.addActionListener(new ButtonLoginActionListener());
-        buttonCreateAccount = new JButton("Create a New backend.Account");
+        buttonCreateAccount = new JButton("Create a New Account");
         buttonCreateAccount.addActionListener(new ButtonCreateAccountActionListener());
         buttonForgotPassword = new JButton("Forgot Your Password?");
         buttonForgotPassword.addActionListener(new ButtonForgotPasswordActionListener());
@@ -77,11 +77,6 @@ public class LoginWindow extends JFrame {
         panel.add(buttonLogin);
         panel.add(buttonCreateAccount);
         panel.add(buttonForgotPassword);
-    }
-
-    public static void main(String[]args) {
-
-        new LoginWindow().setVisible(true);
     }
 
     private class ButtonLoginActionListener implements ActionListener {
