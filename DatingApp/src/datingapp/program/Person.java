@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import datingapp.*;
 
 public class Person implements Serializable {
 
@@ -24,7 +25,7 @@ public class Person implements Serializable {
         this.gender = gender;
         this.account = new Account(email, password);
         try {
-            Files.write(Paths.get("src/datingapp.data/LoginData.txt"),
+            Files.write(Paths.get("src/datingapp/data/LoginData.txt"),
                     (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (Exception e) {
             e.printStackTrace();

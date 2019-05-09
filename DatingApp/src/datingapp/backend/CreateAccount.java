@@ -47,7 +47,7 @@ public class CreateAccount {
                                  String bio)
         throws IOException {
         Person person = new Person(name, age, gender, email, password, single, bio);
-        person.writeToFile(new File("src/datingapp.data/Users.txt"));
+        person.writeToFile(new File("src/datingapp/data/Users.txt"));
         return person;
     }
 }
