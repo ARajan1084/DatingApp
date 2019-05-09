@@ -1,6 +1,6 @@
-package gui;
+package datingapp.gui;
 
-import program.Person;
+import datingapp.program.Person;
 
 import javax.swing.*;
 import java.awt.*;

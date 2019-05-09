@@ -1,7 +1,7 @@
-package gui;
+package datingapp.gui;
 
-import backend.CreateAccount;
-import exceptions.*;
+import datingapp.backend.CreateAccount;
+import datingapp.exceptions.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +25,7 @@ public class CreateAccountWindow extends JFrame {
         createView();
 
         this.loginWindow = loginWindow;
-        setTitle("Welcome to TinderButBetter! - Create an Account");
+        setTitle("Welcome to datingapp.TinderButBetter! - Create an Account");
         setSize(500, 520);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

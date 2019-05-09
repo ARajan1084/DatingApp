@@ -1,7 +1,7 @@
-package backend;
+package datingapp.backend;
 
-import program.Person;
-import exceptions.*;
+import datingapp.program.Person;
+import datingapp.exceptions.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +47,7 @@ public class CreateAccount {
                                  String bio)
         throws IOException {
         Person person = new Person(name, age, gender, email, password, single, bio);
-        person.writeToFile(new File("src/data/Users.txt"));
+        person.writeToFile(new File("src/datingapp.data/Users.txt"));
         return person;
     }
 }

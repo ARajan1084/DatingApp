@@ -1,4 +1,4 @@
-package exceptions;
+package datingapp.exceptions;
 
 public class AccountNotFoundException extends Exception {
 
@@ -9,6 +9,6 @@ public class AccountNotFoundException extends Exception {
 
     public String toString()
     {
-        return "program.Account not recognized.";
+        return "datingapp.program.Account not recognized.";
     }
 }

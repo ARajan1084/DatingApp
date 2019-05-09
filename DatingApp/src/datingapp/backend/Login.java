@@ -1,13 +1,19 @@
-package backend;
-import program.Account;
-import exceptions.AccountNotFoundException;
-import program.Person;
+package datingapp.backend;
+import datingapp.program.Account;
+import datingapp.exceptions.AccountNotFoundException;
+import datingapp.program.Person;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// import
+/**
+ * Handles the datingapp.backend of LoginWindow.java
+ * Checks to see if the Login attempt is legitimate and returns the Person object associated with the attempt if it is
+ *
+ * @author  Achintya
+ * @version 05/08/19
+ */
 public class Login {
 
     /**
@@ -18,7 +24,7 @@ public class Login {
      */
     public Person isValid (String email, String password) throws IOException, AccountNotFoundException, ClassNotFoundException
     {
-        File loginData = new File("src/data/LoginData.txt");
+        File loginData = new File("src/datingapp.data/LoginData.txt");
         HashMap<String, Account> accounts = new HashMap<>();
 
         BufferedReader br = new BufferedReader(new FileReader(loginData));
@@ -41,8 +47,16 @@ public class Login {
         return null;
     }
 
+    /**
+     * helps by fetching the Person object associated with the email provided
+     * @param email email
+     * @return returns the Person object associated with the email account
+     * @throws FileNotFoundException when the file with User object datingapp.data is not found
+     * @throws IOException when errors with FileInput and Output streams occur
+     * @throws ClassNotFoundException when the method can't cast Object info in the file into a Person object
+     */
     private Person fetchUser (String email) throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fi = new FileInputStream(new File("src/data/Users.txt"));
+        FileInputStream fi = new FileInputStream(new File("src/datingapp.data/Users.txt"));
         ObjectInputStream oi = new ObjectInputStream(fi);
         Object ob = oi.readObject();
         ArrayList<Person> users = new ArrayList<>();
@@ -57,6 +71,12 @@ public class Login {
         return findUser(users, email);
     }
 
+    /**
+     * helper method for fetchUser() that finds a given Person object in an ArrayList based on an email
+     * @param users ArrayList of Person objects to search
+     * @param email email to search for
+     * @return returns the Person object associated with the given email, or null if no such person exists
+     */
     private Person findUser(ArrayList<Person> users, String email) {
         for (Person user: users) {
             if (user.getEmail().equals(email)) {

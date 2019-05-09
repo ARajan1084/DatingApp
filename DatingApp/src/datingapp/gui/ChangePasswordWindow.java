@@ -1,11 +1,15 @@
-package gui;
-
-import javafx.scene.control.TextFormatter;
+package datingapp.gui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * a useless window
+ *
+ * @author Achintya
+ * @date 05/07/19
+ */
 public class ChangePasswordWindow extends JFrame {
     private JLabel message;
     private JButton buttonGoBack;
@@ -26,7 +30,7 @@ public class ChangePasswordWindow extends JFrame {
         getContentPane().add(panel);
         message = new JLabel("Sorry, the developers of this app do not know how to implement password changes yet : (." +
                 "Please try to remember your password.");
-        buttonGoBack = new JButton("Go Back to backend.Login");
+        buttonGoBack = new JButton("Go Back to datingapp.backend.Login");
         buttonGoBack.addActionListener(new ButtonGoBackActionListener());
         panel.add(message);
         panel.add(buttonGoBack);

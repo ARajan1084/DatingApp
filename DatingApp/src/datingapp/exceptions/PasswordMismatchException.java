@@ -1,4 +1,4 @@
-package exceptions;
+package datingapp.exceptions;
 
 public class PasswordMismatchException extends Exception {
     public PasswordMismatchException () {

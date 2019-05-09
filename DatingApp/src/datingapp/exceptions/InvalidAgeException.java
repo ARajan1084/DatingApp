@@ -1,4 +1,4 @@
-package exceptions;
+package datingapp.exceptions;
 
 public class InvalidAgeException extends Exception{
 

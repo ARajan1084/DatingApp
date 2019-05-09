@@ -1,4 +1,4 @@
-package program;
+package datingapp.program;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -24,7 +24,7 @@ public class Person implements Serializable {
         this.gender = gender;
         this.account = new Account(email, password);
         try {
-            Files.write(Paths.get("src/data/LoginData.txt"),
+            Files.write(Paths.get("src/datingapp.data/LoginData.txt"),
                     (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class Person implements Serializable {
     }
 
     /**
-     * returns the name of this program.Person
+     * returns the name of this datingapp.program.Person
      * @return name
      */
     public String getName () {
@@ -42,7 +42,7 @@ public class Person implements Serializable {
     }
 
     /**
-     * returns the age of this program.Person
+     * returns the age of this datingapp.program.Person
      * @return age
      */
     public int getAge () {
@@ -50,7 +50,7 @@ public class Person implements Serializable {
     }
 
     /**
-     * returns the status of this program.Person (single or not)
+     * returns the status of this datingapp.program.Person (single or not)
      * @return single
      */
     public boolean getStatus () {

@@ -1,8 +1,8 @@
-package gui;
+package datingapp.gui;
 
-import backend.Login;
-import program.Person;
-import exceptions.AccountNotFoundException;
+import datingapp.backend.Login;
+import datingapp.program.Person;
+import datingapp.exceptions.AccountNotFoundException;
 
 import java.awt.*;
 import java.awt.event.*;
