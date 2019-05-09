@@ -9,15 +9,26 @@ import java.util.ArrayList;
  * @version 05/08/19
  */
 public class Node {
+    private String question;
     private ArrayList<Person> pool;
     private ArrayList<Link> links;
 
     /**
      * constructs a Node object with empty people and links
      */
-    public Node() {
+    public Node(String question) {
         pool = new ArrayList<>();
         links = new ArrayList<>();
+        this.question = question;
+    }
+
+    public Node (String question, String[] answers) {
+        this.question = question;
+        links = new ArrayList<>();
+        pool = new ArrayList<>();
+        for (String answer: answers) {
+            links.add(new Link(answer, null));
+        }
     }
 
     /**
@@ -63,12 +74,31 @@ public class Node {
         return links.get(i);
     }
 
+    public Node getNode(int i) {
+        if (i >= links.size()) {
+            return null;
+        }
+        return links.get(i).getNode();
+    }
+
     /**
      * returns the dating pool
      * @return pool of the node
      */
     public ArrayList<Person> getPeople () {
         return pool;
+    }
+
+    public String getQuestion () {
+        return question;
+    }
+
+    public void setQuestion (String question) {
+        this.question = question;
+    }
+
+    public int getNumLinks () {
+        return links.size();
     }
 
     /**
