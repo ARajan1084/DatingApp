@@ -13,11 +13,15 @@ public class Tree {
     private Node root;
     private int size;
 
-    public Tree (String question, String[] answers) {
-        root = new Node(question, answers);
+    public Tree () {
+        root = new Node("What are you looking for?");
+        root.addLink(new Link("Long-Term", null));
+        root.addLink(new Link("Short-Term", null));
+
         size = 1;
     }
 
+    /*
     public void addNode(String question, String[] answers) {
         Node node = new Node(question, answers);
         Node iter = root;
@@ -45,6 +49,7 @@ public class Tree {
             iter = stack.pop();
         }
     }
+    */
 
     /**
      * helper method for addNode. Returns the index of the next empty space or -1 if all links of the node are full

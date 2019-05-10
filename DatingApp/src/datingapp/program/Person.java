@@ -16,6 +16,7 @@ public class Person implements Serializable {
     private String gender;
     private String bio;
     private String poolRootName;
+    private Node myNode;
     ArrayList<Integer> path;
 
     public Person (String name, int age, String gender, String email, String password, boolean single, String bio)
