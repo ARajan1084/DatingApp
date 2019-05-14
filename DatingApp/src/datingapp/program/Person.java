@@ -1,11 +1,14 @@
 package datingapp.program;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import datingapp.*;
+import javafx.scene.image.Image;
 
 public class Person implements Serializable {
 
@@ -17,18 +20,20 @@ public class Person implements Serializable {
     private String bio;
     private String poolRootName;
     private Node myNode;
+    private BufferedImage profilePic;
     ArrayList<Integer> path;
 
-    public Person (String name, int age, String gender, String email, String password, boolean single, String bio)
-            throws IOException {
+    public Person (String name, int age, String gender, String email, String password, boolean single, String bio,
+                   BufferedImage profilePic) {
         this.name = name;
         this.age = age;
+        this.profilePic = profilePic;
         this.gender = gender;
         this.account = new Account(email, password);
         try {
             Files.write(Paths.get("src/datingapp/data/LoginData.txt"),
                     (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         this.single = single;
@@ -65,6 +70,14 @@ public class Person implements Serializable {
 
     public void updatePath (int path) {
         this.path.add(path);
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public BufferedImage getProfilePic() {
+        return profilePic;
     }
 
     public void writeToFile (File file) {

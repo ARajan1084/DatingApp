@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class CreateAccountWindow extends JFrame {
     private JLabel labelFirstName, labelLastName, labelEmail, labelPassword, labelConfirmPassword, labelGender,
-            labelAge, labelSexuality, labelStatus, labelBio, labelError;
+            labelAge, labelSexuality, labelStatus, labelBio, labelError, labelProfilePic;
     private JTextField fieldFirstName, fieldLastName, fieldEmail, fieldAge;
     private JTextArea textAreaBio;
     private JPasswordField fieldPassword, fieldConfirmPassword;
@@ -19,14 +19,15 @@ public class CreateAccountWindow extends JFrame {
     private JCheckBox checkBoxSingle;
     private JButton buttonCreate, buttonCancel;
     private JFrame loginWindow;
+    private JFileChooser fileChooserProfilePic;
     private final Color backgroundColor = Color.PINK;
 
     public CreateAccountWindow (JFrame loginWindow) {
         createView();
 
         this.loginWindow = loginWindow;
-        setTitle("Welcome to datingapp.TinderButBetter! - Create an Account");
-        setSize(500, 520);
+        setTitle("Welcome to TinderButBetter! - Create an Account");
+        setSize(500, 770);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -37,6 +38,7 @@ public class CreateAccountWindow extends JFrame {
         JPanel panel = new JPanel();
         panel.setBackground(backgroundColor);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setPreferredSize(new Dimension(500, 790));
         getContentPane().add(panel);
 
         JPanel panelName = new JPanel();
@@ -52,6 +54,15 @@ public class CreateAccountWindow extends JFrame {
         panelName.add(fieldFirstName);
         panelName.add(labelLastName);
         panelName.add(fieldLastName);
+
+        JPanel panelProfilePic = new JPanel();
+        panelProfilePic.setBackground(backgroundColor);
+        panelProfilePic.setMaximumSize(new Dimension(450, 360));
+        labelProfilePic = new JLabel("Choose a profile picture...");
+        fileChooserProfilePic = new JFileChooser();
+        fileChooserProfilePic.setPreferredSize(new Dimension(400, 300));
+        panelProfilePic.add(labelProfilePic);
+        panelProfilePic.add(fileChooserProfilePic);
 
         JPanel panelEmail = new JPanel();
         panelEmail.setBackground(backgroundColor);
@@ -133,6 +144,7 @@ public class CreateAccountWindow extends JFrame {
 
         panel.add(panelName);
         panel.add(panelEmail);
+        panel.add(panelProfilePic);
         panel.add(panelPassword);
         panel.add(panelConfirmPassword);
         panel.add(panelInfo);
@@ -151,7 +163,8 @@ public class CreateAccountWindow extends JFrame {
                 new CreateAccount().isValid(fieldFirstName.getText(), fieldLastName.getText(), fieldEmail.getText(),
                         new String(fieldPassword.getPassword()), new String(fieldConfirmPassword.getPassword()),
                         fieldAge.getText(), (String) comboBoxGender.getSelectedItem(),
-                        (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText());
+                        (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText(),
+                        fileChooserProfilePic.getSelectedFile());
                 dispose();
                 loginWindow.setVisible(true);
             } catch (InvalidFirstNameException ex) {
@@ -160,6 +173,9 @@ public class CreateAccountWindow extends JFrame {
             } catch (InvalidLastNameException ex) {
                 labelError.setText("Error: Invalid Last Name.");
                 fieldLastName.setText("");
+            } catch (InvalidProfilePictureException ex) {
+                labelError.setText("Error: Invalid file type selected for profile picture.");
+                fileChooserProfilePic.cancelSelection();
             } catch (InvalidAgeException ex) {
                 labelError.setText("Error: Invalid Age. You must be at least 16 years old to participate.");
                 fieldAge.setText("");

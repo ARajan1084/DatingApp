@@ -22,17 +22,17 @@ public class DashboardWindow extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+        setBackground(new Color(105, 126, 108));
+
     }
 
     private void createView() {
         BorderLayout layout = new BorderLayout();
+        add(new ProfilePanel(myPerson), layout.EAST);
     }
 
-    private Panel eastPanel() {
-        return null; // TODO: fix
-    }
-
-    private Panel westPanel() {
-        return null; // TODO: fix
+    public static void main (String[] args)
+    {
+       // new DashboardWindow(new Person )
     }
 }

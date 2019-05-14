@@ -4,11 +4,15 @@ import java.util.LinkedList;
 
 public class Chat {
     private LinkedList<Message> messages;
+    private Person person1;
+    private Person person2;
     private int size;
 
-    public Chat() {
+    public Chat(Person p1, Person p2) {
         messages = new LinkedList<>();
         size = 0;
+        person1 = p1;
+        person2 = p2;
     }
 
     public void addMessage(Message m) {
@@ -25,5 +29,8 @@ public class Chat {
         while (size > 50) {
             messages.removeLast();
         }
+    }
+
+    public void sendMessage (Message message) {
     }
 }
