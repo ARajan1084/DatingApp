@@ -4,6 +4,7 @@ import datingapp.program.Person;
 import datingapp.exceptions.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,16 +24,18 @@ public class CreateAccount {
         {
             throw new InvalidLastNameException();
         }
-        BufferedImage pfp = null;
-        if (profilePic != null) {
+        ImageIcon pfp = null;
+        if (pfp == null) {
+            pfp = new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png")));
+            JFrame tester = new JFrame();
+            tester.add(new JLabel(pfp));
+            tester.setVisible(true);
+        } else {
             try {
-                pfp = ImageIO.read(profilePic);
+                pfp = new ImageIcon(ImageIO.read(profilePic));
             } catch (Exception e) {
                 throw new InvalidProfilePictureException();
             }
-        }
-        if (pfp == null) {
-            pfp = ImageIO.read(new File("datingapp/gui/defaultProfilePicture.png"));
         }
         try {
             Integer.parseInt(age);
@@ -58,7 +61,7 @@ public class CreateAccount {
     }
 
     private Person createAccount(String name, int age, String gender, String email, String password, boolean single,
-                                 String bio, BufferedImage pfp)
+                                 String bio, ImageIcon pfp)
         throws IOException {
         Person person = new Person(name, age, gender, email, password, single, bio, pfp);
         person.writeToFile(new File("src/datingapp/data/Users.txt"));

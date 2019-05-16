@@ -17,18 +17,20 @@ public class DashboardWindow extends JFrame {
     private Person myPerson;
 
     public DashboardWindow(Person person) {
+        myPerson = person;
         createView();
         setSize(new Dimension(1000, 800));
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setBackground(new Color(105, 126, 108));
 
     }
 
     private void createView() {
         BorderLayout layout = new BorderLayout();
-        add(new ProfilePanel(myPerson), layout.EAST);
+        add(new ProfilePanel(myPerson), layout.WEST);
     }
 
     public static void main (String[] args)

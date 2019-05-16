@@ -24,7 +24,7 @@ public class Login {
      */
     public Person isValid (String email, String password) throws IOException, AccountNotFoundException, ClassNotFoundException
     {
-        File loginData = new File("src/datingapp.data/LoginData.txt");
+        File loginData = new File("src/datingapp/data/LoginData.txt");
         HashMap<String, Account> accounts = new HashMap<>();
 
         BufferedReader br = new BufferedReader(new FileReader(loginData));
@@ -56,7 +56,7 @@ public class Login {
      * @throws ClassNotFoundException when the method can't cast Object info in the file into a Person object
      */
     private Person fetchUser (String email) throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fi = new FileInputStream(new File("src/datingapp.data/Users.txt"));
+        FileInputStream fi = new FileInputStream(new File("src/datingapp/data/Users.txt"));
         ObjectInputStream oi = new ObjectInputStream(fi);
         Object ob = oi.readObject();
         ArrayList<Person> users = new ArrayList<>();

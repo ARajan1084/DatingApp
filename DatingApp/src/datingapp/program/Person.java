@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import datingapp.*;
 import javafx.scene.image.Image;
 
+import javax.swing.*;
+
 public class Person implements Serializable {
 
     private String name;
@@ -20,11 +22,11 @@ public class Person implements Serializable {
     private String bio;
     private String poolRootName;
     private Node myNode;
-    private BufferedImage profilePic;
+    private ImageIcon profilePic;
     ArrayList<Integer> path;
 
     public Person (String name, int age, String gender, String email, String password, boolean single, String bio,
-                   BufferedImage profilePic) {
+                   ImageIcon profilePic) {
         this.name = name;
         this.age = age;
         this.profilePic = profilePic;
@@ -76,7 +78,7 @@ public class Person implements Serializable {
         return bio;
     }
 
-    public BufferedImage getProfilePic() {
+    public ImageIcon getProfilePic() {
         return profilePic;
     }
 
