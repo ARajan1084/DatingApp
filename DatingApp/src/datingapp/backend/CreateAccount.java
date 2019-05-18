@@ -5,8 +5,6 @@ import datingapp.exceptions.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,11 +23,8 @@ public class CreateAccount {
             throw new InvalidLastNameException();
         }
         ImageIcon pfp = null;
-        if (pfp == null) {
+        if (profilePic == null) {
             pfp = new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png")));
-            JFrame tester = new JFrame();
-            tester.add(new JLabel(pfp));
-            tester.setVisible(true);
         } else {
             try {
                 pfp = new ImageIcon(ImageIO.read(profilePic));
@@ -57,13 +52,13 @@ public class CreateAccount {
         if (password.length() < 4 || password.length() > 10) {
             throw new InvalidPasswordException();
         }
-        return createAccount(firstName + " " + lastName, intAge, gender, email, password, single, bio, pfp);
+        return createAccount(firstName + " " + lastName, intAge, gender, sexuality, email, password, single, bio, pfp);
     }
 
-    private Person createAccount(String name, int age, String gender, String email, String password, boolean single,
-                                 String bio, ImageIcon pfp)
+    private Person createAccount(String name, int age, String gender, String sexuality, String email, String password,
+                                 boolean single, String bio, ImageIcon pfp)
         throws IOException {
-        Person person = new Person(name, age, gender, email, password, single, bio, pfp);
+        Person person = new Person(name, age, gender, sexuality, email, password, single, bio, pfp);
         person.writeToFile(new File("src/datingapp/data/Users.txt"));
         return person;
     }

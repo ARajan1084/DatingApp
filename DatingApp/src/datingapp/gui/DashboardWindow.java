@@ -33,6 +33,14 @@ public class DashboardWindow extends JFrame {
         add(new ProfilePanel(myPerson), layout.WEST);
     }
 
+    private JPanel westPanel() {
+        BorderLayout layout = new BorderLayout();
+        JPanel westPanel = new JPanel();
+        westPanel.setMaximumSize(new Dimension(300, 800));
+        westPanel.add(new ProfilePanel(myPerson), layout.NORTH);
+        return westPanel;
+    }
+
     public static void main (String[] args)
     {
        // new DashboardWindow(new Person )

@@ -19,18 +19,20 @@ public class Person implements Serializable {
     private Account account;
     private boolean single;
     private String gender;
+    private String sexuality;
     private String bio;
     private String poolRootName;
     private Node myNode;
     private ImageIcon profilePic;
     ArrayList<Integer> path;
 
-    public Person (String name, int age, String gender, String email, String password, boolean single, String bio,
-                   ImageIcon profilePic) {
+    public Person (String name, int age, String gender, String sexuality, String email, String password, boolean single,
+                   String bio, ImageIcon profilePic) {
         this.name = name;
         this.age = age;
         this.profilePic = profilePic;
         this.gender = gender;
+        this.sexuality = sexuality;
         this.account = new Account(email, password);
         try {
             Files.write(Paths.get("src/datingapp/data/LoginData.txt"),

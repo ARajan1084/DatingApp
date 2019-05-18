@@ -4,9 +4,11 @@ import datingapp.backend.CreateAccount;
 import datingapp.exceptions.*;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 public class CreateAccountWindow extends JFrame {
@@ -59,7 +61,7 @@ public class CreateAccountWindow extends JFrame {
         panelProfilePic.setBackground(backgroundColor);
         panelProfilePic.setMaximumSize(new Dimension(450, 360));
         labelProfilePic = new JLabel("Choose a profile picture...");
-        fileChooserProfilePic = new JFileChooser();
+        fileChooserProfilePic = new JFileChooser(FileSystemView.getFileSystemView());
         fileChooserProfilePic.setPreferredSize(new Dimension(400, 300));
         panelProfilePic.add(labelProfilePic);
         panelProfilePic.add(fileChooserProfilePic);
@@ -128,6 +130,7 @@ public class CreateAccountWindow extends JFrame {
 
         textAreaBio = new JTextArea();
         textAreaBio.setMaximumSize(new Dimension(300, 300));
+        textAreaBio.setLineWrap(true);
         textAreaBio.setText("Type your bio here...");
 
         JPanel panelButtons = new JPanel();
@@ -164,7 +167,7 @@ public class CreateAccountWindow extends JFrame {
                         new String(fieldPassword.getPassword()), new String(fieldConfirmPassword.getPassword()),
                         fieldAge.getText(), (String) comboBoxGender.getSelectedItem(),
                         (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText(),
-                        fileChooserProfilePic.getSelectedFile());
+                        new File(fileChooserProfilePic.getSelectedFile().getAbsolutePath()));
                 dispose();
                 loginWindow.setVisible(true);
             } catch (InvalidFirstNameException ex) {
@@ -202,9 +205,5 @@ public class CreateAccountWindow extends JFrame {
             dispose();
             loginWindow.setVisible(true);
         }
-    }
-
-    public static void main(String[]args) {
-        new CreateAccountWindow(null);
     }
 }
