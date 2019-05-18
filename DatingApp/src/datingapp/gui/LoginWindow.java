@@ -14,7 +14,7 @@ import javax.swing.*;
  */
 public class LoginWindow extends JFrame {
 
-    private JLabel labelEmail, labelPassword;
+    private JLabel labelEmail, labelPassword, labelError;
     private JTextField fieldEmail;
     private JPasswordField passwordField;
     private JButton buttonLogin, buttonCreateAccount, buttonForgotPassword;
@@ -72,11 +72,15 @@ public class LoginWindow extends JFrame {
         buttonCreateAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonForgotPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        labelError = new JLabel();
+        labelError.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         panel.add(panelEmail);
         panel.add(panelPassword);
         panel.add(buttonLogin);
         panel.add(buttonCreateAccount);
         panel.add(buttonForgotPassword);
+        panel.add(labelError);
     }
 
     public static void main (String[]args) {
@@ -90,8 +94,11 @@ public class LoginWindow extends JFrame {
                 try {
                     Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
                     if (login != null) {
+                        dispose();
                         new DashboardWindow(login);
-                        setVisible(false);
+                    } else {
+                        passwordField.setText("");
+                        labelError.setText("Error: Invalid Password.");
                     }
                 } catch (ClassNotFoundException ex) {
                     throw new AccountNotFoundException();
@@ -99,6 +106,7 @@ public class LoginWindow extends JFrame {
             } catch (AccountNotFoundException exception) {
                 fieldEmail.setText("");
                 passwordField.setText("");
+                labelError.setText("Account not found.");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
