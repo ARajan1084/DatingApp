@@ -131,6 +131,7 @@ public class CreateAccountWindow extends JFrame {
         textAreaBio = new JTextArea();
         textAreaBio.setMaximumSize(new Dimension(300, 300));
         textAreaBio.setLineWrap(true);
+        textAreaBio.setWrapStyleWord(true);
         textAreaBio.setText("Type your bio here...");
 
         JPanel panelButtons = new JPanel();
@@ -163,11 +164,17 @@ public class CreateAccountWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
+                File file;
+                if (fileChooserProfilePic.getSelectedFile() == null) {
+                    file = null;
+                } else {
+                    file = new File(fileChooserProfilePic.getSelectedFile().getAbsolutePath());
+                }
                 new CreateAccount().isValid(fieldFirstName.getText(), fieldLastName.getText(), fieldEmail.getText(),
                         new String(fieldPassword.getPassword()), new String(fieldConfirmPassword.getPassword()),
                         fieldAge.getText(), (String) comboBoxGender.getSelectedItem(),
                         (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText(),
-                        new File(fileChooserProfilePic.getSelectedFile().getAbsolutePath()));
+                        file);
                 dispose();
                 loginWindow.setVisible(true);
             } catch (InvalidFirstNameException ex) {
@@ -193,6 +200,9 @@ public class CreateAccountWindow extends JFrame {
                 labelError.setText("Error: Your password must be between 4 to 10 characters long.");
                 fieldPassword.setText("");
                 fieldConfirmPassword.setText("");
+            } catch (BioWordLengthException ex) {
+                textAreaBio.setText("");
+                labelError.setText("Error: Your bio must be below " + ex.getMaxSize() + " characters long.");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

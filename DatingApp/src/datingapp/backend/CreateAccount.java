@@ -13,7 +13,8 @@ public class CreateAccount {
     public Person isValid (String firstName, String lastName, String email, String password, String confirmPassword,
                            String age, String gender, String sexuality, boolean single, String bio, File profilePic)
             throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException, PasswordMismatchException,
-            InvalidPasswordException, IOException, InvalidEmailAddressException, InvalidProfilePictureException {
+            InvalidPasswordException, IOException, InvalidEmailAddressException, InvalidProfilePictureException,
+            BioWordLengthException {
         if (firstName.length() <= 2)
         {
             throw new InvalidFirstNameException();
@@ -51,6 +52,9 @@ public class CreateAccount {
         }
         if (password.length() < 4 || password.length() > 10) {
             throw new InvalidPasswordException();
+        }
+        if (bio.length() > 250) {
+            throw new BioWordLengthException(250);
         }
         return createAccount(firstName + " " + lastName, intAge, gender, sexuality, email, password, single, bio, pfp);
     }

@@ -15,34 +15,37 @@ import java.awt.*;
 public class DashboardWindow extends JFrame {
 
     private Person myPerson;
+    private final Dimension dashSize = new Dimension(1200, 800);
 
     public DashboardWindow(Person person) {
         myPerson = person;
         createView();
-        setSize(new Dimension(1000, 800));
+        setSize(dashSize);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setBackground(new Color(105, 126, 108));
-
     }
 
     private void createView() {
         BorderLayout layout = new BorderLayout();
-        add(new ProfilePanel(myPerson), layout.WEST);
+        layout.setHgap(0);
+        layout.setVgap(0);
+        JPanel panelDash = new JPanel();
+        panelDash.setLayout(layout);
+        panelDash.setPreferredSize(dashSize);
+        panelDash.add(westPanel(), BorderLayout.WEST);
+        panelDash.setBackground(Color.PINK);
+        add(panelDash);
     }
 
     private JPanel westPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel westPanel = new JPanel();
-        westPanel.setMaximumSize(new Dimension(300, 800));
-        westPanel.add(new ProfilePanel(myPerson), layout.NORTH);
+        westPanel.setLayout(layout);
+        westPanel.setBackground(Color.CYAN);
+        westPanel.setPreferredSize(new Dimension(250, 800));
+        westPanel.add(new ProfilePanel(myPerson), BorderLayout.NORTH);
         return westPanel;
-    }
-
-    public static void main (String[] args)
-    {
-       // new DashboardWindow(new Person )
     }
 }
