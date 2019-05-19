@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 
 public class ProfilePanel extends JPanel {
     Person myPerson;
+    private JLabel labelTitle, labelName, labelAge, labelEmail;
+    private JTextArea textAreaBio;
+    private JButton buttonEdit;
 
     public ProfilePanel (Person person) {
         super();
@@ -26,14 +29,16 @@ public class ProfilePanel extends JPanel {
         JLabel labelProfilePic = new JLabel(profilePic);
         labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel labelName = new JLabel(myPerson.getName());
-        JLabel labelAge = new JLabel(Integer.toString(myPerson.getAge()) + " years");
-        JLabel labelEmail = new JLabel(myPerson.getEmail());
+        labelName = new JLabel(myPerson.getName());
+        labelAge = new JLabel(Integer.toString(myPerson.getAge()) + " years");
+        labelEmail = new JLabel(myPerson.getEmail());
+        labelTitle = new JLabel("My Profile");
+        labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelAge.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelEmail.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JTextArea textAreaBio = new JTextArea();
+        textAreaBio = new JTextArea();
         textAreaBio.setMaximumSize(new Dimension(220, 250));
         textAreaBio.setText(myPerson.getBio());
         textAreaBio.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -41,10 +46,11 @@ public class ProfilePanel extends JPanel {
         textAreaBio.setWrapStyleWord(true);
         textAreaBio.setEditable(false);
 
-        JButton buttonEdit = new JButton("Edit");
+        buttonEdit = new JButton("Edit");
         buttonEdit.addActionListener(new ButtonEditActionListender());
         buttonEdit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        add(labelTitle);
         add(labelProfilePic);
         add(labelName);
         add(labelAge);

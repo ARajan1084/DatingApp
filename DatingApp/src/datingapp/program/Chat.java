@@ -31,6 +31,14 @@ public class Chat {
         }
     }
 
+    public Person getPerson1 () {
+        return person1;
+    }
+
+    public Person getPerson2() {
+        return person2;
+    }
+
     public void sendMessage (Message message) {
     }
 }

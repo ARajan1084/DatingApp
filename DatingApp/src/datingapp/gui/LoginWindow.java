@@ -1,12 +1,14 @@
 package datingapp.gui;
 
 import datingapp.backend.Login;
+import datingapp.program.Chat;
 import datingapp.program.Person;
 import datingapp.exceptions.AccountNotFoundException;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -95,7 +97,7 @@ public class LoginWindow extends JFrame {
                     Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
                     if (login != null) {
                         dispose();
-                        new DashboardWindow(login);
+                        new DashboardWindow(login, new ArrayList<Chat>(), new ArrayList<Person>());
                     } else {
                         passwordField.setText("");
                         labelError.setText("Error: Invalid Password.");

@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class CreateAccount {
 
@@ -14,7 +15,7 @@ public class CreateAccount {
                            String age, String gender, String sexuality, boolean single, String bio, File profilePic)
             throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException, PasswordMismatchException,
             InvalidPasswordException, IOException, InvalidEmailAddressException, InvalidProfilePictureException,
-            BioWordLengthException {
+            BioWordLengthException, ClassNotFoundException, SQLException {
         if (firstName.length() <= 2)
         {
             throw new InvalidFirstNameException();
@@ -53,17 +54,17 @@ public class CreateAccount {
         if (password.length() < 4 || password.length() > 10) {
             throw new InvalidPasswordException();
         }
-        if (bio.length() > 250) {
-            throw new BioWordLengthException(250);
+        if (bio.length() > 350) {
+            throw new BioWordLengthException(350);
         }
         return createAccount(firstName + " " + lastName, intAge, gender, sexuality, email, password, single, bio, pfp);
     }
 
     private Person createAccount(String name, int age, String gender, String sexuality, String email, String password,
-                                 boolean single, String bio, ImageIcon pfp)
-        throws IOException {
+                          boolean single, String bio, ImageIcon pfp)
+            throws IOException, ClassNotFoundException, SQLException {
         Person person = new Person(name, age, gender, sexuality, email, password, single, bio, pfp);
-        person.writeToFile(new File("src/datingapp/data/Users.txt"));
+        new AccountService().addUser(person);
         return person;
     }
 }

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class CreateAccountWindow extends JFrame {
     private JLabel labelFirstName, labelLastName, labelEmail, labelPassword, labelConfirmPassword, labelGender,
@@ -205,6 +206,13 @@ public class CreateAccountWindow extends JFrame {
                 labelError.setText("Error: Your bio must be below " + ex.getMaxSize() + " characters long.");
             } catch (IOException ex) {
                 ex.printStackTrace();
+                labelError.setText("Internal Error: please try again later.");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                labelError.setText("Internal Error: please try again later.");
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+                labelError.setText("Internal Error: please try again later.");
             }
         }
     }

@@ -60,6 +60,14 @@ public class Person implements Serializable {
         return age;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public String getSexuality () {
+        return sexuality;
+    }
+
     /**
      * returns the status of this datingapp.program.Person (single or not)
      * @return single
@@ -82,6 +90,10 @@ public class Person implements Serializable {
 
     public ImageIcon getProfilePic() {
         return profilePic;
+    }
+
+    public String getPassword() {
+        return account.getPassword();
     }
 
     public void writeToFile (File file) {
