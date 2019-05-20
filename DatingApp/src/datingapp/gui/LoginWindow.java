@@ -8,6 +8,7 @@ import datingapp.exceptions.AccountNotFoundException;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -104,6 +105,9 @@ public class LoginWindow extends JFrame {
                     }
                 } catch (ClassNotFoundException ex) {
                     throw new AccountNotFoundException();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    labelError.setText("Internal Error: please try again later");
                 }
             } catch (AccountNotFoundException exception) {
                 fieldEmail.setText("");
