@@ -4,7 +4,6 @@ import datingapp.program.Person;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
@@ -12,6 +11,11 @@ import java.sql.*;
 public class AccountService {
     private Connection con;
 
+    /**
+     * establishes a connection "con" to the database
+     * @throws ClassNotFoundException in case casting the
+     * @throws SQLException in case the connection to the database fails
+     */
     public AccountService() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp","root","");

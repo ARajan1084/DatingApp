@@ -96,6 +96,19 @@ public class Person implements Serializable {
         return account.getPassword();
     }
 
+    /**
+     * Akanksha
+     *
+     * sets the bio of this person to the String that's passed in
+     * @param newBio
+     */
+    public void setBio(String newBio)
+    {
+        bio = newBio;
+    }
+
+
+
     public void writeToFile (File file) {
         try {
 
@@ -106,6 +119,10 @@ public class Person implements Serializable {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void addToPath(int i) {
+        path.add(i);
     }
 
     public String toString () {

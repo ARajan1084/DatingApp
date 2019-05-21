@@ -3,10 +3,13 @@ package datingapp.gui;
 import datingapp.program.Chat;
 import datingapp.program.Person;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -108,8 +111,8 @@ public class DashboardWindow extends JFrame {
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
      * @return completed south pane of centerPanel()
      */
-    private JScrollPane centerSouthPane() {
-        JScrollPane southPane = new MatchesPane(myMatches);
+    private JPanel centerSouthPane() {
+        JPanel southPane = new MatchesPane(myMatches);
         return southPane;
     }
 
@@ -124,6 +127,18 @@ public class DashboardWindow extends JFrame {
         eastPanel.setPreferredSize(new Dimension(250, 800));
         eastPanel.add(new ChatsPanel(myPerson, myChats), BorderLayout.NORTH);
         return eastPanel;
+    }
+
+    public static void main(String[] args) throws IOException
+    {
+        ArrayList<Chat> chats = new ArrayList<Chat>();
+        ArrayList<Person> matches = new ArrayList<Person>();
+        Person p = new Person("Wigga", 30,"", "", "fifa@gmail.com", "",
+                true, "Bigga", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        Person p1 = new Person("", 30,"", "", "fifa@gmail.com", "",
+                true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        matches.add(p1);
+        new DashboardWindow(p, chats, matches);
     }
 
     /**
