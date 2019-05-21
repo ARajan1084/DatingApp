@@ -88,6 +88,17 @@ public class Person implements Serializable {
         return bio;
     }
 
+    /**
+     * Akanksha
+     *
+     * sets the bio of this person to the String that's passed in
+     * @param newBio
+     */
+    public void setBio(String newBio)
+    {
+        bio = newBio;
+    }
+
     public ImageIcon getProfilePic() {
         return profilePic;
     }
