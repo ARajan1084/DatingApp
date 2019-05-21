@@ -3,10 +3,13 @@ package datingapp.gui;
 import datingapp.program.Chat;
 import datingapp.program.Person;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -68,7 +71,7 @@ public class DashboardWindow extends JFrame {
         BorderLayout layout = new BorderLayout();
         JPanel westPanel = new JPanel();
         westPanel.setLayout(layout);
-        westPanel.setBackground(Color.CYAN);
+        westPanel.setBackground(new Color(243, 232, 232));
         westPanel.setPreferredSize(new Dimension(250, 800));
         westPanel.add(new ProfilePanel(myPerson), BorderLayout.NORTH);
         return westPanel;
@@ -84,7 +87,7 @@ public class DashboardWindow extends JFrame {
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
         centerPanel.add(centerSouthPane(), BorderLayout.SOUTH);
-        centerPanel.setBackground(Color.PINK);
+        centerPanel.setBackground(new Color	(222,237,242));
         return centerPanel;
     }
 
@@ -129,11 +132,22 @@ public class DashboardWindow extends JFrame {
     /**
      * Action Listener for Logout Button
      */
-    private class ButtonLogoutActionListener implements ActionListener {
+    private class ButtonLogoutActionListener implements ActionListener
+    {
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
             new LoginWindow();
         }
+    }
+
+    public static void main(String[] args) throws IOException
+    {
+        ArrayList<Chat> chats = new ArrayList<Chat>();
+        ArrayList<Person> matches = new ArrayList<Person>();
+        Person p = new Person("Alexis", 30,"", "", "fifa@gmail.com", "groceries",
+                true, "", new ImageIcon(ImageIO.read(new File("/home/akanksha/Downloads/DA2/" +
+                "DatingApp-master/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        new DashboardWindow(p, chats, matches);
     }
 }

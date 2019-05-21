@@ -16,7 +16,7 @@ public class ProfilePanel extends JPanel {
     public ProfilePanel (Person person) {
         super();
         myPerson = person;
-        setPreferredSize(new Dimension(280, 400));
+        setPreferredSize(new Dimension(280, 800));
         createView();
     }
 
@@ -47,7 +47,7 @@ public class ProfilePanel extends JPanel {
         textAreaBio.setEditable(false);
 
         buttonEdit = new JButton("Edit");
-        buttonEdit.addActionListener(new ButtonEditActionListender());
+        buttonEdit.addActionListener(new ButtonEditActionListener());
         buttonEdit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(labelTitle);
@@ -59,10 +59,17 @@ public class ProfilePanel extends JPanel {
         add(buttonEdit);
     }
 
-    private class ButtonEditActionListender implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+    public void setTextAreaBio(JTextArea textAreaBio)
+    {
+        this.textAreaBio = textAreaBio;
+    }
 
+    private class ButtonEditActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            new EditBioWindow(myPerson);
+            textAreaBio.setText(myPerson.getBio());
         }
     }
 }
