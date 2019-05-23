@@ -88,17 +88,6 @@ public class Person implements Serializable {
         return bio;
     }
 
-    /**
-     * Akanksha
-     *
-     * sets the bio of this person to the String that's passed in
-     * @param newBio
-     */
-    public void setBio(String newBio)
-    {
-        bio = newBio;
-    }
-
     public ImageIcon getProfilePic() {
         return profilePic;
     }
@@ -107,11 +96,27 @@ public class Person implements Serializable {
         return account.getPassword();
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setProfilePic(ImageIcon profilePic) {
+        this.profilePic = profilePic;
+    }
+
+    public void setPassword(String password) {
+        account.setPassword(password);
+    }
+
     /**
      * Akanksha
      *
      * sets the bio of this person to the String that's passed in
-     * @param newBio
+     * @param newBio new bio to be set
      */
     public void setBio(String newBio)
     {

@@ -59,17 +59,19 @@ public class ProfilePanel extends JPanel {
         add(buttonEdit);
     }
 
-    public void setTextAreaBio(JTextArea textAreaBio)
-    {
-        this.textAreaBio = textAreaBio;
+    public void updateView(Person p) {
+        myPerson = p;
+        removeAll();
+        createView();
+        revalidate();
+        repaint();
     }
 
     private class ButtonEditActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            new EditBioWindow(myPerson);
-            textAreaBio.setText(myPerson.getBio());
+            new EditAccountWindow(myPerson, ProfilePanel.this);
         }
     }
 }

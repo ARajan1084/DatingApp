@@ -47,4 +47,8 @@ public class Account implements Serializable {
         output += "Password: " + password + "\n";
         return output;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

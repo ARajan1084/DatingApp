@@ -152,14 +152,4 @@ public class DashboardWindow extends JFrame {
             new LoginWindow();
         }
     }
-
-    public static void main(String[] args) throws IOException
-    {
-        ArrayList<Chat> chats = new ArrayList<Chat>();
-        ArrayList<Person> matches = new ArrayList<Person>();
-        Person p = new Person("Alexis", 30,"", "", "fifa@gmail.com", "groceries",
-                true, "", new ImageIcon(ImageIO.read(new File("/home/akanksha/Downloads/DA2/" +
-                "DatingApp-master/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-        new DashboardWindow(p, chats, matches);
-    }
 }

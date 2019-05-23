@@ -43,6 +43,10 @@ public class AccountService {
         con.close();
     }
 
+    public void editUser(Person p) {
+
+    }
+
     public Person isValid(String emailAdress, String password) throws SQLException, IOException {
         PreparedStatement stmt = con.prepareStatement("SELECT * FROM person WHERE email = ? AND password = ?");
         stmt.setString(1, emailAdress);
