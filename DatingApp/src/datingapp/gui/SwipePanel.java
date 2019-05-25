@@ -16,11 +16,11 @@ import static datingapp.gui.DashboardWindow.*;
 public class SwipePanel extends JPanel
 {
     Person myPerson;
-    private JLabel labelTitle, labelName, labelAge;
+    private JLabel labelTitle, labelName, labelBio;
     private JTextArea textAreaBio;
     private JButton buttonYeah, buttonNah;
-    private final Color redOxide = new Color(77, 21, 18);
-    private final Color oysterPink = new Color(210, 176, 174);
+    public final Color redOxide = new Color(77, 21, 18);
+    public final Color oysterPink = new Color(210, 176, 174);
     private final Font fontBold = new Font("Helvetica", Font.BOLD, 15);
     private final Font fontItal = new Font("Helvetica", Font.ITALIC, 15);
     private final Font fontNone = new Font("Helvetica", 0, 15);
@@ -45,18 +45,21 @@ public class SwipePanel extends JPanel
         setBackground(redOxide);
 
 
-        labelName = new JLabel(myPerson.getName());
+        labelName = new JLabel(myPerson.getName() + ", " + myPerson.getAge());
         labelName.setFont(fontBold);
         labelName.setForeground(oysterPink);
-        labelAge = new JLabel(Integer.toString(myPerson.getAge()));
-        labelAge.setFont(fontItal);
-        labelAge.setForeground(oysterPink);
+
+        labelBio = new JLabel(myPerson.getBio());
+        labelBio.setFont(fontItal);
+        labelBio.setForeground(oysterPink);
+
         labelTitle = new JLabel("Would you date them?");
         labelTitle.setFont(fontBold);
         labelTitle.setForeground(oysterPink);
+
         labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
-        labelAge.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelBio.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
 
@@ -81,7 +84,7 @@ public class SwipePanel extends JPanel
         add(labelTitle);
         add(labelProfilePic);
         add(labelName);
-        add(labelAge);
+        add(labelBio);
         add(buttonPane, BorderLayout.PAGE_END);
 
     }
