@@ -122,8 +122,8 @@ public class DashboardWindow extends JFrame {
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
      * @return completed south pane of centerPanel()
      */
-    private JScrollPane centerSouthPane() {
-        JScrollPane southPane = new MatchesPane(myMatches);
+    private JPanel centerSouthPane() {
+        JPanel southPane = new MatchesPane(myMatches);
         return southPane;
     }
 
@@ -140,25 +140,27 @@ public class DashboardWindow extends JFrame {
         return eastPanel;
     }
 
+    public static void main(String[] args) throws IOException
+    {
+        ArrayList<Chat> chats = new ArrayList<Chat>();
+        ArrayList<Person> matches = new ArrayList<Person>();
+        Person p = new Person("Wigga", 30,"", "", "fifa@gmail.com", "",
+                true, "Bigga", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        Person p1 = new Person("", 30,"", "", "fifa@gmail.com", "",
+                true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        matches.add(p1);
+        new DashboardWindow(p, chats, matches);
+    }
+
     /**
      * Action Listener for Logout Button
      */
-    private class ButtonLogoutActionListener implements ActionListener
-    {
+    private class ButtonLogoutActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
             new LoginWindow();
         }
-    }
-
-    public static void main(String[] args) throws IOException
-    {
-        ArrayList<Chat> chats = new ArrayList<Chat>();
-        ArrayList<Person> matches = new ArrayList<Person>();
-        Person p = new Person("Alexis", 30,"", "", "fifa@gmail.com", "groceries",
-                true, "", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-        new DashboardWindow(p, chats, matches);
     }
 
     public static JButton createSimpleButton(JButton button, String text) {

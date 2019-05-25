@@ -10,7 +10,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class MatchesPane extends JScrollPane {
+public class MatchesPane extends JPanel {
     private JLabel labelTitle;
     private ArrayList<Person> matches;
 
@@ -18,6 +18,7 @@ public class MatchesPane extends JScrollPane {
         super();
         this.matches = matches;
         setPreferredSize(new Dimension(600, 370));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         createView();
     }
 
@@ -34,8 +35,8 @@ public class MatchesPane extends JScrollPane {
         private MatchPanel(Person p) {
             super();
             BorderLayout layout = new BorderLayout();
-            setLayout(layout);
-            setPreferredSize(new Dimension(450, 100));
+            this.setLayout(layout);
+            setMaximumSize(new Dimension(450, 100));
 
             ImageIcon profilePic = p.getProfilePic();
             Image temp = profilePic.getImage();
@@ -45,14 +46,16 @@ public class MatchesPane extends JScrollPane {
             add(labelProfilePic, BorderLayout.WEST);
 
             JPanel panelInfo = new JPanel();
-            panelInfo.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
 
             JTextArea bio = new JTextArea();
             bio.setLineWrap(true);
+            bio.setEditable(false);
             bio.setWrapStyleWord(true);
 
             panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));
             panelInfo.add(bio);
+            add(panelInfo, BorderLayout.EAST);
         }
     }
 }
