@@ -38,6 +38,7 @@ public class DashboardWindow extends JFrame {
     public static final Font FONT_2 = new Font("Helvetica", Font.ITALIC, 12);
     public static final Font FONT_3 = new Font("Helvetica", 0, 12);
     public static final Color NAVY_BLUE = new Color(36, 72, 104);
+    private JPanel centerPanel;
 
 
     /**
@@ -70,6 +71,8 @@ public class DashboardWindow extends JFrame {
         panelDash.add(westPanel(), BorderLayout.WEST);
         panelDash.add(eastPanel(), BorderLayout.EAST);
         panelDash.setBackground(Color.PINK);
+
+        centerPanel.add(centerNorthPanel());
         add(panelDash);
     }
 
@@ -93,11 +96,16 @@ public class DashboardWindow extends JFrame {
      */
     private JPanel centerPanel() {
         BorderLayout layout = new BorderLayout();
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
         centerPanel.add(centerSouthPane(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
+
+        centerPanel.setLayout(layout);
+        centerPanel.setPreferredSize(new Dimension(500, 30));
+        centerPanel.add(new SwipePanel(myPerson), BorderLayout.NORTH);
+
         return centerPanel;
     }
 
@@ -105,17 +113,15 @@ public class DashboardWindow extends JFrame {
      * helper method of centerPanel() that constructs the Logout button and its action listener
      * @return completed north panel of centerPanel()
      */
+
     private JPanel centerNorthPanel() {
+
         BorderLayout layout = new BorderLayout();
-        JPanel northPanel = new JPanel();
-        northPanel.setLayout(layout);
-        northPanel.setPreferredSize(new Dimension(500, 30));
-        JButton buttonLogout = new JButton();
-        buttonLogout = createSimpleButton(buttonLogout, "Logout");
-        buttonLogout.addActionListener(new ButtonLogoutActionListener());
-        buttonLogout.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        northPanel.add(buttonLogout, BorderLayout.EAST);
-        return northPanel;
+        JPanel centerNorthPanel = new JPanel();
+        centerNorthPanel.setLayout(layout);
+        centerNorthPanel.setPreferredSize(new Dimension(500, 30));
+        centerNorthPanel.add(new SwipePanel(myPerson), BorderLayout.NORTH);
+        return centerNorthPanel;
     }
 
     /**
@@ -148,7 +154,13 @@ public class DashboardWindow extends JFrame {
                 true, "Bigga", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
         Person p1 = new Person("", 30,"", "", "fifa@gmail.com", "",
                 true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        /*
+        Person p = new Person("Alexis Rose", 30,"", "", "fifa@gmail.com", "",
+                true, "bio...", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        Person p1 = new Person("Ted Mullens", 30,"", "", "fifa@gmail.com", "",
+                true, "John", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
         matches.add(p1);
+         */
         new DashboardWindow(p, chats, matches);
     }
 
