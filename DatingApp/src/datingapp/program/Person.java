@@ -34,12 +34,6 @@ public class Person implements Serializable {
         this.gender = gender;
         this.sexuality = sexuality;
         this.account = new Account(email, password);
-        try {
-            Files.write(Paths.get("src/datingapp/data/LoginData.txt"),
-                    (email + ", " + password + "\n").getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         this.single = single;
         this.bio = bio;
     }
