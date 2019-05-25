@@ -3,9 +3,15 @@ package datingapp.gui;
 import datingapp.program.Person;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static datingapp.gui.DashboardWindow.createSimpleButton;
 
 public class ProfilePanel extends JPanel {
     Person myPerson;
@@ -46,7 +52,8 @@ public class ProfilePanel extends JPanel {
         textAreaBio.setWrapStyleWord(true);
         textAreaBio.setEditable(false);
 
-        buttonEdit = new JButton("Edit");
+        buttonEdit = createSimpleButton(buttonEdit, "Update");
+        buttonEdit.setFont(new Font("Helvetica", Font.ITALIC, 12));
         buttonEdit.addActionListener(new ButtonEditActionListener());
         buttonEdit.setAlignmentX(Component.CENTER_ALIGNMENT);
 

@@ -5,6 +5,10 @@ import datingapp.program.Person;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +33,12 @@ public class DashboardWindow extends JFrame {
     private ArrayList<Chat> myChats;
     private ArrayList<Person> myMatches;
     private final Dimension dashSize = new Dimension(1200, 769);
+
+    public static final Font FONT_1 = new Font("Helvetica", Font.BOLD, 12);
+    public static final Font FONT_2 = new Font("Helvetica", Font.ITALIC, 12);
+    public static final Font FONT_3 = new Font("Helvetica", 0, 12);
+    public static final Color NAVY_BLUE = new Color(36, 72, 104);
+
 
     /**
      * constructs a window that serves as the user's dashboard
@@ -100,7 +110,8 @@ public class DashboardWindow extends JFrame {
         JPanel northPanel = new JPanel();
         northPanel.setLayout(layout);
         northPanel.setPreferredSize(new Dimension(500, 30));
-        JButton buttonLogout = new JButton("Logout");
+        JButton buttonLogout = new JButton();
+        buttonLogout = createSimpleButton(buttonLogout, "Logout");
         buttonLogout.addActionListener(new ButtonLogoutActionListener());
         buttonLogout.setAlignmentX(Component.RIGHT_ALIGNMENT);
         northPanel.add(buttonLogout, BorderLayout.EAST);
@@ -146,8 +157,19 @@ public class DashboardWindow extends JFrame {
         ArrayList<Chat> chats = new ArrayList<Chat>();
         ArrayList<Person> matches = new ArrayList<Person>();
         Person p = new Person("Alexis", 30,"", "", "fifa@gmail.com", "groceries",
-                true, "", new ImageIcon(ImageIO.read(new File("/home/akanksha/Downloads/DA2/" +
-                "DatingApp-master/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+                true, "", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
         new DashboardWindow(p, chats, matches);
+    }
+
+    public static JButton createSimpleButton(JButton button, String text) {
+        button = new JButton(text);
+        button.setForeground(Color.BLACK);
+        button.setBackground(Color.WHITE);
+        button.setFont(new Font("Helvetica", Font.BOLD, 12));
+        Border line = new LineBorder(Color.WHITE);
+        Border margin = new EmptyBorder(5, 15, 5, 15);
+        Border compound = new CompoundBorder(line, margin);
+        button.setBorder(compound);
+        return button;
     }
 }

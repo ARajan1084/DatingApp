@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import static datingapp.gui.DashboardWindow.*;
 
 /**
  *  Provides GUI for registering and logging in users.
@@ -22,7 +28,7 @@ public class LoginWindow extends JFrame {
     private JPasswordField passwordField;
     private JButton buttonLogin, buttonCreateAccount, buttonForgotPassword;
     private JFrame loginWindow;
-    private final Color backgroundColor = Color.PINK;
+    private final Color backgroundColor = new Color(204, 218, 252);
 
     public LoginWindow () {
         createView();
@@ -43,13 +49,19 @@ public class LoginWindow extends JFrame {
         getContentPane().add(panel);
 
         labelEmail = new JLabel("Email: ");
+        labelEmail.setFont(FONT_1);
+        labelEmail.setForeground(NAVY_BLUE);
         labelPassword = new JLabel("Password: ");
+        labelPassword.setFont(FONT_1);
+        labelPassword.setForeground(NAVY_BLUE);
         // TODO: Fix Alignment
 
         fieldEmail = new JTextField();
         fieldEmail.setPreferredSize(new Dimension (175, 20));
+        fieldEmail.setBorder(null);
         passwordField = new JPasswordField();
         passwordField.setPreferredSize(new Dimension (175, 20));
+        passwordField.setBorder(null);
         // TODO: Fix Alignment
 
         JPanel panelEmail = new JPanel();
@@ -65,11 +77,11 @@ public class LoginWindow extends JFrame {
         panelPassword.add(labelPassword);
         panelPassword.add(passwordField);
 
-        buttonLogin = new JButton("Login");
+        buttonLogin = createSimpleButton(buttonLogin, "Login");
         buttonLogin.addActionListener(new ButtonLoginActionListener());
-        buttonCreateAccount = new JButton("Create a New Account");
+        buttonCreateAccount = createSimpleButton(buttonCreateAccount, "Create a New Account");
         buttonCreateAccount.addActionListener(new ButtonCreateAccountActionListener());
-        buttonForgotPassword = new JButton("Forgot Your Password?");
+        buttonForgotPassword = createSimpleButton(buttonForgotPassword, "Forgot Your Password?");
         buttonForgotPassword.addActionListener(new ButtonForgotPasswordActionListener());
         buttonLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonCreateAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -134,4 +146,5 @@ public class LoginWindow extends JFrame {
             new ChangePasswordWindow(loginWindow);
         }
     }
+
 }

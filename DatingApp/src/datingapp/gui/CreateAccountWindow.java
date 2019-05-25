@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static datingapp.gui.DashboardWindow.FONT_1;
+
 public class CreateAccountWindow extends JFrame {
     private JLabel labelFirstName, labelLastName, labelEmail, labelPassword, labelConfirmPassword, labelGender,
             labelAge, labelSexuality, labelStatus, labelBio, labelError, labelProfilePic;
@@ -48,11 +50,14 @@ public class CreateAccountWindow extends JFrame {
         panelName.setBackground(backgroundColor);
         panelName.setMaximumSize(new Dimension(350, 30));
         labelFirstName = new JLabel("First Name: ");
+        labelFirstName.setFont(FONT_1);
         labelLastName = new JLabel("Last Name: ");
         fieldFirstName = new JTextField();
         fieldFirstName.setPreferredSize(new Dimension(75, 20));
+        fieldFirstName.setBorder(null);
         fieldLastName = new JTextField();
         fieldLastName.setPreferredSize(new Dimension(75, 20));
+        fieldLastName.setBorder(null);
         panelName.add(labelFirstName);
         panelName.add(fieldFirstName);
         panelName.add(labelLastName);
@@ -73,6 +78,7 @@ public class CreateAccountWindow extends JFrame {
         labelEmail = new JLabel("Email Address: ");
         fieldEmail = new JTextField();
         fieldEmail.setPreferredSize(new Dimension(175, 20));
+        fieldEmail.setBorder(null);
         panelEmail.add(labelEmail);
         panelEmail.add(fieldEmail);
 
@@ -82,6 +88,7 @@ public class CreateAccountWindow extends JFrame {
         labelPassword = new JLabel("Password: ");
         fieldPassword = new JPasswordField();
         fieldPassword.setPreferredSize(new Dimension(175, 20));
+        fieldPassword.setBorder(null);
         panelPassword.add(labelPassword);
         panelPassword.add(fieldPassword);
 
@@ -91,6 +98,7 @@ public class CreateAccountWindow extends JFrame {
         labelConfirmPassword = new JLabel("Confirm Password: ");
         fieldConfirmPassword = new JPasswordField();
         fieldConfirmPassword.setPreferredSize(new Dimension(175, 20));
+        fieldConfirmPassword.setBorder(null);
         panelConfirmPassword.add(labelConfirmPassword);
         panelConfirmPassword.add(fieldConfirmPassword);
 
@@ -108,8 +116,8 @@ public class CreateAccountWindow extends JFrame {
         comboBoxGender.addItem("Female");
         comboBoxGender.addItem("Other");
         // status
-        labelStatus = new JLabel("Relationship Status: ");
-        checkBoxSingle = new JCheckBox("Single");
+        labelStatus = new JLabel("Long term relationship? ");
+        checkBoxSingle = new JCheckBox("");
         checkBoxSingle.setBackground(backgroundColor);
         panelInfo.add(labelAge);
         panelInfo.add(fieldAge);

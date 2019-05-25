@@ -8,6 +8,13 @@ import java.net.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import static datingapp.gui.DashboardWindow.FONT_1;
+
 
 public class ChatWindow extends JFrame {
 
@@ -42,6 +49,10 @@ public class ChatWindow extends JFrame {
         textAreaWindow = new JTextArea();
         add(new JScrollPane(textAreaWindow), BorderLayout.CENTER);
         setVisible(true);
+
+        buttonSend = createSimpleButton(buttonSend, "Send");
+
+        add(buttonSend);
     }
 
 
@@ -71,4 +82,16 @@ public class ChatWindow extends JFrame {
         }
     }
      */
+
+    private static JButton createSimpleButton(JButton button, String text) {
+        button = new JButton(text);
+        button.setForeground(Color.BLACK);
+        button.setBackground(Color.WHITE);
+        button.setFont(FONT_1);
+        Border line = new LineBorder(Color.WHITE);
+        Border margin = new EmptyBorder(5, 15, 5, 15);
+        Border compound = new CompoundBorder(line, margin);
+        button.setBorder(compound);
+        return button;
+    }
 }
