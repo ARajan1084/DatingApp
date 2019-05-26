@@ -20,7 +20,7 @@ public class AccountService {
      */
     public AccountService() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp","root","");
+        con = DriverManager.getConnection("jdbc:mysql://10.0.0.230:3306/datingapp","root","");
     }
 
     public void addUser (Person p) throws SQLException, IOException {

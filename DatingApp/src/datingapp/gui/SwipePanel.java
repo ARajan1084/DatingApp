@@ -30,12 +30,15 @@ public class SwipePanel extends JPanel
     public SwipePanel (Person person) {
         super();
         myPerson = person;
-        setPreferredSize(new Dimension(280, 800));
+        setPreferredSize(new Dimension(280, 500));
         createView();
     }
 
     public void createView () {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new GridLayout(1, 3));
+
+        JPanel panelProfile = new JPanel();
+        panelProfile.setPreferredSize(new Dimension(200, 500));
         ImageIcon profilePic = myPerson.getProfilePic();
         Image temp = profilePic.getImage();
         Image scaledTemp = temp.getScaledInstance(250, 250,  java.awt.Image.SCALE_SMOOTH);
@@ -43,7 +46,6 @@ public class SwipePanel extends JPanel
         JLabel labelProfilePic = new JLabel(profilePic);
         labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
         setBackground(redOxide);
-
 
         labelName = new JLabel(myPerson.getName() + ", " + myPerson.getAge());
         labelName.setFont(fontBold);
@@ -61,8 +63,6 @@ public class SwipePanel extends JPanel
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelBio.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
-
         buttonNah = createSimpleButton(buttonNah, "nah");
         buttonNah.setBackground(oysterPink);
         buttonNah.setForeground(redOxide);
@@ -73,22 +73,13 @@ public class SwipePanel extends JPanel
         buttonYeah.setForeground(redOxide);
         //buttonYeah.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-        JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
-        buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        buttonPane.add(Box.createHorizontalGlue());
-        buttonPane.add(buttonNah);
-        Component myComponent = Box.createRigidArea(new Dimension(550, 0));
-        myComponent.setBackground(redOxide);
-        buttonPane.add(myComponent);
-        buttonPane.add(buttonYeah);
-
-        add(labelTitle);
-        add(labelProfilePic);
-        add(labelName);
-        add(labelBio);
-        add(buttonPane, BorderLayout.PAGE_END);
-
+        panelProfile.add(labelTitle);
+        panelProfile.add(labelProfilePic);
+        panelProfile.add(labelName);
+        panelProfile.add(labelBio);
+        add(buttonNah);
+        add(panelProfile);
+        add(buttonYeah);
     }
 
     public void updateView(Person p) {

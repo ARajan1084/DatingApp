@@ -99,14 +99,12 @@ public class DashboardWindow extends JFrame {
         BorderLayout layout = new BorderLayout();
         centerPanel = new JPanel();
         centerPanel.setLayout(layout);
-        centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
+        centerPanel.add(centerNorthPanel(), BorderLayout.CENTER);
         centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
 
         centerPanel.setLayout(layout);
         centerPanel.setPreferredSize(new Dimension(500, 30));
-        centerPanel.add(new SwipePanel(myPerson), BorderLayout.NORTH);
-
         return centerPanel;
     }
 
@@ -170,21 +168,22 @@ public class DashboardWindow extends JFrame {
     {
         ArrayList<Chat> chats = new ArrayList<Chat>();
         ArrayList<Person> matches = new ArrayList<Person>();
-        /*
+
         Person p = new Person("Wigga", 30,"", "", "fifa@gmail.com", "",
                 true, "Bigga", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
         Person p1 = new Person("", 30,"", "", "fifa@gmail.com", "",
                 true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
 
-         */
+        /*
         Person p = new Person("Alexis Rose", 30,"F", "", "everybodysgotahorse@gmail.com", "",
                 true, "hide your diamonds, hide ur exes. I'm a little bit Alexis ;)", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/alexis4.jpg"))));
         Person p1 = new Person("Ted Mullens", 30,"M", "", "fifa@gmail.com", "",
                 true, "dogsdogsdogscatsdogs", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/ted.png"))));
         Person p2 = new Person("Mutt Hampshire", 31,"M", "", "barns@gmail.com", "",
                 true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/mutt.png"))));
+                */
+        matches.add(p);
         matches.add(p1);
-        matches.add(p2);
         new DashboardWindow(p, chats, matches);
     }
 
