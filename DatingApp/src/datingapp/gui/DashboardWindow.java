@@ -1,7 +1,9 @@
 package datingapp.gui;
 
 import datingapp.program.Chat;
+import datingapp.program.ConstantKey;
 import datingapp.program.Person;
+import datingapp.program.Tree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -177,14 +179,24 @@ public class DashboardWindow extends JFrame {
                 true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
 
          */
-        Person p = new Person("Alexis Rose", 30,"F", "", "everybodysgotahorse@gmail.com", "",
+        Tree myTree = new Tree();
+        Person p = new Person("Alexis Rose", 30,ConstantKey.FEMALE, ConstantKey.STRAIGHT, "everybodysgotahorse@gmail.com", "laalalalalalala",
                 true, "hide your diamonds, hide ur exes. I'm a little bit Alexis ;)", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/alexis4.jpg"))));
-        Person p1 = new Person("Ted Mullens", 30,"M", "", "fifa@gmail.com", "",
+        Person p1 = new Person("Ted Mullens", 30,ConstantKey.MALE, ConstantKey.STRAIGHT, "fifa@gmail.com", "creekdog",
                 true, "dogsdogsdogscatsdogs", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/ted.png"))));
-        Person p2 = new Person("Mutt Hampshire", 31,"M", "", "barns@gmail.com", "",
+        Person p2 = new Person("Mutt Hampshire", 31,ConstantKey.MALE, ConstantKey.BI, "barns@gmail.com", "lumber",
                 true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/mutt.png"))));
+        myTree.addPerson(p);
+        myTree.addPerson(p1);
+        myTree.addPerson(p2);
         matches.add(p1);
         matches.add(p2);
+        System.out.println(myTree.printMatches(p));
+        ArrayList<Person> potentialMatches = myTree.getMatches(p);
+        for (Person person: potentialMatches)
+        {
+            System.out.println(person);
+        }
         new DashboardWindow(p, chats, matches);
     }
 

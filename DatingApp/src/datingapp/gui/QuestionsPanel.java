@@ -1,3 +1,4 @@
+/*
 package datingapp.gui;
 
 import datingapp.program.Link;
@@ -58,3 +59,5 @@ public class QuestionsPanel extends JPanel {
         }
     }
 }
+
+ */

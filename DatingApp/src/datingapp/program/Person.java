@@ -145,8 +145,15 @@ public class Person implements Serializable {
         output += "Bio: " + bio + "\n";
         output += "TreeID: "+ poolRootName + "\n";
         output += "Path: ";
-        for (Integer i: path) {
-            output += i;
+        if (path != null)
+        {
+            for (Integer i: path) {
+                output += i;
+            }
+        }
+        else
+        {
+            output += "none";
         }
         output += "\n";
         return output;

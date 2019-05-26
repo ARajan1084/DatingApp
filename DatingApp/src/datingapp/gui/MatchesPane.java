@@ -39,7 +39,7 @@ public class MatchesPane extends JPanel {
     private class MatchPanel extends JPanel {
         private MatchPanel(Person p) {
             super();
-            BorderLayout layout = new BorderLayout();
+            GridLayout layout = new GridLayout(1, );
             this.setLayout(layout);
             setMaximumSize(new Dimension(450, 100));
 
@@ -67,7 +67,6 @@ public class MatchesPane extends JPanel {
             //panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));
             //panelInfo.add(bio);
             panelInfo.add(labelName);
-            panelInfo.add(Box.createRigidArea(new Dimension(100, 0)));
             panelInfo.add(labelBio);
             add(panelInfo, BorderLayout.EAST);
         }
