@@ -41,6 +41,7 @@ public class DashboardWindow extends JFrame {
     private JPanel centerPanel;
 
 
+
     /**
      * constructs a window that serves as the user's dashboard
      * @param person person object to pull the profile panel from
@@ -99,7 +100,7 @@ public class DashboardWindow extends JFrame {
         centerPanel = new JPanel();
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
-        centerPanel.add(centerSouthPane(), BorderLayout.SOUTH);
+        centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
 
         centerPanel.setLayout(layout);
@@ -128,9 +129,24 @@ public class DashboardWindow extends JFrame {
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
      * @return completed south pane of centerPanel()
      */
-    private JPanel centerSouthPane() {
+    private JPanel centerSouthPanel() {
+        /*
         JPanel southPane = new MatchesPane(myMatches);
         return southPane;
+         */
+        BorderLayout layout = new BorderLayout();
+        JPanel centerSouthPanel = new JPanel();
+        centerSouthPanel.setLayout(layout);
+        centerSouthPanel.setPreferredSize(new Dimension(500, 30));
+
+        Person p = new Person("Tommy Hilfiger", 32,"M", "", "th@gmail.com", "",
+                true, "t.h.", null);
+        Chat c = new Chat(myPerson, myPerson);
+        ArrayList<Chat> list = new ArrayList<Chat>();
+        list.add(c);
+
+        //centerSouthPanel.add(new ChatsPanel(myPerson, list), BorderLayout.SOUTH);
+        return centerSouthPanel;
     }
 
     /**
@@ -138,11 +154,15 @@ public class DashboardWindow extends JFrame {
      * @return completed
      */
     private JPanel eastPanel() {
+        /*
         BorderLayout layout = new BorderLayout();
         JPanel eastPanel = new JPanel();
         eastPanel.setLayout(layout);
         eastPanel.setPreferredSize(new Dimension(250, 800));
         eastPanel.add(new ChatsPanel(myPerson, myChats), BorderLayout.NORTH);
+        return eastPanel;
+         */
+        JPanel eastPanel = new MatchesPane((myMatches));
         return eastPanel;
     }
 
@@ -162,7 +182,7 @@ public class DashboardWindow extends JFrame {
         Person p1 = new Person("Ted Mullens", 30,"M", "", "fifa@gmail.com", "",
                 true, "dogsdogsdogscatsdogs", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/ted.png"))));
         Person p2 = new Person("Mutt Hampshire", 31,"M", "", "barns@gmail.com", "",
-                true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+                true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/mutt.png"))));
         matches.add(p1);
         matches.add(p2);
         new DashboardWindow(p, chats, matches);

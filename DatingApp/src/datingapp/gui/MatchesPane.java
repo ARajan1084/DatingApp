@@ -20,7 +20,7 @@ public class MatchesPane extends JPanel {
     public MatchesPane(ArrayList<Person> matches) {
         super();
         myMatches = matches;
-        setPreferredSize(new Dimension(600, 370));
+        setPreferredSize(new Dimension(300, 769));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         createView();
     }

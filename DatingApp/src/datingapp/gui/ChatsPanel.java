@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static datingapp.gui.DashboardWindow.FONT_2;
+
 public class ChatsPanel extends JPanel {
     private Person myPerson;
     private ArrayList<Chat> myChats;
@@ -19,7 +21,9 @@ public class ChatsPanel extends JPanel {
 
     private void createView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel("Chats"));
+        JLabel labelTitle = new JLabel("message someone!");
+        labelTitle.setFont(FONT_2);
+        add(labelTitle);
         for (Chat chat: myChats) {
             Person other;
             if (chat.getPerson1().equals(myPerson)) {

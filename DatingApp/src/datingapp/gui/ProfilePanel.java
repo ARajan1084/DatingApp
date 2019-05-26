@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static datingapp.gui.DashboardWindow.createSimpleButton;
+import static datingapp.gui.DashboardWindow.*;
 import static javax.swing.Box.createVerticalGlue;
 
 public class ProfilePanel extends JPanel {
@@ -37,8 +37,13 @@ public class ProfilePanel extends JPanel {
         labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         labelName = new JLabel(myPerson.getName() + ", " + myPerson.getAge());
+        labelName.setFont(new Font("Helvetica", Font.BOLD, 18));
+
         labelEmail = new JLabel(myPerson.getEmail());
+
         labelTitle = new JLabel("my profile");
+        labelTitle.setFont(new Font("Helvetica", Font.ITALIC, 15));
+
         labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelEmail.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -52,7 +57,7 @@ public class ProfilePanel extends JPanel {
         textAreaBio.setEditable(false);
 
         buttonEdit = createSimpleButton(buttonEdit, "update profile");
-        buttonEdit.setFont(new Font("Helvetica", Font.ITALIC, 12));
+        buttonEdit.setFont(new Font("Helvetica", Font.ITALIC, 15));
         buttonEdit.addActionListener(new ButtonEditActionListener());
         buttonEdit.setAlignmentX(Component.CENTER_ALIGNMENT);
 

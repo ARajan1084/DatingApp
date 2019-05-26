@@ -78,7 +78,9 @@ public class SwipePanel extends JPanel
         buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         buttonPane.add(Box.createHorizontalGlue());
         buttonPane.add(buttonNah);
-        buttonPane.add(Box.createRigidArea(new Dimension(550, 0)));
+        Component myComponent = Box.createRigidArea(new Dimension(550, 0));
+        myComponent.setBackground(redOxide);
+        buttonPane.add(myComponent);
         buttonPane.add(buttonYeah);
 
         add(labelTitle);
