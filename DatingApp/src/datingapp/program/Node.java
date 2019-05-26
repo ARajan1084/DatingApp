@@ -9,36 +9,17 @@ import java.util.ArrayList;
  * @version 05/08/19
  */
 public class Node {
-    private String question;
+    private String argument;
     private ArrayList<Person> pool;
-    private ArrayList<Link> links;
+    private ArrayList<Node> children;
 
     /**
      * constructs a Node object with empty people and links
      */
     public Node(String question) {
         pool = new ArrayList<>();
-        links = new ArrayList<>();
-        this.question = question;
-    }
-
-    public Node (String question, String[] answers) {
-        this.question = question;
-        links = new ArrayList<>();
-        pool = new ArrayList<>();
-        for (String answer: answers) {
-            links.add(new Link(answer, null));
-        }
-    }
-
-    /**
-     * constructs a Node object with the specified people and links
-     * @param people specified people
-     * @param links specified links
-     */
-    public Node(ArrayList<Person> people, ArrayList<Link> links) {
-        pool = people;
-        this.links = links;
+        children = new ArrayList<Node>();
+        this.argument = question;
     }
 
     /**
@@ -55,33 +36,6 @@ public class Node {
     }
 
     /**
-     * adds a link to links
-     * @param link link to add
-     */
-    public void addLink(Link link) {
-        links.add(link);
-    }
-
-    /**
-     * returns the Link at the specified index
-     * @param i index
-     * @return returns the Link or null if i is out of bounds
-     */
-    public Link getLink(int i) {
-        if (i >= links.size()) {
-            return null;
-        }
-        return links.get(i);
-    }
-
-    public Node getNode(int i) {
-        if (i >= links.size()) {
-            return null;
-        }
-        return links.get(i).getNode();
-    }
-
-    /**
      * returns the dating pool
      * @return pool of the node
      */
@@ -90,22 +44,40 @@ public class Node {
     }
 
     public String getQuestion () {
-        return question;
+        return argument;
     }
-
     public void setQuestion (String question) {
-        this.question = question;
+        this.argument = question;
     }
 
-    public int getNumLinks () {
-        return links.size();
-    }
 
+    public void addChild(Node child)
+    {
+        children.add(child);
+    }
     /**
      * returns the list of link objects
      * @return links of the node
      */
-    public ArrayList<Link> getLinks () {
-        return links;
+    public ArrayList<Node> getChildren () {
+        return children;
     }
+
+    public Node getNodeByArgument(String arg)
+    {
+        ArrayList<Node> children= this.getChildren();
+        if (children.isEmpty())
+        {
+            return null;
+        }
+        for (Node a : children)
+        {
+            if ((a.getQuestion()).equals(arg))
+            {
+                return a;
+            }
+        }
+        return null;
+    }
+
 }

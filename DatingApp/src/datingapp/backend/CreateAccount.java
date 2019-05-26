@@ -2,6 +2,7 @@ package datingapp.backend;
 
 import datingapp.program.Person;
 import datingapp.exceptions.*;
+import datingapp.program.Tree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class CreateAccount {
         }
         ImageIcon pfp = null;
         if (profilePic == null) {
-            pfp = new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png")));
+            pfp = new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png")));
         } else {
             try {
                 pfp = new ImageIcon(ImageIO.read(profilePic));

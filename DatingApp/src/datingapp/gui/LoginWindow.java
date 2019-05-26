@@ -1,36 +1,40 @@
 package datingapp.gui;
 
 import datingapp.backend.Login;
+import datingapp.exceptions.AccountNotFoundException;
 import datingapp.program.Chat;
 import datingapp.program.Person;
-import datingapp.exceptions.AccountNotFoundException;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import static datingapp.gui.DashboardWindow.*;
 
 /**
- *  Provides GUI for registering and logging in users.
+ * Provides a window where the user can login, or create an account. The window displays an appropriate error message
+ * or signs the user into the program.
+ *
+ * @author Achintya
+ * @version 05/20/19
  */
 public class LoginWindow extends JFrame {
 
+    private final Color backgroundColor = new Color(204, 218, 252);
     private JLabel labelEmail, labelPassword, labelError;
     private JTextField fieldEmail;
     private JPasswordField passwordField;
     private JButton buttonLogin, buttonCreateAccount, buttonForgotPassword;
     private JFrame loginWindow;
-    private final Color backgroundColor = new Color(204, 218, 252);
 
-    public LoginWindow () {
+    /**
+     * constructs a login window
+     */
+    public LoginWindow() {
         createView();
 
         loginWindow = this;
@@ -42,6 +46,9 @@ public class LoginWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * helper method responsible for most of the component construction for the window
+     */
     private void createView() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -57,10 +64,11 @@ public class LoginWindow extends JFrame {
         // TODO: Fix Alignment
 
         fieldEmail = new JTextField();
-        fieldEmail.setPreferredSize(new Dimension (175, 20));
+        fieldEmail.setPreferredSize(new Dimension(175, 20));
         fieldEmail.setBorder(null);
         passwordField = new JPasswordField();
-        passwordField.setPreferredSize(new Dimension (175, 20));
+        passwordField.addActionListener(new PasswordFieldActionListener());
+        passwordField.setPreferredSize(new Dimension(175, 20));
         passwordField.setBorder(null);
         // TODO: Fix Alignment
 
@@ -98,39 +106,38 @@ public class LoginWindow extends JFrame {
         panel.add(labelError);
     }
 
-    public static void main (String[]args) {
-        new LoginWindow();
-    }
-
+    /**
+     * ActionListener for the Login button. Uses AccountService as a backend to check if the given information matches
+     * the database records. If it does, the window creates a DashBoardWindow, logging the user in. If it doesnt, the
+     * window displays an accurate error message.
+     */
     private class ButtonLoginActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                try {
-                    Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
-                    if (login != null) {
-                        dispose();
-                        new DashboardWindow(login, new ArrayList<Chat>(), new ArrayList<Person>());
-                    } else {
-                        passwordField.setText("");
-                        labelError.setText("Error: Invalid Password.");
-                    }
-                } catch (ClassNotFoundException ex) {
-                    throw new AccountNotFoundException();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                    labelError.setText("Internal Error: please try again later");
-                }
-            } catch (AccountNotFoundException exception) {
+                Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
+                dispose();
+                new DashboardWindow(login, new ArrayList<Chat>(), new ArrayList<Person>());
+            } catch (AccountNotFoundException ex) {
                 fieldEmail.setText("");
                 passwordField.setText("");
-                labelError.setText("Account not found.");
-            } catch (IOException exception) {
-                exception.printStackTrace();
+                labelError.setText("Error: invalid username or password");
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+                labelError.setText("Internal Error: please try again later");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                labelError.setText("Internal Error: please try again later");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                labelError.setText("Internal Error: please try again later");
             }
         }
     }
 
+    /**
+     * ActionListener for the Create Account button. Creates a CreateAccountWindow, disposing of this window.
+     */
     private class ButtonCreateAccountActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -139,6 +146,9 @@ public class LoginWindow extends JFrame {
         }
     }
 
+    /**
+     * ActionListener for the Forgot Password button. Creates a ForgotPasswordWindow
+     */
     private class ButtonForgotPasswordActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -147,4 +157,13 @@ public class LoginWindow extends JFrame {
         }
     }
 
+    /**
+     * ActionListener for the password field. Registers a loginAttempt when the user hits enter in the password field
+     */
+    private class PasswordFieldActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            buttonLogin.doClick();
+        }
+    }
 }

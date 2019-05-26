@@ -14,6 +14,13 @@ import java.sql.SQLException;
 
 import static datingapp.gui.DashboardWindow.FONT_1;
 
+/**
+ * Represents a graphical interface for creating an account. Users can enter information such as their name, age, and
+ * sexuality. Users can also upload a profile pic and set a password.
+ *
+ * @author Achintya
+ * @version 05/20/19
+ */
 public class CreateAccountWindow extends JFrame {
     private JLabel labelFirstName, labelLastName, labelEmail, labelPassword, labelConfirmPassword, labelGender,
             labelAge, labelSexuality, labelStatus, labelBio, labelError, labelProfilePic;
@@ -27,6 +34,10 @@ public class CreateAccountWindow extends JFrame {
     private JFileChooser fileChooserProfilePic;
     private final Color backgroundColor = Color.PINK;
 
+    /**
+     * constructs a window where users can create an account
+     * @param loginWindow reference to the LoginWindow
+     */
     public CreateAccountWindow (JFrame loginWindow) {
         createView();
 
