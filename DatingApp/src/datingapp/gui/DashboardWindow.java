@@ -150,17 +150,21 @@ public class DashboardWindow extends JFrame {
     {
         ArrayList<Chat> chats = new ArrayList<Chat>();
         ArrayList<Person> matches = new ArrayList<Person>();
+        /*
         Person p = new Person("Wigga", 30,"", "", "fifa@gmail.com", "",
                 true, "Bigga", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
         Person p1 = new Person("", 30,"", "", "fifa@gmail.com", "",
                 true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-        /*
-        Person p = new Person("Alexis Rose", 30,"", "", "fifa@gmail.com", "",
-                true, "bio...", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-        Person p1 = new Person("Ted Mullens", 30,"", "", "fifa@gmail.com", "",
-                true, "John", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-        matches.add(p1);
+
          */
+        Person p = new Person("Alexis Rose", 30,"F", "", "everybodysgotahorse@gmail.com", "",
+                true, "hide your diamonds, hide ur exes. I'm a little bit Alexis ;)", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/alexis4.jpg"))));
+        Person p1 = new Person("Ted Mullens", 30,"M", "", "fifa@gmail.com", "",
+                true, "dogsdogsdogscatsdogs", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/ted.png"))));
+        Person p2 = new Person("Mutt Hampshire", 31,"M", "", "barns@gmail.com", "",
+                true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/APCSFinal/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
+        matches.add(p1);
+        matches.add(p2);
         new DashboardWindow(p, chats, matches);
     }
 
@@ -175,6 +179,14 @@ public class DashboardWindow extends JFrame {
         }
     }
 
+    /**
+     * Akanksha
+     *
+     * method that creates and initializes a JButton and sets it's font and colors to a simple color scheme
+     * @param button the button that will be newed and returned
+     * @param text the text that will be displayed on the JButton
+     * @return an simple pretty looking button
+     */
     public static JButton createSimpleButton(JButton button, String text) {
         button = new JButton(text);
         button.setForeground(Color.BLACK);

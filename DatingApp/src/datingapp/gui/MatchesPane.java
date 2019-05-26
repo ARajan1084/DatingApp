@@ -12,11 +12,14 @@ import java.util.ArrayList;
 
 public class MatchesPane extends JPanel {
     private JLabel labelTitle;
-    private ArrayList<Person> matches;
+    private ArrayList<Person> myMatches;
+
+    public Color blackPearl = new Color(3, 34,54);
+    public Color spindle = new Color(192, 200, 205);
 
     public MatchesPane(ArrayList<Person> matches) {
         super();
-        this.matches = matches;
+        myMatches = matches;
         setPreferredSize(new Dimension(600, 370));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         createView();
@@ -24,9 +27,11 @@ public class MatchesPane extends JPanel {
 
     public void createView() {
         //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        labelTitle = new JLabel("My Matches");
+        labelTitle = new JLabel("Matches (" + myMatches.size() + ")" );
+        labelTitle.setForeground(spindle);
+        setBackground(blackPearl);
         add(labelTitle);
-        for (Person p: matches) {
+        for (Person p: myMatches) {
             add(new MatchPanel(p));
         }
     }
@@ -48,13 +53,22 @@ public class MatchesPane extends JPanel {
             JPanel panelInfo = new JPanel();
             panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
 
+            /*
             JTextArea bio = new JTextArea();
             bio.setLineWrap(true);
             bio.setEditable(false);
             bio.setWrapStyleWord(true);
 
-            panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));
-            panelInfo.add(bio);
+             */
+
+            JLabel labelName = new JLabel(p.getName() + ", " + p.getAge());
+            JLabel labelBio = new JLabel(p.getBio());
+
+            //panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));
+            //panelInfo.add(bio);
+            panelInfo.add(labelName);
+            panelInfo.add(Box.createRigidArea(new Dimension(100, 0)));
+            panelInfo.add(labelBio);
             add(panelInfo, BorderLayout.EAST);
         }
     }

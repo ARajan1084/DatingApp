@@ -12,10 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static datingapp.gui.DashboardWindow.createSimpleButton;
+import static javax.swing.Box.createVerticalGlue;
 
 public class ProfilePanel extends JPanel {
     Person myPerson;
-    private JLabel labelTitle, labelName, labelAge, labelEmail;
+    private JLabel labelTitle, labelName, labelEmail;
     private JTextArea textAreaBio;
     private JButton buttonEdit;
 
@@ -30,18 +31,16 @@ public class ProfilePanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         ImageIcon profilePic = myPerson.getProfilePic();
         Image temp = profilePic.getImage();
-        Image scaledTemp = temp.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH);
+        Image scaledTemp = temp.getScaledInstance(200, 200,  java.awt.Image.SCALE_SMOOTH);
         profilePic = new ImageIcon(scaledTemp);
         JLabel labelProfilePic = new JLabel(profilePic);
         labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        labelName = new JLabel(myPerson.getName());
-        labelAge = new JLabel(Integer.toString(myPerson.getAge()) + " years");
+        labelName = new JLabel(myPerson.getName() + ", " + myPerson.getAge());
         labelEmail = new JLabel(myPerson.getEmail());
-        labelTitle = new JLabel("My Profile");
+        labelTitle = new JLabel("my profile");
         labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
-        labelAge.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelEmail.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         textAreaBio = new JTextArea();
@@ -52,17 +51,22 @@ public class ProfilePanel extends JPanel {
         textAreaBio.setWrapStyleWord(true);
         textAreaBio.setEditable(false);
 
-        buttonEdit = createSimpleButton(buttonEdit, "Update");
+        buttonEdit = createSimpleButton(buttonEdit, "update profile");
         buttonEdit.setFont(new Font("Helvetica", Font.ITALIC, 12));
         buttonEdit.addActionListener(new ButtonEditActionListener());
         buttonEdit.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        add(Box.createRigidArea(new Dimension(0, 15)));
         add(labelTitle);
+        add(Box.createRigidArea(new Dimension(0, 10)));
         add(labelProfilePic);
+        add(Box.createRigidArea(new Dimension(0, 10)));
         add(labelName);
-        add(labelAge);
+        add(Box.createRigidArea(new Dimension(0, 5)));
         add(labelEmail);
+        add(Box.createRigidArea(new Dimension(0, 20)));
         add(textAreaBio);
+        add(Box.createRigidArea(new Dimension(0, 20)));
         add(buttonEdit);
     }
 
