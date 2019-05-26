@@ -1,5 +1,6 @@
 package datingapp.backend;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import datingapp.program.Person;
 
 import javax.imageio.ImageIO;
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class AccountService {
     private Connection con;
@@ -75,4 +77,66 @@ public class AccountService {
         return image;
     }
 
+    private Person fetchUser(String emailAdress) throws SQLException, IOException {
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM person WHERE email = ? AND password = ?");
+        stmt.setString(1, emailAdress);
+        ResultSet rs = stmt.executeQuery();
+        if (rs == null) {
+            return null;
+        }
+        rs.next();
+        String password = rs.getString("password");
+        String name = rs.getString("name");
+        int age = rs.getInt("age");
+        String gender = rs.getString("gender");
+        String sexuality = rs.getString("sexuality");
+        String email = rs.getString("email");
+        String bio = rs.getString("bio");
+        boolean status = rs.getBoolean("status");
+        ImageIcon pfp = getImage(rs.getBlob("profile_picture"));
+        Person person = new Person(name, age, gender, sexuality, email, password, status, bio, pfp);
+        return person;
+    }
+
+    public ArrayList<Person> fetchMatches(Person user) throws SQLException, IOException {
+        ArrayList<Person> matches = new ArrayList<>();
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE user = ?");
+        stmt.setString(1, user.getEmail());
+        ResultSet rs = stmt.executeQuery();
+        if (rs == null) {
+            return null;
+        }
+        while (rs.next()) {
+            matches.add(fetchUser(rs.getString("match")));
+        }
+        return matches;
+    }
+
+    public void addMatch(Person user, Person match) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement("INSERT INTO matches VALUES ( ?, ? )");
+        stmt.setString(1, user.getEmail());
+        stmt.setString(2, match.getEmail());
+        stmt.executeQuery();
+    }
+
+    public void addToFeed(Person user, Person match) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement("INSERT INTO feed VALUES ( ?, ? )");
+        stmt.setString(1, user.getEmail());
+        stmt.setString(2, match.getEmail());
+        stmt.executeQuery();
+    }
+
+    public ArrayList<Person> fetchFeed (Person user) throws SQLException, IOException {
+        ArrayList<Person> feed = new ArrayList<>();
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM feed WHERE user = ?");
+        stmt.setString(1, user.getEmail());
+        ResultSet rs = stmt.executeQuery();
+        if (rs == null) {
+            return null;
+        }
+        while (rs.next()) {
+            feed.add(fetchUser(rs.getString("feed")));
+        }
+        return feed;
+    }
 }
