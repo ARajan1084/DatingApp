@@ -192,9 +192,9 @@ public class CreateAccountWindow extends JFrame {
                 }
                 new CreateAccount().isValid(fieldFirstName.getText(), fieldLastName.getText(), fieldEmail.getText(),
                         new String(fieldPassword.getPassword()), new String(fieldConfirmPassword.getPassword()),
-                        fieldAge.getText(), (String) comboBoxGender.getSelectedItem(),
-                        (String) comboBoxSexuality.getSelectedItem(), checkBoxSingle.isSelected(), textAreaBio.getText(),
-                        file);
+                        fieldAge.getText(), comboBoxGender.getSelectedItem().toString().toLowerCase(),
+                        comboBoxSexuality.getSelectedItem().toString().toLowerCase(), checkBoxSingle.isSelected(),
+                        textAreaBio.getText(), file);
                 dispose();
                 loginWindow.setVisible(true);
             } catch (InvalidFirstNameException ex) {

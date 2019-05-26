@@ -17,12 +17,12 @@ import static datingapp.gui.DashboardWindow.createSimpleButton;
  * @author Achintya
  * @date 05/07/19
  */
-public class ChangePasswordWindow extends JFrame {
+public class ForgotPasswordWindow extends JFrame {
     private JLabel message;
     private JButton buttonGoBack;
     private JFrame loginWindow;
 
-    public ChangePasswordWindow(JFrame loginWindow) {
+    public ForgotPasswordWindow(JFrame loginWindow) {
         createView();
 
         this.loginWindow = loginWindow;

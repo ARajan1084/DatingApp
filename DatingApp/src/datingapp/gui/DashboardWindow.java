@@ -36,7 +36,7 @@ public class DashboardWindow extends JFrame {
     private Person myPerson;
     private ArrayList<Chat> myChats;
     private ArrayList<Person> myMatches;
-    private Tree globalTree;
+    private AccountService accountService;
     private final Dimension dashSize = new Dimension(1200, 769);
 
     public static final Font FONT_1 = new Font("Helvetica", Font.BOLD, 12);
@@ -55,7 +55,8 @@ public class DashboardWindow extends JFrame {
      */
     public DashboardWindow(Person person, ArrayList<Chat> chats, ArrayList<Person> matches)
         throws SQLException, ClassNotFoundException, IOException {
-        globalTree = new AccountService().constructTree();
+        accountService = new AccountService();
+        accountService.constructTree();
         myPerson = person;
         myChats = chats;
         myMatches = matches;
@@ -80,7 +81,7 @@ public class DashboardWindow extends JFrame {
         panelDash.add(eastPanel(), BorderLayout.EAST);
         panelDash.setBackground(Color.PINK);
 
-        centerPanel.add(centerNorthPanel());
+        centerPanel.add(centerCenterPanel());
         add(panelDash);
     }
 
@@ -106,7 +107,8 @@ public class DashboardWindow extends JFrame {
         BorderLayout layout = new BorderLayout();
         centerPanel = new JPanel();
         centerPanel.setLayout(layout);
-        centerPanel.add(centerNorthPanel(), BorderLayout.CENTER);
+        centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
+        centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
         centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
 
@@ -115,18 +117,43 @@ public class DashboardWindow extends JFrame {
         return centerPanel;
     }
 
-    /**
-     * helper method of centerPanel() that constructs the Logout button and its action listener
-     * @return completed north panel of centerPanel()
-     */
-
     private JPanel centerNorthPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
+        centerNorthPanel.setMaximumSize(new Dimension(450, 30));
         centerNorthPanel.setLayout(layout);
-        centerNorthPanel.setPreferredSize(new Dimension(500, 30));
-        centerNorthPanel.add(new SwipePanel(globalTree.getMatches(myPerson)), BorderLayout.NORTH);
+
+        JPanel panelButtons = new JPanel();
+        JButton buttonDeleteAccount = new JButton("Delete My Account");
+        buttonDeleteAccount.addActionListener(new ButtonDeleteAccountActionListener());
+        JButton buttonLogout = new JButton("Logout");
+        buttonLogout.addActionListener(new ButtonLogoutActionListener());
+        panelButtons.add(buttonDeleteAccount);
+        panelButtons.add(buttonLogout);
+        centerNorthPanel.add(panelButtons, BorderLayout.EAST);
         return centerNorthPanel;
+    }
+
+    /**
+     * helper method of centerPanel() that constructs the Swipe Panel
+     * @return completed north panel of centerPanel()
+     */
+    private JPanel centerCenterPanel() {
+        try {
+            return new SwipePanel(accountService.fetchFeed(myPerson));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JPanel errorPanel = new JPanel();
+            errorPanel.setMaximumSize(new Dimension(50, 450));
+            errorPanel.add(new JLabel("Internal Error - please try again later"));
+            return errorPanel;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JPanel errorPanel = new JPanel();
+            errorPanel.setPreferredSize(new Dimension(50, 450));
+            errorPanel.add(new JLabel("Internal Error - please try again later"));
+            return errorPanel;
+        }
     }
 
     /**
@@ -213,5 +240,12 @@ public class DashboardWindow extends JFrame {
         Border compound = new CompoundBorder(line, margin);
         button.setBorder(compound);
         return button;
+    }
+
+    private class ButtonDeleteAccountActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new DeleteAccountConfirmationWindow(DashboardWindow.this, myPerson, accountService);
+        }
     }
 }

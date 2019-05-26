@@ -153,7 +153,7 @@ public class LoginWindow extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
-            new ChangePasswordWindow(loginWindow);
+            new ForgotPasswordWindow(loginWindow);
         }
     }
 
