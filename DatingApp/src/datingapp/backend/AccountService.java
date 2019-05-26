@@ -83,8 +83,23 @@ public class AccountService {
      *
      * @param p updated Person object
      */
-    public void editUser(Person p) {
+    public void editUser(Person p) throws SQLException, IOException {
+        PreparedStatement stmt = con.prepareStatement("UPDATE person SET password = ?, name = ?, age = ?, bio = ?, " +
+                                                            "profile_picture = ? WHERE email = ?");
+        stmt.setString(1, p.getPassword());
+        stmt.setString(2, p.getName());
+        stmt.setInt(3, p.getAge());
+        stmt.setString(4, p.getBio());
 
+        BufferedImage pfp = (BufferedImage) p.getProfilePic().getImage();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ImageIO.write(pfp, "jpg", bos);
+        byte[] pfpData = bos.toByteArray();
+        ByteArrayInputStream bis = new ByteArrayInputStream(pfpData);
+
+        stmt.setBlob(5, bis, pfpData.length);
+        stmt.setString(6, p.getEmail());
+        stmt.execute();
     }
 
     /**
