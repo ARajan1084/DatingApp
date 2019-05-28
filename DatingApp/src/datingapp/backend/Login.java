@@ -26,6 +26,6 @@ public class Login {
     public Person isValid (String email, String password) throws IOException, AccountNotFoundException,
             ClassNotFoundException, SQLException
     {
-        return new AccountService().isValid(email, password);
+        return new AccountService(true).isValid(email, password);
     }
 }

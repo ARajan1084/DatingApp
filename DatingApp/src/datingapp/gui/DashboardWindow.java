@@ -1,5 +1,6 @@
 package datingapp.gui;
 
+import datingapp.backend.AccountService;
 import datingapp.program.Chat;
 import datingapp.program.ConstantKey;
 import datingapp.program.Person;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -35,6 +37,7 @@ public class DashboardWindow extends JFrame {
     private ArrayList<Chat> myChats;
     private ArrayList<Person> myMatches;
     ArrayList<Person> potentialMatches;
+    private AccountService accountService;
     private final Dimension dashSize = new Dimension(1200, 769);
 
     public static final Font FONT_1 = new Font("Helvetica", Font.BOLD, 12);
@@ -51,7 +54,10 @@ public class DashboardWindow extends JFrame {
      * @param chats list of chats to pull the chats panel from
      * @param matches list of matches to pull the matches pane from
      */
-    public DashboardWindow(Person person, ArrayList<Chat> chats, ArrayList<Person> matches) {
+    public DashboardWindow(Person person, ArrayList<Chat> chats, ArrayList<Person> matches)
+        throws SQLException, ClassNotFoundException, IOException {
+        accountService = new AccountService();
+        accountService.constructTree();
         myPerson = person;
         myChats = chats;
         myMatches = matches;
@@ -86,7 +92,7 @@ public class DashboardWindow extends JFrame {
         panelDash.add(eastPanel(), BorderLayout.EAST);
         panelDash.setBackground(Color.PINK);
 
-        centerPanel.add(centerNorthPanel());
+        centerPanel.add(centerCenterPanel());
         add(panelDash);
     }
 
@@ -113,29 +119,54 @@ public class DashboardWindow extends JFrame {
         centerPanel = new JPanel();
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
+        centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
         centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
 
         centerPanel.setLayout(layout);
         centerPanel.setPreferredSize(new Dimension(500, 30));
         centerPanel.add(new SwipePanel(potentialMatches), BorderLayout.NORTH);
-
         return centerPanel;
     }
 
-    /**
-     * helper method of centerPanel() that constructs the Logout button and its action listener
-     * @return completed north panel of centerPanel()
-     */
-
     private JPanel centerNorthPanel() {
-
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
+        centerNorthPanel.setMaximumSize(new Dimension(450, 30));
         centerNorthPanel.setLayout(layout);
         centerNorthPanel.setPreferredSize(new Dimension(500, 30));
         centerNorthPanel.add(new SwipePanel(potentialMatches), BorderLayout.NORTH);
+        JPanel panelButtons = new JPanel();
+        JButton buttonDeleteAccount = new JButton("Delete My Account");
+        buttonDeleteAccount.addActionListener(new ButtonDeleteAccountActionListener());
+        JButton buttonLogout = new JButton("Logout");
+        buttonLogout.addActionListener(new ButtonLogoutActionListener());
+        panelButtons.add(buttonDeleteAccount);
+        panelButtons.add(buttonLogout);
+        centerNorthPanel.add(panelButtons, BorderLayout.EAST);
         return centerNorthPanel;
+    }
+
+    /**
+     * helper method of centerPanel() that constructs the Swipe Panel
+     * @return completed north panel of centerPanel()
+     */
+    private JPanel centerCenterPanel() {
+        try {
+            return new SwipePanel(accountService.fetchFeed(myPerson));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JPanel errorPanel = new JPanel();
+            errorPanel.setMaximumSize(new Dimension(50, 450));
+            errorPanel.add(new JLabel("Internal Error - please try again later"));
+            return errorPanel;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JPanel errorPanel = new JPanel();
+            errorPanel.setPreferredSize(new Dimension(50, 450));
+            errorPanel.add(new JLabel("Internal Error - please try again later"));
+            return errorPanel;
+        }
     }
 
     /**
@@ -179,17 +210,10 @@ public class DashboardWindow extends JFrame {
         return eastPanel;
     }
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException
     {
         ArrayList<Chat> chats = new ArrayList<Chat>();
         ArrayList<Person> matches = new ArrayList<Person>();
-        /*
-        Person p = new Person("Wigga", 30,"", "", "fifa@gmail.com", "",
-                true, "Bigga", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-        Person p1 = new Person("", 30,"", "", "fifa@gmail.com", "",
-                true, "John", new ImageIcon(ImageIO.read(new File("/Users/achintya/DatingApp/DatingApp/src/datingapp/gui/defaultProfilePicture.png"))));
-
-         */
         Tree myTree = new Tree();
         Person p = new Person("Alexis Rose", 30,ConstantKey.FEMALE, ConstantKey.STRAIGHT, "everybodysgotahorse@gmail.com", "laalalalalalala",
                 true, "hide your diamonds, hide ur exes. I'm a little bit Alexis ;)", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/alexis4.jpg"))));
@@ -197,17 +221,6 @@ public class DashboardWindow extends JFrame {
                 true, "dogsdogsdogscatsdogs", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/ted.png"))));
         Person p2 = new Person("Mutt Hampshire", 31,ConstantKey.MALE, ConstantKey.BI, "barns@gmail.com", "lumber",
                 true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/mutt.png"))));
-        myTree.addPerson(p);
-        myTree.addPerson(p1);
-        myTree.addPerson(p2);
-        matches.add(p1);
-        matches.add(p2);
-        System.out.println(myTree.printMatches(p));
-        ArrayList<Person> potentialMatches = myTree.getMatches(p);
-        for (Person person: potentialMatches)
-        {
-            System.out.println(person);
-        }
         new DashboardWindow(p, chats, matches);
     }
 
@@ -240,5 +253,12 @@ public class DashboardWindow extends JFrame {
         Border compound = new CompoundBorder(line, margin);
         button.setBorder(compound);
         return button;
+    }
+
+    private class ButtonDeleteAccountActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new DeleteAccountConfirmationWindow(DashboardWindow.this, myPerson, accountService);
+        }
     }
 }

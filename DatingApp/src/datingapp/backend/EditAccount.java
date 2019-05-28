@@ -5,6 +5,7 @@ import datingapp.program.Person;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class EditAccount {
@@ -59,6 +60,8 @@ public class EditAccount {
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }

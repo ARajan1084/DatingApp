@@ -1,6 +1,7 @@
 package datingapp.gui;
 
 import datingapp.program.Person;
+import datingapp.program.Tree;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -18,6 +19,7 @@ public class SwipePanel extends JPanel
 {
     Person myPerson;
     private ArrayList<Person> potentialMatches;
+    //ArrayList<Person> myMatches;
     private JLabel labelTitle, labelName, labelBio;
     private JTextArea textAreaBio;
     private JButton buttonYeah, buttonNah;
@@ -27,12 +29,11 @@ public class SwipePanel extends JPanel
     private final Font fontItal = new Font("Helvetica", Font.ITALIC, 15);
     private final Font fontNone = new Font("Helvetica", 0, 15);
 
-
-
     public SwipePanel (ArrayList<Person> potentialMatches) {
         super();
         this.potentialMatches = potentialMatches;
         setPreferredSize(new Dimension(280, 800));
+        //myMatches = feed;
         createView();
 
         if (potentialMatches == null || potentialMatches.isEmpty())
@@ -107,11 +108,15 @@ public class SwipePanel extends JPanel
     }
 
     public void createView () {
-
-
         /*
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         ImageIcon profilePic = myPerson.getProfilePic();
+        setLayout(new GridLayout(1, 3));
+
+        JPanel panelProfile = new JPanel();
+        panelProfile.setMaximumSize(new Dimension(250, 350));
+        panelProfile.setBackground(redOxide);
+        ImageIcon profilePic = myMatches.get(0).getProfilePic();
         Image temp = profilePic.getImage();
         Image scaledTemp = temp.getScaledInstance(250, 250,  java.awt.Image.SCALE_SMOOTH);
         profilePic = new ImageIcon(scaledTemp);
@@ -119,12 +124,11 @@ public class SwipePanel extends JPanel
         labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
         setBackground(redOxide);
 
-
-        labelName = new JLabel(myPerson.getName() + ", " + myPerson.getAge());
+        labelName = new JLabel(myMatches.get(0).getName() + ", " + myMatches.get(0).getAge());
         labelName.setFont(fontBold);
         labelName.setForeground(oysterPink);
 
-        labelBio = new JLabel(myPerson.getBio());
+        labelBio = new JLabel(myMatches.get(0).getBio());
         labelBio.setFont(fontItal);
         labelBio.setForeground(oysterPink);
 
@@ -136,12 +140,10 @@ public class SwipePanel extends JPanel
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelBio.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
-
         buttonNah = createSimpleButton(buttonNah, "nah");
         buttonNah.setBackground(oysterPink);
         buttonNah.setForeground(redOxide);
-        //buttonNah.setAlignmentX(Component.LEFT_ALIGNMENT);
+        buttonNah.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         buttonYeah = createSimpleButton(buttonYeah, "yeah!");
         buttonYeah.setBackground(oysterPink);
@@ -164,10 +166,19 @@ public class SwipePanel extends JPanel
         add(labelBio);
         add(buttonPane, BorderLayout.PAGE_END);
         */
+        buttonYeah.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        panelProfile.add(labelTitle);
+        panelProfile.add(labelProfilePic);
+        panelProfile.add(labelName);
+        panelProfile.add(labelBio);
+        add(buttonNah);
+        add(panelProfile);
+        add(buttonYeah);
     }
 
     public void updateView(Person p) {
-        myPerson = p;
+        //myPerson = p;
         removeAll();
         createView();
         revalidate();
