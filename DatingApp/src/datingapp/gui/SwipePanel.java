@@ -10,12 +10,14 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static datingapp.gui.DashboardWindow.*;
 
 public class SwipePanel extends JPanel
 {
     Person myPerson;
+    private ArrayList<Person> potentialMatches;
     private JLabel labelTitle, labelName, labelBio;
     private JTextArea textAreaBio;
     private JButton buttonYeah, buttonNah;
@@ -27,14 +29,87 @@ public class SwipePanel extends JPanel
 
 
 
-    public SwipePanel (Person person) {
+    public SwipePanel (ArrayList<Person> potentialMatches) {
         super();
-        myPerson = person;
+        this.potentialMatches = potentialMatches;
         setPreferredSize(new Dimension(280, 800));
         createView();
+
+        if (potentialMatches == null || potentialMatches.isEmpty())
+        {
+            setBackground(redOxide);
+
+            JLabel labelSorry = new JLabel("Sorry, you have no potential matches at the moment. Coma back later.");
+            labelSorry.setFont(fontItal);
+            labelSorry.setForeground(oysterPink);
+        }
+        else
+        {
+            for (Person p : potentialMatches)
+            {
+                removeAll();
+
+                setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+                ImageIcon profilePic = p.getProfilePic();
+                Image temp = profilePic.getImage();
+                Image scaledTemp = temp.getScaledInstance(250, 250,  java.awt.Image.SCALE_SMOOTH);
+                profilePic = new ImageIcon(scaledTemp);
+                JLabel labelProfilePic = new JLabel(profilePic);
+                labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
+                setBackground(redOxide);
+
+
+                labelName = new JLabel(p.getName() + ", " + p.getAge());
+                labelName.setFont(fontBold);
+                labelName.setForeground(oysterPink);
+
+                labelBio = new JLabel(p.getBio());
+                labelBio.setFont(fontItal);
+                labelBio.setForeground(oysterPink);
+
+                labelTitle = new JLabel("Would you date them?");
+                labelTitle.setFont(fontBold);
+                labelTitle.setForeground(oysterPink);
+
+                labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+                labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
+                labelBio.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+
+
+                buttonNah = createSimpleButton(buttonNah, "nah");
+                buttonNah.setBackground(oysterPink);
+                buttonNah.setForeground(redOxide);
+                //buttonNah.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+                buttonYeah = createSimpleButton(buttonYeah, "yeah!");
+                buttonYeah.setBackground(oysterPink);
+                buttonYeah.setForeground(redOxide);
+                //buttonYeah.setAlignmentX(Component.RIGHT_ALIGNMENT);
+
+                JPanel buttonPane = new JPanel();
+                buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
+                buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                buttonPane.add(Box.createHorizontalGlue());
+                buttonPane.add(buttonNah);
+                Component myComponent = Box.createRigidArea(new Dimension(550, 0));
+                myComponent.setBackground(redOxide);
+                buttonPane.add(myComponent);
+                buttonPane.add(buttonYeah);
+
+                add(labelTitle);
+                add(labelProfilePic);
+                add(labelName);
+                add(labelBio);
+                add(buttonPane, BorderLayout.PAGE_END);
+            }
+        }
     }
 
     public void createView () {
+
+
+        /*
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         ImageIcon profilePic = myPerson.getProfilePic();
         Image temp = profilePic.getImage();
@@ -88,7 +163,7 @@ public class SwipePanel extends JPanel
         add(labelName);
         add(labelBio);
         add(buttonPane, BorderLayout.PAGE_END);
-
+        */
     }
 
     public void updateView(Person p) {
@@ -106,5 +181,6 @@ public class SwipePanel extends JPanel
             //new EditAccountWindow(myPerson, ProfilePanel.this);
         }
     }
+
 
 }

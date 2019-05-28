@@ -39,7 +39,7 @@ public class MatchesPane extends JPanel {
     private class MatchPanel extends JPanel {
         private MatchPanel(Person p) {
             super();
-            GridLayout layout = new GridLayout(1, );
+            GridLayout layout = new GridLayout(1, 2);
             this.setLayout(layout);
             setMaximumSize(new Dimension(450, 100));
 
@@ -62,12 +62,11 @@ public class MatchesPane extends JPanel {
              */
 
             JLabel labelName = new JLabel(p.getName() + ", " + p.getAge());
-            JLabel labelBio = new JLabel(p.getBio());
+            labelName.setFont(new Font("Helvetica", Font.BOLD, 15));
 
             //panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));
             //panelInfo.add(bio);
             panelInfo.add(labelName);
-            panelInfo.add(labelBio);
             add(panelInfo, BorderLayout.EAST);
         }
     }

@@ -34,6 +34,7 @@ public class DashboardWindow extends JFrame {
     private Person myPerson;
     private ArrayList<Chat> myChats;
     private ArrayList<Person> myMatches;
+    ArrayList<Person> potentialMatches;
     private final Dimension dashSize = new Dimension(1200, 769);
 
     public static final Font FONT_1 = new Font("Helvetica", Font.BOLD, 12);
@@ -54,6 +55,16 @@ public class DashboardWindow extends JFrame {
         myPerson = person;
         myChats = chats;
         myMatches = matches;
+
+        Tree testTree = new Tree();
+        Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, "", "th@gmail.com", "",
+                true, "t.h.", null);
+        Person p2 = new Person("Vera Wang", 32, ConstantKey.FEMALE, "", "th@gmail.com", "",
+                true, "v.w.", null);
+
+        testTree.addPerson(p1);
+        testTree.addPerson(p2);
+        potentialMatches = testTree.getMatches(myPerson);
         createView();
         setSize(dashSize);
         setResizable(false);
@@ -107,7 +118,7 @@ public class DashboardWindow extends JFrame {
 
         centerPanel.setLayout(layout);
         centerPanel.setPreferredSize(new Dimension(500, 30));
-        centerPanel.add(new SwipePanel(myPerson), BorderLayout.NORTH);
+        centerPanel.add(new SwipePanel(potentialMatches), BorderLayout.NORTH);
 
         return centerPanel;
     }
@@ -123,7 +134,7 @@ public class DashboardWindow extends JFrame {
         JPanel centerNorthPanel = new JPanel();
         centerNorthPanel.setLayout(layout);
         centerNorthPanel.setPreferredSize(new Dimension(500, 30));
-        centerNorthPanel.add(new SwipePanel(myPerson), BorderLayout.NORTH);
+        centerNorthPanel.add(new SwipePanel(potentialMatches), BorderLayout.NORTH);
         return centerNorthPanel;
     }
 
