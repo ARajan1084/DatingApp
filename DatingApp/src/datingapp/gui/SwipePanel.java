@@ -42,7 +42,7 @@ public class SwipePanel extends JPanel
         JPanel panelProfile = new JPanel();
         panelProfile.setMaximumSize(new Dimension(250, 350));
         panelProfile.setBackground(redOxide);
-        ImageIcon profilePic = myMatches.get(0).getProfilePic();
+         ImageIcon profilePic = myMatches.get(0).getProfilePic();
         Image temp = profilePic.getImage();
         Image scaledTemp = temp.getScaledInstance(250, 250,  java.awt.Image.SCALE_SMOOTH);
         profilePic = new ImageIcon(scaledTemp);

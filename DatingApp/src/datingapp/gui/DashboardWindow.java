@@ -66,6 +66,9 @@ public class DashboardWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // for random testing purposes
+        accountService.fetchFeed(myPerson);
     }
 
     /**

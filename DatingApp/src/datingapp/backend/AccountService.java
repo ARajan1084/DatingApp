@@ -1,5 +1,6 @@
 package datingapp.backend;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import datingapp.exceptions.AccountNotFoundException;
 import datingapp.program.Account;
 import datingapp.program.Person;
@@ -44,7 +45,7 @@ public class AccountService {
 
     public AccountService(boolean login) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
+        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "root", "");
     }
 
     /**
@@ -244,7 +245,15 @@ public class AccountService {
      * @throws SQLException in case of errors with executing queries
      */
     public void addToFeed(Person user, Person match) throws SQLException {
-        PreparedStatement stmt = con.prepareStatement("REPLACE INTO feed VALUES (null, ?, ? )");
+        PreparedStatement stmt1 = con.prepareStatement("SELECT * FROM feed WHERE user = ?");
+        stmt1.setString(1, user.getEmail());
+        ResultSet rs = stmt1.executeQuery();
+        while (rs.next()) {
+            if (rs.getString("match").equals(match.getEmail())) {
+                return;
+            }
+        }
+        PreparedStatement stmt = con.prepareStatement("INSERT INTO feed VALUES ( ?, ? )");
         stmt.setString(1, user.getEmail());
         stmt.setString(2, match.getEmail());
         stmt.execute();
@@ -260,7 +269,7 @@ public class AccountService {
      */
     public ArrayList<Person> fetchFeed(Person user) throws SQLException, IOException {
         ArrayList<Person> feed = new ArrayList<>();
-        PreparedStatement stmt = con.prepareStatement("SELECT * FROM feed WHERE user = ?");
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM datingapp.feed WHERE user = ?");
         stmt.setString(1, user.getEmail());
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
