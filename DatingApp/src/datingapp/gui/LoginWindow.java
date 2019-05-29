@@ -117,7 +117,7 @@ public class LoginWindow extends JFrame {
             try {
                 Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
                 dispose();
-                new DashboardWindow(login, new ArrayList<Chat>(), new ArrayList<Person>());
+                new DashboardWindow(login, new ArrayList<Chat>());
             } catch (AccountNotFoundException ex) {
                 fieldEmail.setText("");
                 passwordField.setText("");

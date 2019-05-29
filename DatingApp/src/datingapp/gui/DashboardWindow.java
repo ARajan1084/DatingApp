@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -33,10 +34,9 @@ import java.util.ArrayList;
  */
 public class DashboardWindow extends JFrame {
 
-    private Person myPerson;
+    private Person feed;
     private ArrayList<Chat> myChats;
-    private ArrayList<Person> myMatches;
-    ArrayList<Person> potentialMatches;
+    private ArrayList<Person> potentialMatches;
     private AccountService accountService;
     private final Dimension dashSize = new Dimension(1200, 769);
 
@@ -52,25 +52,32 @@ public class DashboardWindow extends JFrame {
      * constructs a window that serves as the user's dashboard
      * @param person person object to pull the profile panel from
      * @param chats list of chats to pull the chats panel from
-     * @param matches list of matches to pull the matches pane from
      */
-    public DashboardWindow(Person person, ArrayList<Chat> chats, ArrayList<Person> matches)
+    public DashboardWindow(Person person, ArrayList<Chat> chats)
         throws SQLException, ClassNotFoundException, IOException {
-        accountService = new AccountService();
-        accountService.constructTree();
-        myPerson = person;
+        //TODO
+        //accountService = new AccountService();
+        //Tree globalTree = accountService.getGlobalTree();
+        feed = person;
         myChats = chats;
-        myMatches = matches;
 
         Tree testTree = new Tree();
-        Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, "", "th@gmail.com", "",
+        Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
                 true, "t.h.", null);
-        Person p2 = new Person("Vera Wang", 32, ConstantKey.FEMALE, "", "th@gmail.com", "",
+        Person p2 = new Person("Vera Wang", 31, ConstantKey.FEMALE, ConstantKey.STRAIGHT, "vera@gmail.com", "notbradley",
                 true, "v.w.", null);
+        Person p3 = new Person("Ralph Lauren", 35, ConstantKey.MALE, ConstantKey.GAY, "th@gmail.com", "polo",
+                true, "horsey", null);
+        Person p4 = new Person("Michael Kors", 34, ConstantKey.MALE, ConstantKey.STRAIGHT, "michaellllll@gmail.com", "kors",
+                true, "mmmmk", null);
 
         testTree.addPerson(p1);
         testTree.addPerson(p2);
-        potentialMatches = testTree.getMatches(myPerson);
+        testTree.addPerson(p3);
+        testTree.addPerson(p4);
+        //TODO Uncomment the one below
+        //potentialMatches = globalTree.getMatches(feed);
+        potentialMatches = testTree.getMatches(feed);
         createView();
         setSize(dashSize);
         setResizable(false);
@@ -92,7 +99,7 @@ public class DashboardWindow extends JFrame {
         panelDash.add(eastPanel(), BorderLayout.EAST);
         panelDash.setBackground(Color.PINK);
 
-        centerPanel.add(centerCenterPanel());
+        //TODO REMOVE centerPanel.add(centerCenterPanel());
         add(panelDash);
     }
 
@@ -106,7 +113,7 @@ public class DashboardWindow extends JFrame {
         westPanel.setLayout(layout);
         westPanel.setBackground(new Color(243, 232, 232));
         westPanel.setPreferredSize(new Dimension(250, 800));
-        westPanel.add(new ProfilePanel(myPerson), BorderLayout.NORTH);
+        westPanel.add(new ProfilePanel(feed), BorderLayout.NORTH);
         return westPanel;
     }
 
@@ -119,23 +126,23 @@ public class DashboardWindow extends JFrame {
         centerPanel = new JPanel();
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
-        centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
+        //TODO REMOVE centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
         centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
 
         centerPanel.setLayout(layout);
         centerPanel.setPreferredSize(new Dimension(500, 30));
-        centerPanel.add(new SwipePanel(potentialMatches), BorderLayout.NORTH);
+        //TODO TEMOVE centerPanel.add(new SwipePanel(feed, potentialMatches, accountService), BorderLayout.NORTH);
         return centerPanel;
     }
 
     private JPanel centerNorthPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
-        centerNorthPanel.setMaximumSize(new Dimension(450, 30));
+        centerNorthPanel.setMaximumSize(new Dimension(450, 300));
         centerNorthPanel.setLayout(layout);
-        centerNorthPanel.setPreferredSize(new Dimension(500, 30));
-        centerNorthPanel.add(new SwipePanel(potentialMatches), BorderLayout.NORTH);
+        centerNorthPanel.setPreferredSize(new Dimension(500, 300));
+        centerNorthPanel.add(new SwipePanel(feed, potentialMatches, accountService), BorderLayout.NORTH);
         JPanel panelButtons = new JPanel();
         JButton buttonDeleteAccount = new JButton("Delete My Account");
         buttonDeleteAccount.addActionListener(new ButtonDeleteAccountActionListener());
@@ -147,13 +154,13 @@ public class DashboardWindow extends JFrame {
         return centerNorthPanel;
     }
 
-    /**
-     * helper method of centerPanel() that constructs the Swipe Panel
-     * @return completed north panel of centerPanel()
-     */
+    /*
+    TODO REMOVE THIS COMPLETELY IT IS GARBAGE
+
     private JPanel centerCenterPanel() {
+
         try {
-            return new SwipePanel(accountService.fetchFeed(myPerson));
+            return new SwipePanel(accountService.fetchFeed(feed));
         } catch (SQLException ex) {
             ex.printStackTrace();
             JPanel errorPanel = new JPanel();
@@ -167,7 +174,10 @@ public class DashboardWindow extends JFrame {
             errorPanel.add(new JLabel("Internal Error - please try again later"));
             return errorPanel;
         }
+
     }
+
+     */
 
     /**
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
@@ -185,11 +195,11 @@ public class DashboardWindow extends JFrame {
 
         Person p = new Person("Tommy Hilfiger", 32,"M", "", "th@gmail.com", "",
                 true, "t.h.", null);
-        Chat c = new Chat(myPerson, myPerson);
+        Chat c = new Chat(feed, feed);
         ArrayList<Chat> list = new ArrayList<Chat>();
         list.add(c);
 
-        //centerSouthPanel.add(new ChatsPanel(myPerson, list), BorderLayout.SOUTH);
+        //centerSouthPanel.add(new ChatsPanel(feed, list), BorderLayout.SOUTH);
         return centerSouthPanel;
     }
 
@@ -203,10 +213,22 @@ public class DashboardWindow extends JFrame {
         JPanel eastPanel = new JPanel();
         eastPanel.setLayout(layout);
         eastPanel.setPreferredSize(new Dimension(250, 800));
-        eastPanel.add(new ChatsPanel(myPerson, myChats), BorderLayout.NORTH);
+        eastPanel.add(new ChatsPanel(feed, myChats), BorderLayout.NORTH);
         return eastPanel;
          */
-        JPanel eastPanel = new MatchesPane((myMatches));
+        //TODO UNCOMMENT JPanel eastPanel = new MatchesPane(accountService.fetchMatches(feed));
+
+        //TODO REMOVE BLOCK BELOW
+        ArrayList<Person> myMatches = new ArrayList<Person>();
+        Person m1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
+                true, "t.h.", null);
+        Person m2 = new Person("Michael Kors", 34, ConstantKey.MALE, ConstantKey.STRAIGHT, "michaellllll@gmail.com", "kors",
+                true, "mmmmk", null);
+        myMatches.add(m1);
+        myMatches.add(m2);
+        ////////////////////
+
+        JPanel eastPanel = new MatchesPane(myMatches);
         return eastPanel;
     }
 
@@ -217,11 +239,14 @@ public class DashboardWindow extends JFrame {
         Tree myTree = new Tree();
         Person p = new Person("Alexis Rose", 30,ConstantKey.FEMALE, ConstantKey.STRAIGHT, "everybodysgotahorse@gmail.com", "laalalalalalala",
                 true, "hide your diamonds, hide ur exes. I'm a little bit Alexis ;)", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/alexis4.jpg"))));
+        /*
         Person p1 = new Person("Ted Mullens", 30,ConstantKey.MALE, ConstantKey.STRAIGHT, "fifa@gmail.com", "creekdog",
                 true, "dogsdogsdogscatsdogs", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/ted.png"))));
-        Person p2 = new Person("Mutt Hampshire", 31,ConstantKey.MALE, ConstantKey.BI, "barns@gmail.com", "lumber",
+        Person p2 = new Person("Mutt Skits", 31,ConstantKey.MALE, ConstantKey.BI, "barns@gmail.com", "lumber",
                 true, "barns", new ImageIcon(ImageIO.read(new File("/home/akanksha/Pictures/mutt.png"))));
-        new DashboardWindow(p, chats, matches);
+
+         */
+        new DashboardWindow(p, chats);
     }
 
     /**
@@ -258,7 +283,7 @@ public class DashboardWindow extends JFrame {
     private class ButtonDeleteAccountActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            new DeleteAccountConfirmationWindow(DashboardWindow.this, myPerson, accountService);
+            new DeleteAccountConfirmationWindow(DashboardWindow.this, feed, accountService);
         }
     }
 }

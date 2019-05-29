@@ -1,5 +1,7 @@
 package datingapp.gui;
 
+import datingapp.backend.AccountService;
+import datingapp.program.ConstantKey;
 import datingapp.program.Person;
 
 import javax.swing.*;
@@ -13,7 +15,6 @@ import java.util.ArrayList;
 public class MatchesPane extends JPanel {
     private JLabel labelTitle;
     private ArrayList<Person> myMatches;
-
     public Color blackPearl = new Color(3, 34,54);
     public Color spindle = new Color(192, 200, 205);
 
@@ -37,18 +38,22 @@ public class MatchesPane extends JPanel {
     }
 
     private class MatchPanel extends JPanel {
-        private MatchPanel(Person p) {
+
+        private MatchPanel(Person feed) {
             super();
             GridLayout layout = new GridLayout(1, 2);
             this.setLayout(layout);
             setMaximumSize(new Dimension(450, 100));
 
+            /* TODO remove comment
             ImageIcon profilePic = p.getProfilePic();
             Image temp = profilePic.getImage();
             Image scaledTemp = temp.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH);
             profilePic = new ImageIcon(scaledTemp);
             JLabel labelProfilePic = new JLabel(profilePic);
-            add(labelProfilePic, BorderLayout.WEST);
+            add(labelProfilePic, BorderLayout.PAGE_START);
+
+             */
 
             JPanel panelInfo = new JPanel();
             panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
@@ -61,7 +66,7 @@ public class MatchesPane extends JPanel {
 
              */
 
-            JLabel labelName = new JLabel(p.getName() + ", " + p.getAge());
+            JLabel labelName = new JLabel(feed.getName() + ", " + feed.getAge());
             labelName.setFont(new Font("Helvetica", Font.BOLD, 15));
 
             //panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));

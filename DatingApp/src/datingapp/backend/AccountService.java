@@ -305,4 +305,9 @@ public class AccountService {
         }
         return users;
     }
+
+    public Tree getGlobalTree()
+    {
+        return globalTree;
+    }
 }
