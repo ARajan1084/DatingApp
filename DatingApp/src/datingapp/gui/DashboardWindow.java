@@ -55,12 +55,12 @@ public class DashboardWindow extends JFrame {
      */
     public DashboardWindow(Person person, ArrayList<Chat> chats)
         throws SQLException, ClassNotFoundException, IOException {
-        //TODO
-        //accountService = new AccountService();
-        //Tree globalTree = accountService.getGlobalTree();
+        accountService = new AccountService();
+        Tree globalTree = accountService.getGlobalTree();
         feed = person;
         myChats = chats;
-
+        potentialMatches = globalTree.getMatches(feed);
+        /*
         Tree testTree = new Tree();
         Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
                 true, "t.h.", null);
@@ -75,9 +75,10 @@ public class DashboardWindow extends JFrame {
         testTree.addPerson(p2);
         testTree.addPerson(p3);
         testTree.addPerson(p4);
-        //TODO Uncomment the one below
-        //potentialMatches = globalTree.getMatches(feed);
+
         potentialMatches = testTree.getMatches(feed);
+        */
+
         createView();
         setSize(dashSize);
         setResizable(false);
@@ -216,9 +217,10 @@ public class DashboardWindow extends JFrame {
         eastPanel.add(new ChatsPanel(feed, myChats), BorderLayout.NORTH);
         return eastPanel;
          */
-        //TODO UNCOMMENT JPanel eastPanel = new MatchesPane(accountService.fetchMatches(feed));
+        JPanel eastPanel = new MatchesPane(accountService.fetchMatches(feed));
 
         //TODO REMOVE BLOCK BELOW
+        /*
         ArrayList<Person> myMatches = new ArrayList<Person>();
         Person m1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
                 true, "t.h.", null);
@@ -227,6 +229,7 @@ public class DashboardWindow extends JFrame {
         myMatches.add(m1);
         myMatches.add(m2);
         ////////////////////
+        */
 
         JPanel eastPanel = new MatchesPane(myMatches);
         return eastPanel;

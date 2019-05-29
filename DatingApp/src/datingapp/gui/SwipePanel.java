@@ -18,7 +18,7 @@ import static datingapp.gui.DashboardWindow.*;
 
 public class SwipePanel extends JPanel
 {
-    Person myPerson, currentPerson;
+    Person feed, currentPerson;
     private ArrayList<Person> potentialMatches;
     private int currentPersonIndex;
     private AccountService acctServ;
@@ -34,7 +34,7 @@ public class SwipePanel extends JPanel
 
     public SwipePanel (Person feed, ArrayList<Person> potentialMatches, AccountService acctServ) {
         super();
-        myPerson = feed;
+        this.feed = feed;
         this.potentialMatches = potentialMatches;
         currentPersonIndex = 0;
         this.acctServ = acctServ;
@@ -55,7 +55,7 @@ public class SwipePanel extends JPanel
     public void createView () {
         /*
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        ImageIcon profilePic = myPerson.getProfilePic();
+        ImageIcon profilePic = feed.getProfilePic();
         setLayout(new GridLayout(1, 3));
 
         JPanel panelProfile = new JPanel();
@@ -194,7 +194,7 @@ public class SwipePanel extends JPanel
     public void displaySorryMessage()
     {
         setBackground(redOxide);
-
+        System.out.println("No more matches for person "+feed);
         removeAll();
         JLabel labelSorry = new JLabel("Sorry, you have no potential matches at the moment. Come back later!");
         labelSorry.setFont(fontItal);
@@ -204,7 +204,7 @@ public class SwipePanel extends JPanel
     }
 
     public void updateView(Person p) {
-        //myPerson = p;
+        //feed = p;
         removeAll();
         createView();
         revalidate();
@@ -215,8 +215,8 @@ public class SwipePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            //acctServ.addMatch(myPerson, currentPerson); TODO uncomment this line
-            System.out.println("Person " + myPerson.getName() + " and potential match " + currentPerson.getName() +
+            acctServ.addMatch(feed, currentPerson);
+            System.out.println("Person " + feed.getName() + " and potential match " + currentPerson.getName() +
                     " successfully added to match table in database");
             currentPersonIndex++;
             revalidate();
@@ -227,7 +227,6 @@ public class SwipePanel extends JPanel
             }
             else
             {
-                System.out.println("Sorry message printing");
                 displaySorryMessage();
             }
         }
@@ -237,7 +236,7 @@ public class SwipePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println("Person " + myPerson.getName() + " and potential match " + currentPerson.getName() +
+            System.out.println("Person " + feed.getName() + " and potential match " + currentPerson.getName() +
                     " did NOT match (no addition to table)");
             currentPersonIndex++;
             revalidate();
@@ -248,7 +247,6 @@ public class SwipePanel extends JPanel
             }
             else
             {
-                System.out.println("Sorry message printing");
                 displaySorryMessage();
             }
         }

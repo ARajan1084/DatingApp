@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="947c3528-2153-482a-9c3a-2031bfd0fb76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/datingapp/JUnitTests/JUDatingAppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatingApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DatingApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/LoginWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,13 +20,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="228" column="28" lean-forward="true" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
+            <state relative-caret-position="120">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
               <folding>
                 <element signature="e#7711#7717#0" expanded="true" />
-                <element signature="e#8471#8479#0" expanded="true" />
-                <element signature="e#8563#8569#0" expanded="true" />
-                <element signature="e#8622#8630#0" expanded="true" />
+                <element signature="e#9169#9175#0" expanded="true" />
+                <element signature="e#9228#9236#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="24" column="12" selection-start-line="24" selection-end-line="25" />
+            <state relative-caret-position="420">
+              <caret line="202" column="24" lean-forward="true" selection-start-line="202" selection-start-column="24" selection-end-line="202" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -64,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state>
+              <caret lean-forward="true" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,7 +77,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&gt;&gt;</find>
       <find>setlafin</find>
       <find>boxl</find>
       <find>setla</find>
@@ -114,10 +106,12 @@
       <find>matchespanel</find>
       <find>fetch</find>
       <find>addmatch</find>
+      <find>myPerson</find>
     </findStrings>
     <replaceStrings>
       <replace>buttonNah</replace>
       <replace>labelBio</replace>
+      <replace>feed</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -143,9 +137,9 @@
         <option value="$PROJECT_DIR$/src/datingapp/gui/LoginWindow.java" />
         <option value="$PROJECT_DIR$/src/datingapp/JUnitTests/JUDatingAppTest.java" />
         <option value="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" />
         <option value="$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java" />
         <option value="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" />
-        <option value="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" />
       </list>
     </option>
   </component>
@@ -277,8 +271,8 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32721382" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22570194" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32721382" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22570194" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39874083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -607,17 +601,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="24" column="12" selection-start-line="24" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state>
+          <caret lean-forward="true" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -636,15 +623,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="202" column="24" lean-forward="true" selection-start-line="202" selection-start-column="24" selection-end-line="202" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="228" column="28" lean-forward="true" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
+        <state relative-caret-position="120">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
           <folding>
             <element signature="e#7711#7717#0" expanded="true" />
-            <element signature="e#8471#8479#0" expanded="true" />
-            <element signature="e#8563#8569#0" expanded="true" />
-            <element signature="e#8622#8630#0" expanded="true" />
+            <element signature="e#9169#9175#0" expanded="true" />
+            <element signature="e#9228#9236#0" expanded="true" />
           </folding>
         </state>
       </provider>
