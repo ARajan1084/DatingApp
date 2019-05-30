@@ -37,14 +37,14 @@ public class AccountService {
      */
     public AccountService() throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
+        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "root", "");
         globalTree = constructTree();
         processTree();
     }
 
     public AccountService(boolean login) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
+        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "root", "");
     }
 
     /**
