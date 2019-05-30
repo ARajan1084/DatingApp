@@ -65,7 +65,11 @@ public class CreateAccount {
                           boolean single, String bio, ImageIcon pfp)
             throws IOException, ClassNotFoundException, SQLException {
         Person person = new Person(name, age, gender, sexuality, email, password, single, bio, pfp);
-        new AccountService().addUser(person);
+        try {
+            new AccountService().addUser(person);
+        } catch (SQLException s) {
+            System.out.println("ERROR: Database error!"+s.getMessage());
+        }
         return person;
     }
 }
