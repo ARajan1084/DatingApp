@@ -1,7 +1,7 @@
 package datingapp.backend;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import datingapp.exceptions.AccountNotFoundException;
-import datingapp.program.Account;
 import datingapp.program.Person;
 import datingapp.program.Tree;
 
@@ -210,14 +210,15 @@ public class AccountService {
      */
     public ArrayList<Person> fetchMatches(Person user) throws SQLException, IOException {
         ArrayList<Person> matches = new ArrayList<>();
-        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE user = ?");
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE user = ? AND status = ?");
         stmt.setString(1, user.getEmail());
+        stmt.setBoolean(2, true);
         ResultSet rs = stmt.executeQuery();
-        if (rs == null) {
-            return null;
-        }
         while (rs.next()) {
             matches.add(fetchUser(rs.getString("match")));
+        }
+        if (matches.isEmpty()) {
+            return null;
         }
         return matches;
     }
@@ -230,10 +231,26 @@ public class AccountService {
      * @throws SQLException in case of errors with executing queries
      */
     public void addMatch(Person user, Person match) throws SQLException {
-        PreparedStatement stmt = con.prepareStatement("INSERT INTO matches VALUES ( ?, ? )");
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE (user = ? AND match = ?)" +
+                "OR (user = ? AND match = ?)");
         stmt.setString(1, user.getEmail());
         stmt.setString(2, match.getEmail());
-        stmt.executeQuery();
+        stmt.setString(3, match.getEmail());
+        stmt.setString(4, user.getEmail());
+        ResultSet potentialMatches = stmt.executeQuery();
+        if (potentialMatches.next()) { // if the other user has already said yes
+            int matchID = potentialMatches.getInt("matchID");
+            PreparedStatement updateStmt = con.prepareStatement("UPDATE matches SET status = ? WHERE matchID = ?");
+            updateStmt.setBoolean(1, true);
+            updateStmt.setInt(2, matchID);
+            updateStmt.execute();
+        } else { // if the pair is not already potentially matched
+            PreparedStatement stmt2 = con.prepareStatement("INSERT INTO matches VALUES ( ?, ?, ?)");
+            stmt2.setString(1, user.getEmail());
+            stmt2.setString(2, match.getEmail());
+            stmt2.setBoolean(3, false);
+            stmt2.execute();
+        }
     }
 
     /**
@@ -244,7 +261,15 @@ public class AccountService {
      * @throws SQLException in case of errors with executing queries
      */
     public void addToFeed(Person user, Person match) throws SQLException {
-        PreparedStatement stmt = con.prepareStatement("REPLACE INTO feed VALUES (null, ?, ? )");
+        PreparedStatement stmt1 = con.prepareStatement("SELECT * FROM feed WHERE user = ?");
+        stmt1.setString(1, user.getEmail());
+        ResultSet rs = stmt1.executeQuery();
+        while (rs.next()) {
+            if (rs.getString("match").equals(match.getEmail())) {
+                return;
+            }
+        }
+        PreparedStatement stmt = con.prepareStatement("INSERT INTO feed VALUES ( ?, ? )");
         stmt.setString(1, user.getEmail());
         stmt.setString(2, match.getEmail());
         stmt.execute();

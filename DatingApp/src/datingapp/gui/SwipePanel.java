@@ -2,23 +2,20 @@ package datingapp.gui;
 
 import datingapp.backend.AccountService;
 import datingapp.program.Person;
-import datingapp.program.Tree;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static datingapp.gui.DashboardWindow.*;
 
 public class SwipePanel extends JPanel
 {
-    Person feed, currentPerson;
+    Person user, currentPerson;
     private ArrayList<Person> potentialMatches;
     private int currentPersonIndex;
     private AccountService acctServ;
@@ -34,12 +31,12 @@ public class SwipePanel extends JPanel
 
     public SwipePanel (Person feed, ArrayList<Person> potentialMatches, AccountService acctServ) {
         super();
-        this.feed = feed;
+        this.user = feed;
         this.potentialMatches = potentialMatches;
         currentPersonIndex = 0;
         this.acctServ = acctServ;
-        setPreferredSize(new Dimension(280, 800));
-        //myMatches = feed;
+        setMaximumSize(new Dimension(280, 500));
+        //myMatches = user;
         createView();
 
         if (potentialMatches == null || potentialMatches.isEmpty())
@@ -55,13 +52,13 @@ public class SwipePanel extends JPanel
     public void createView () {
         /*
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        ImageIcon profilePic = feed.getProfilePic();
+        ImageIcon profilePic = user.getProfilePic();
         setLayout(new GridLayout(1, 3));
 
         JPanel panelProfile = new JPanel();
         panelProfile.setMaximumSize(new Dimension(250, 350));
         panelProfile.setBackground(redOxide);
-        ImageIcon profilePic = myMatches.get(0).getProfilePic();
+         ImageIcon profilePic = myMatches.get(0).getProfilePic();
         Image temp = profilePic.getImage();
         Image scaledTemp = temp.getScaledInstance(250, 250,  java.awt.Image.SCALE_SMOOTH);
         profilePic = new ImageIcon(scaledTemp);
@@ -157,7 +154,12 @@ public class SwipePanel extends JPanel
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelBio.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-
+        ImageIcon profilePic = currentPerson.getProfilePic();
+        Image temp = profilePic.getImage();
+        Image scaledTemp = temp.getScaledInstance(250, 250,  java.awt.Image.SCALE_SMOOTH);
+        profilePic = new ImageIcon(scaledTemp);
+        JLabel labelProfilePic = new JLabel(profilePic);
+        labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         buttonNah = createSimpleButton(buttonNah, "nah");
         buttonNah.setBackground(oysterPink);
@@ -171,30 +173,30 @@ public class SwipePanel extends JPanel
         buttonYeah.addActionListener(new ButtonYeahActionListener());
         //buttonYeah.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-        JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
-        buttonPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        buttonPane.add(Box.createHorizontalGlue());
-        buttonPane.add(buttonNah);
-        Component myComponent = Box.createRigidArea(new Dimension(550, 0));
-        myComponent.setBackground(redOxide);
-        buttonPane.add(myComponent);
-        buttonPane.add(buttonYeah);
+        BorderLayout layout = new BorderLayout();
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setMaximumSize(new Dimension(400, 40));
+        buttonPanel.setBackground(redOxide);
+        buttonPanel.setLayout(layout);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        buttonPanel.add(Box.createHorizontalGlue());
+        buttonPanel.add(buttonNah, BorderLayout.WEST);
+        // Component myComponent = Box.createRigidArea(new Dimension(550, 0));
+        // myComponent.setBackground(redOxide);
+        // buttonPanel.add(myComponent);
+        buttonPanel.add(buttonYeah, BorderLayout.EAST);
 
         add(labelTitle);
-            /* TODO remove comment
-            add(labelProfilePic);
-
-             */
+        add(labelProfilePic);
         add(labelName);
         add(labelBio);
-        add(buttonPane, BorderLayout.PAGE_END);
+        add(buttonPanel, BorderLayout.PAGE_END);
     }
 
     public void displaySorryMessage()
     {
         setBackground(redOxide);
-        System.out.println("No more matches for person "+feed);
+        System.out.println("No more matches for person "+ user);
         removeAll();
         JLabel labelSorry = new JLabel("Sorry, you have no potential matches at the moment. Come back later!");
         labelSorry.setFont(fontItal);
@@ -203,31 +205,25 @@ public class SwipePanel extends JPanel
         add(labelSorry);
     }
 
-    public void updateView(Person p) {
-        //feed = p;
-        removeAll();
-        createView();
-        revalidate();
-        repaint();
-    }
-
     private class ButtonYeahActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            acctServ.addMatch(feed, currentPerson);
-            System.out.println("Person " + feed.getName() + " and potential match " + currentPerson.getName() +
-                    " successfully added to match table in database");
-            currentPersonIndex++;
-            revalidate();
-            repaint();
-            if (currentPersonIndex < potentialMatches.size())
-            {
-                displayCurrentPerson();
-            }
-            else
-            {
-                displaySorryMessage();
+            try {
+                acctServ.addMatch(user, currentPerson);
+                System.out.println("Person " + user.getName() + " and potential match " + currentPerson.getName() +
+                        " successfully added to match table in database");
+                currentPersonIndex++;
+                revalidate();
+                repaint();
+                if (currentPersonIndex < potentialMatches.size()) {
+                    displayCurrentPerson();
+                } else {
+                    displaySorryMessage();
+                }
+            } catch (SQLException ex) {
+                System.out.println("Internal Error");
+                ex.printStackTrace();
             }
         }
     }
@@ -236,7 +232,7 @@ public class SwipePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println("Person " + feed.getName() + " and potential match " + currentPerson.getName() +
+            System.out.println("Person " + user.getName() + " and potential match " + currentPerson.getName() +
                     " did NOT match (no addition to table)");
             currentPersonIndex++;
             revalidate();

@@ -1,29 +1,35 @@
 package datingapp.gui;
-
 import datingapp.backend.AccountService;
-import datingapp.program.ConstantKey;
 import datingapp.program.Person;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MatchesPane extends JPanel {
     private JLabel labelTitle;
+    private Person user;
+    private AccountService accountService;
     private ArrayList<Person> myMatches;
     public Color blackPearl = new Color(3, 34,54);
     public Color spindle = new Color(192, 200, 205);
 
-    public MatchesPane(ArrayList<Person> matches) {
+    public MatchesPane(Person user, ArrayList<Person> matches, AccountService accountService) {
         super();
-        myMatches = matches;
-        setPreferredSize(new Dimension(300, 769));
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        createView();
+        this.accountService = accountService;
+        if (matches == null) {
+            displaySorryMessage();
+        } else {
+            myMatches = matches;
+            setPreferredSize(new Dimension(300, 769));
+            setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            createView();
+        }
     }
 
     public void createView() {
@@ -35,6 +41,29 @@ public class MatchesPane extends JPanel {
         for (Person p: myMatches) {
             add(new MatchPanel(p));
         }
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    myMatches = accountService.fetchMatches(user);
+                    revalidate();
+                    repaint();
+                } catch (SQLException ex) {
+                    displaySorryMessage();
+                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    displaySorryMessage();
+                    ex.printStackTrace();
+                }
+            }
+        }, 0, 15, TimeUnit.SECONDS);
+    }
+
+    public void displaySorryMessage () {
+        JPanel panelSorry = new JPanel();
+        panelSorry.add(new JLabel("Sorry. You have no matches yet."));
+        add(panelSorry);
     }
 
     private class MatchPanel extends JPanel {

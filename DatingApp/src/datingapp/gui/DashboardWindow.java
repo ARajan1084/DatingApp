@@ -76,7 +76,7 @@ public class DashboardWindow extends JFrame {
         testTree.addPerson(p3);
         testTree.addPerson(p4);
 
-        potentialMatches = testTree.getMatches(feed);
+        potentialMatches = testTree.getMatches(user);
         */
 
         createView();
@@ -85,12 +85,15 @@ public class DashboardWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // for random testing purposes
+        accountService.fetchFeed(feed);
     }
 
     /**
      * helper method that primarily creates the GUI
      */
-    private void createView() {
+    private void createView() throws SQLException, IOException {
         BorderLayout layout = new BorderLayout();
         JPanel panelDash = new JPanel();
         panelDash.setLayout(layout);
@@ -127,23 +130,20 @@ public class DashboardWindow extends JFrame {
         centerPanel = new JPanel();
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
-        //TODO REMOVE centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
+        centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
         centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
 
         centerPanel.setLayout(layout);
         centerPanel.setPreferredSize(new Dimension(500, 30));
-        //TODO TEMOVE centerPanel.add(new SwipePanel(feed, potentialMatches, accountService), BorderLayout.NORTH);
         return centerPanel;
     }
 
     private JPanel centerNorthPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
-        centerNorthPanel.setMaximumSize(new Dimension(450, 300));
+        centerNorthPanel.setMaximumSize(new Dimension(450, 40));
         centerNorthPanel.setLayout(layout);
-        centerNorthPanel.setPreferredSize(new Dimension(500, 300));
-        centerNorthPanel.add(new SwipePanel(feed, potentialMatches, accountService), BorderLayout.NORTH);
         JPanel panelButtons = new JPanel();
         JButton buttonDeleteAccount = new JButton("Delete My Account");
         buttonDeleteAccount.addActionListener(new ButtonDeleteAccountActionListener());
@@ -155,14 +155,12 @@ public class DashboardWindow extends JFrame {
         return centerNorthPanel;
     }
 
-    /*
-    TODO REMOVE THIS COMPLETELY IT IS GARBAGE
 
     private JPanel centerCenterPanel() {
 
-        try {
-            return new SwipePanel(accountService.fetchFeed(feed));
-        } catch (SQLException ex) {
+            return new SwipePanel(feed, potentialMatches, accountService);
+        /*
+        catch (SQLException ex) {
             ex.printStackTrace();
             JPanel errorPanel = new JPanel();
             errorPanel.setMaximumSize(new Dimension(50, 450));
@@ -175,10 +173,10 @@ public class DashboardWindow extends JFrame {
             errorPanel.add(new JLabel("Internal Error - please try again later"));
             return errorPanel;
         }
+        */
 
     }
 
-     */
 
     /**
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
@@ -192,7 +190,7 @@ public class DashboardWindow extends JFrame {
         BorderLayout layout = new BorderLayout();
         JPanel centerSouthPanel = new JPanel();
         centerSouthPanel.setLayout(layout);
-        centerSouthPanel.setPreferredSize(new Dimension(500, 30));
+        centerSouthPanel.setMaximumSize(new Dimension(500, 30));
 
         Person p = new Person("Tommy Hilfiger", 32,"M", "", "th@gmail.com", "",
                 true, "t.h.", null);
@@ -200,7 +198,7 @@ public class DashboardWindow extends JFrame {
         ArrayList<Chat> list = new ArrayList<Chat>();
         list.add(c);
 
-        //centerSouthPanel.add(new ChatsPanel(feed, list), BorderLayout.SOUTH);
+        //centerSouthPanel.add(new ChatsPanel(user, list), BorderLayout.SOUTH);
         return centerSouthPanel;
     }
 
@@ -208,16 +206,16 @@ public class DashboardWindow extends JFrame {
      * helper method that constructs the east Panel
      * @return completed
      */
-    private JPanel eastPanel() {
+    private JPanel eastPanel() throws SQLException, IOException {
         /*
         BorderLayout layout = new BorderLayout();
         JPanel eastPanel = new JPanel();
         eastPanel.setLayout(layout);
         eastPanel.setPreferredSize(new Dimension(250, 800));
-        eastPanel.add(new ChatsPanel(feed, myChats), BorderLayout.NORTH);
+        eastPanel.add(new ChatsPanel(user, myChats), BorderLayout.NORTH);
         return eastPanel;
          */
-        JPanel eastPanel = new MatchesPane(accountService.fetchMatches(feed));
+        JPanel eastPanel = new MatchesPane(feed, accountService.fetchMatches(feed), accountService);
 
         //TODO REMOVE BLOCK BELOW
         /*
@@ -231,7 +229,6 @@ public class DashboardWindow extends JFrame {
         ////////////////////
         */
 
-        JPanel eastPanel = new MatchesPane(myMatches);
         return eastPanel;
     }
 
