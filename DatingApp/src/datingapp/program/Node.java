@@ -39,26 +39,42 @@ public class Node {
      * returns the dating pool
      * @return pool of the node
      */
-    public ArrayList<Person> getPeople () {
+    public ArrayList<Person> getPeople ()
+    {
         return pool;
     }
 
+    /**
+     * returns the question
+     * @return the question
+     */
     public String getQuestion () {
         return argument;
     }
 
+    /**
+     * adds a new node to the question tree
+     * @param child the node to add
+     */
     public void addChild(Node child)
     {
         children.add(child);
     }
+
     /**
      * returns the list of link objects
      * @return links of the node
      */
-    public ArrayList<Node> getChildren () {
+    public ArrayList<Node> getChildren ()
+    {
         return children;
     }
 
+    /**
+     * finds a node using a specified tag
+     * @param arg the tag to find the node with
+     * @return the node that was being searched for; null if it wasn't found
+     */
     public Node getNodeByArgument(String arg)
     {
         ArrayList<Node> children= this.getChildren();
