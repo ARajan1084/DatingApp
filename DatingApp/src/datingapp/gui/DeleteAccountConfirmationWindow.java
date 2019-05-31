@@ -9,6 +9,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Creates a window that asks the user to confirm whether or not they really want to delete their account
+ * @author Achintya
+ */
 public class DeleteAccountConfirmationWindow extends JFrame {
     DashboardWindow myDash;
     AccountService accountService;
@@ -16,6 +20,13 @@ public class DeleteAccountConfirmationWindow extends JFrame {
     JLabel labelQuestion, labelError;
     JButton buttonCancel, buttonConfirm;
 
+    /**
+     * constructs a window that asks whether a user really wants to delete their account
+     * @param dashboardWindow the DashboardWindow from which the user clicked the Delete Account button to delete their
+     *                        account
+     * @param user the user who would like to have their account deleted
+     * @param accountService the AccountService of this user
+     */
     public DeleteAccountConfirmationWindow (DashboardWindow dashboardWindow, Person user, AccountService accountService) {
         super("Delete Your Account");
         createView();
@@ -28,6 +39,10 @@ public class DeleteAccountConfirmationWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * helper method that creates the GUI of this window
+     * adds JButtons and text (for the instructions/prompts) and sets the background and fonts and colors
+     */
     private void createView() {
         JPanel contentPane = new JPanel();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
@@ -46,14 +61,28 @@ public class DeleteAccountConfirmationWindow extends JFrame {
         add(contentPane);
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Cancel button
+     */
     private class ButtonCancelActionListener implements ActionListener {
+        /**
+         * closes the window
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
         }
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Confirm button
+     */
     private class ButtonConfirmActionListener implements ActionListener {
+        /**
+         * removes the user from the service/database, permanently deleting their account
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             try {

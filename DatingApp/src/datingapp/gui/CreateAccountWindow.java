@@ -50,6 +50,11 @@ public class CreateAccountWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * creates a view for the Create Account Window
+     * sets the background color and fonts and dimensions as specified and adds all the JButtons and text fields and
+     * checkboxes that are necessary for this window in order for the user to be able to create an account
+     */
     private void createView() {
         JPanel panel = new JPanel();
         panel.setBackground(backgroundColor);
@@ -180,7 +185,16 @@ public class CreateAccountWindow extends JFrame {
         panel.add(labelError);
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Create Account button
+     */
     private class buttonCreateActionListener implements ActionListener {
+        /**
+         * creates a new account for the user who input the data
+         * does so by creating a new Person and setting the data to whatever the user entered in
+         * checks for and accounts for the various possible errors in entering the data
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -236,7 +250,14 @@ public class CreateAccountWindow extends JFrame {
         }
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Cancel button
+     */
     private class buttonCancelActionListener implements ActionListener {
+        /**
+         * closes the window
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();

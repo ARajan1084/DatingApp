@@ -2,7 +2,6 @@ package datingapp.program;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * Implements tree of nodes. Has methods to add questions and answers in the tree through nodes and links
@@ -10,11 +9,13 @@ import java.util.Stack;
  * @author Laasya
  * @version 05/09/19
  */
-
 public class Tree {
     private Node root;
     private int size;
 
+    /**
+     * constructor for the Tree object
+     */
     public Tree () {
         //root = new Node("What are you looking for?");
         //root.addC(new Link("Long-Term", null));
@@ -53,6 +54,9 @@ public class Tree {
 
     }
 
+    /**
+     * prints out the Tree
+     */
     public void print_tree()
     {
         ArrayList<Node> children = root.getChildren();
@@ -112,9 +116,8 @@ public class Tree {
         }
     }
     */
+
     /*
-     *
-     */
     public static void main(String[] args)
     {
         Tree newT = new Tree();
@@ -134,6 +137,15 @@ public class Tree {
         System.out.println(newT.printMatches(test2));
 
     }
+     */
+
+    /**
+     * returns the ArrayList of all other users who match the current user's preference
+     * @param commitment the user's commitment preference (long term or short term)
+     * @param gender the user's gender
+     * @param sexuality the user's sexual orientation
+     * @return an ArrayList of the users who match the current user's preference
+     */
     public ArrayList<Person> getPoolbyParams(String commitment, String gender, String sexuality)
     {
         Node second = this.root.getNodeByArgument(commitment);
@@ -143,6 +155,12 @@ public class Tree {
         //System.out.println(finals.getPeople());
         return finals.getPeople();
     }
+
+    /**
+     * returns all the potential matches of a specific user
+     * @param profile the user
+     * @return all the potential matches of a specific user
+     */
     public ArrayList<Person> getMatches(Person profile)
     {
         ArrayList<Person> returner = new ArrayList<Person>();
@@ -194,6 +212,12 @@ public class Tree {
         return returner;
 
     }
+
+    /**
+     * prints all the potential matches for a specific user
+     * @param p the user
+     * @return all the potential matches for a specific person
+     */
     public String printMatches(Person p)
     {
         ArrayList<Person> i = getMatches(p);
@@ -206,6 +230,11 @@ public class Tree {
         return result;
     }
 
+    /**
+     * adds a new user to the tree
+     * @param p the user that is to be added
+     * @return an int that tells whether or not the addition was successful
+     */
     public int addPerson(Person p)
     {
         Node commit_node = null;
@@ -266,6 +295,10 @@ public class Tree {
         return p.getAge();
     }
 
+    /**
+     * returns the size of the Tree (# of people)
+     * @return the number of people in the Tree
+     */
     public int getSize() {
         return size;
     }

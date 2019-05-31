@@ -1,8 +1,6 @@
 package datingapp.program;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 /**
  *
@@ -22,10 +20,7 @@ public class QuestionSpitter
     public static String[] random;
     public static String[] deeps;
     public static String[] finalList;
-    public QuestionSpitter()
-    {
 
-    }
     /**
      * initializes each area that stores all the questions of each type in each
      * specific array
@@ -60,10 +55,11 @@ public class QuestionSpitter
         finalList[5] = fun[index6];
         return finalList;
     }
+
     /**
      * reads the text file and adds questions to their corresponding category
-     * @param args
-     * @throws IOException
+     * @param args default parameter
+     * @throws IOException in case of issues when converting the profile picture to a Blob in the DATABASE
      */
     public static void main(String[] args) throws IOException
     {
