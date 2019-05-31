@@ -8,7 +8,30 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class EditAccount {
+/**
+ * enables the user to edit and change specific details about their account
+ * @author Achintya
+ */
+public class EditAccount
+{
+    /**
+     * edits the user's account info
+     * @param person the user
+     * @param firstName the user's first name
+     * @param lastName the user's last name
+     * @param age the user's age
+     * @param password the user's password
+     * @param confirmPassword the user's password (for confirmation)
+     * @param bio the user's bio
+     * @param pfp the user's profile picture
+     * @throws InvalidFirstNameException in case the first name is invalid
+     * @throws InvalidLastNameException in case the last name is invalid
+     * @throws InvalidAgeException in case the age is invalid or under the limit
+     * @throws PasswordMismatchException in case the password is invalid
+     * @throws InvalidPasswordException in case the passwords do not match up
+     * @throws BioWordLengthException in case the bio is over the limit
+     * @throws InvalidProfilePictureException in case the profile picture is invalid
+     */
     public void edit(Person person, String firstName, String lastName, String age, String password,
                      String confirmPassword, String bio, File pfp)
             throws InvalidFirstNameException, InvalidLastNameException, InvalidAgeException, PasswordMismatchException,

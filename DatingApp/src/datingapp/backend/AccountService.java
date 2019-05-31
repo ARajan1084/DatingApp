@@ -41,6 +41,13 @@ public class AccountService {
         processTree();
     }
 
+    /**
+     * this is a constructor for efficiency purposes
+     * it's used to avoid constructing the entire tree every time
+     * @param login
+     * @throws ClassNotFoundException in case casting the device driver fails
+     * @throws SQLException in case the connection to the database fails
+     */
     public AccountService(boolean login) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
@@ -319,6 +326,11 @@ public class AccountService {
         return tree;
     }
 
+    /**
+     * takes info from globalTree and updates the database
+     * @throws SQLException in case of errors with executing queries or processing result sets
+     * @throws IOException in case of errors with converting entries in the database to Person objects
+     */
     private void processTree() throws SQLException, IOException {
         ArrayList<Person> users = fetchAllUsers();
         for (Person user: users) {
@@ -328,6 +340,12 @@ public class AccountService {
         }
     }
 
+    /**
+     * creates and returns an ArrayList of Person objects that represent ALL the current users
+     * @return an ArrayList of all the current users, which are Person objects
+     * @throws SQLException in case of errors with executing queries or processing result sets
+     * @throws IOException in case of errors with converting entries in the database to Person objects
+     */
     private ArrayList<Person> fetchAllUsers() throws SQLException, IOException {
         ArrayList<Person> users = new ArrayList<>();
         PreparedStatement stmt = con.prepareStatement("SELECT email FROM person");
@@ -338,6 +356,10 @@ public class AccountService {
         return users;
     }
 
+    /**
+     * getter function that returns the globalTree
+     * @return globalTree
+     */
     public Tree getGlobalTree()
     {
         return globalTree;

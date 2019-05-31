@@ -1,12 +1,9 @@
 package datingapp.backend;
-import datingapp.program.Account;
 import datingapp.exceptions.AccountNotFoundException;
 import datingapp.program.Person;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Handles the datingapp.backend of LoginWindow.java

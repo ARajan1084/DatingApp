@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * The user's matches are displayed in the bottom half of the center panel and message requests are displayed in the
  * bottom left panel
  *
- * @author Akanksha
+ * @author Akanksha and Achintya
  * @version 05/09
  */
 public class DashboardWindow extends JFrame {
@@ -88,6 +88,8 @@ public class DashboardWindow extends JFrame {
 
     /**
      * helper method that primarily creates the GUI
+     * @throws SQLException in case the connection to the DATABASE fails
+     * @throws IOException in case of issues when converting the profile picture to a Blob in the DATABASE
      */
     private void createView() throws SQLException, IOException {
         BorderLayout layout = new BorderLayout();
@@ -99,7 +101,7 @@ public class DashboardWindow extends JFrame {
         panelDash.add(eastPanel(), BorderLayout.EAST);
         panelDash.setBackground(Color.PINK);
 
-        //TODO REMOVE centerPanel.add(centerCenterPanel());
+        //REMOVE centerPanel.add(centerCenterPanel());
         add(panelDash);
     }
 
@@ -135,6 +137,10 @@ public class DashboardWindow extends JFrame {
         return centerPanel;
     }
 
+    /**
+     * helper method that constructs the center north panel
+     * @return completed center north panel
+     */
     private JPanel centerNorthPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
@@ -152,6 +158,10 @@ public class DashboardWindow extends JFrame {
     }
 
 
+    /**
+     * helper method of centerPanel() that constructs the center center panel
+     * @return completed center part of the center panel
+     */
     private JPanel centerCenterPanel() {
 
             return new SwipePanel(feed, potentialMatches, accountService);
@@ -184,16 +194,24 @@ public class DashboardWindow extends JFrame {
 
     /**
      * helper method that constructs the east Panel
-     * @return completed
+     * @return completed eastPanel
+     * @throws SQLException in case the connection to the DATABASE fails
+     * @throws IOException in case of issues when converting the profile picture to a Blob in the DATABASE
      */
     private JPanel eastPanel() throws SQLException, IOException {
         return new MatchesPane(feed, accountService.fetchMatches(feed), accountService);
     }
 
     /**
-     * Action Listener for Logout Button
+     * @author Achintya
+     *
+     * an ActionListener that tells what to do when the user clicks the Logout button
      */
     private class ButtonLogoutActionListener implements ActionListener {
+        /**
+         * closes the Dashboard window and opens up a new Login window
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
@@ -202,7 +220,23 @@ public class DashboardWindow extends JFrame {
     }
 
     /**
-     * Akanksha
+     * @author Achintya
+     *
+     * an ActionListener that tells what to do when the user clicks the Delete Account button
+     */
+    private class ButtonDeleteAccountActionListener implements ActionListener {
+        /**
+         * opens another mini window that asks for a confirmation on whether the user really wants to delete their account
+         * @param e the event in which the body of the code will be carried out
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new DeleteAccountConfirmationWindow(DashboardWindow.this, feed, accountService);
+        }
+    }
+
+    /**
+     * @author Akanksha
      *
      * method that creates and initializes a JButton and sets it's font and colors to a simple color scheme
      * @param button the button that will be newed and returned
@@ -219,12 +253,5 @@ public class DashboardWindow extends JFrame {
         Border compound = new CompoundBorder(line, margin);
         button.setBorder(compound);
         return button;
-    }
-
-    private class ButtonDeleteAccountActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            new DeleteAccountConfirmationWindow(DashboardWindow.this, feed, accountService);
-        }
     }
 }

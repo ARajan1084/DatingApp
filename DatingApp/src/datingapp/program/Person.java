@@ -1,19 +1,12 @@
 package datingapp.program;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.Buffer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Objects;
-
-import datingapp.*;
-import javafx.scene.image.Image;
-
 import javax.swing.*;
 
+/**
+ * constructs a Person object, which represents a user
+ */
 public class Person implements Serializable {
 
     private String name;
@@ -25,6 +18,18 @@ public class Person implements Serializable {
     private String bio;
     private ImageIcon profilePic;
 
+    /**
+     * constructs a Person, which represents a user
+     * @param name the user's name
+     * @param age the user's age
+     * @param gender the user's gender
+     * @param sexuality the user's sexual orientation
+     * @param email the user's email address
+     * @param password the user's password
+     * @param single the user's relationship status
+     * @param bio the user's bio
+     * @param profilePic the user's profile picture
+     */
     public Person (String name, int age, String gender, String sexuality, String email, String password, boolean single,
                    String bio, ImageIcon profilePic) {
         this.name = name;
@@ -39,71 +44,122 @@ public class Person implements Serializable {
 
     /**
      * returns the name of this datingapp.program.Person
-     * @return name
+     * @return name the user's name
      */
-    public String getName () {
+    public String getName ()
+    {
         return name;
     }
 
     /**
      * returns the age of this datingapp.program.Person
-     * @return age
+     * @return age the user's age
      */
-    public int getAge () {
+    public int getAge ()
+    {
         return age;
     }
 
-    public String getGender() {
+    /**
+     * return's the user gender
+     * @return the user's gender
+     */
+    public String getGender()
+    {
         return gender;
     }
 
-    public String getSexuality () {
+    /**
+     * returns the user's sexual orientation
+     * @return the user's sexuality
+     */
+    public String getSexuality ()
+    {
         return sexuality;
     }
 
     /**
      * returns the status of this datingapp.program.Person (single or not)
-     * @return single
+     * @return single the user's relationship status
      */
-    public boolean getStatus () {
+    public boolean getStatus ()
+    {
         return single;
     }
 
-    public String getEmail () {
+    /**
+     * returns the user's email address
+     * @return the user's email address
+     */
+    public String getEmail ()
+    {
         return account.getEmail();
     }
 
-    public String getBio() {
+    /**
+     * returns the user's bio
+     * @return the user's bio
+     */
+    public String getBio()
+    {
         return bio;
     }
 
-    public ImageIcon getProfilePic() {
+    /**
+     * returns the user's profile picture
+     * @return the user's profile picture
+     */
+    public ImageIcon getProfilePic()
+    {
         return profilePic;
     }
 
-    public String getPassword() {
+    /**
+     * returns the user's's password
+     * @return the user's password
+     */
+    public String getPassword()
+    {
         return account.getPassword();
     }
 
-    public void setName(String name) {
+    /**
+     * sets the user's name to a specified value
+     * @param name the new name
+     */
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public void setAge(int age) {
+    /**
+     * sets the user's age to a specified value
+     * @param age the new age
+     */
+    public void setAge(int age)
+    {
         this.age = age;
     }
 
-    public void setProfilePic(ImageIcon profilePic) {
+    /**
+     * sets the user's profile picture to a specified value
+     * @param profilePic the new profile picture
+     */
+    public void setProfilePic(ImageIcon profilePic)
+    {
         this.profilePic = profilePic;
     }
 
-    public void setPassword(String password) {
+    /**
+     * sets the user's password to a specified value
+     * @param password the new password
+     */
+    public void setPassword(String password)
+    {
         account.setPassword(password);
     }
 
     /**
-     * Akanksha
-     *
      * sets the bio of this person to the String that's passed in
      * @param newBio new bio to be set
      */
@@ -112,6 +168,10 @@ public class Person implements Serializable {
         bio = newBio;
     }
 
+    /**
+     * toString() method for the Person object
+     * @return the Person in the form of a String
+     */
     public String toString () {
         String output = "";
         output += "Name: " + name + "\n";

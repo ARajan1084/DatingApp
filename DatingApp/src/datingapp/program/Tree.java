@@ -9,18 +9,14 @@ import java.util.HashMap;
  * @author Laasya
  * @version 05/09/19
  */
-
 public class Tree {
     private Node root;
     private int size;
 
-    public Tree() {
-        //root = new Node("What are you looking for?");
-        //root.addC(new Link("Long-Term", null));
-        //root.addLink(new Link("Short-Term", null));
-
-
-        //root = new Node("What are you looking for?");
+    /**
+     * constructor for the Tree object
+     */
+    public Tree () {
         size = 1;
 
         //create the root
@@ -106,16 +102,35 @@ public class Tree {
         }
     }
     */
-    public ArrayList<Person> getPoolByParams(String commitment, String gender, String sexuality) {
-        Node second = this.root.getNodeByArgument(commitment);
-        Node third = second.getNodeByArgument(sexuality);
+    /*
+    public static void main(String[] args)
+    {
+        Tree newT = new Tree();
+        Person test = new Person("Jane Doe", 18, ConstantKey.FEMALE, ConstantKey.STRAIGHT, "jane.doe@gmail.com", "1234", false, "hello", null);
+        Person test2 = new Person("Bob Billy", 29, ConstantKey.MALE, ConstantKey.STRAIGHT, "bob.billy@gmail.com", "1234", false, "hello", null);
+        Person test3 = new Person("Donald Trump", 70, ConstantKey.MALE, ConstantKey.STRAIGHT, "donald.trump@gmail.com", "1234", false, "hello", null);
+        Person test4 = new Person("JoJo Siwa", 54, ConstantKey.FEMALE, ConstantKey.BI, "jo.siwa@gmail.com", "1234", false, "hello", null);
+        Person test5 = new Person("Justin Bieber", 68, ConstantKey.MALE, ConstantKey.GAY, "justin.bieber@gmail.com", "1234", false, "hello", null);
+        int size = newT.getSize();
+        newT.addPerson(test);
+        newT.addPerson(test2);
+        newT.addPerson(test3);
+        newT.addPerson(test4);
+        newT.addPerson(test5);
+        //System.out.println(age);
+        //newT.print_tree();
+        System.out.println(newT.printMatches(test2));
 
-        Node finals = third.getNodeByArgument(gender);
-        //System.out.println(finals.getPeople());
-        return finals.getPeople();
     }
+     */
 
-    public ArrayList<Person> getMatches(Person profile) {
+    /**
+     * returns all the potential matches of a specific user
+     * @param profile the user
+     * @return all the potential matches of a specific user
+     */
+    public ArrayList<Person> getMatches(Person profile)
+    {
         ArrayList<Person> returner = new ArrayList<Person>();
         boolean commit = profile.getStatus();
         String sexuality = profile.getSexuality();
@@ -132,7 +147,7 @@ public class Tree {
             for (int rI = 0; rI < matchRule.size(); rI++) {
                 SearchNode type = matchRule.get(rI);
                 //System.out.println(type.getGender() + type.getSexuality());
-                ArrayList<Person> add = getPoolByParams(ConstantKey.COMMITMENT_LONG, type.getGender(), type.getSexuality());
+                ArrayList<Person> add = getPoolbyParams(ConstantKey.COMMITMENT_LONG, type.getGender(), type.getSexuality());
                 returner.addAll(add);
             }
         } else {
@@ -140,7 +155,7 @@ public class Tree {
             for (int rI = 0; rI < matchRule.size(); rI++) {
                 SearchNode type = matchRule.get(rI);
                 //System.out.println(type.getGender() + type.getSexuality());
-                ArrayList<Person> add = getPoolByParams(ConstantKey.COMMITMENT_SHORT, type.getGender(), type.getSexuality());
+                ArrayList<Person> add = getPoolbyParams(ConstantKey.COMMITMENT_SHORT, type.getGender(), type.getSexuality());
                 //System.out.println(add.size());
 
                 returner.addAll(add);
@@ -160,7 +175,30 @@ public class Tree {
 
     }
 
-    public String printMatches(Person p) {
+    /**
+     * returns the ArrayList of all other users who match the current user's preference
+     * @param commitment the user's commitment preference (long term or short term)
+     * @param gender the user's gender
+     * @param sexuality the user's sexual orientation
+     * @return an ArrayList of the users who match the current user's preference
+     */
+    public ArrayList<Person> getPoolbyParams(String commitment, String gender, String sexuality)
+    {
+        Node second = this.root.getNodeByArgument(commitment);
+        Node third = second.getNodeByArgument(sexuality);
+
+        Node finals = third.getNodeByArgument(gender);
+        //System.out.println(finals.getPeople());
+        return finals.getPeople();
+    }
+
+    /**
+     * prints all the potential matches for a specific user
+     * @param p the user
+     * @return all the potential matches for a specific person
+     */
+    public String printMatches(Person p)
+    {
         ArrayList<Person> i = getMatches(p);
         String result = "";
         for (Person s : i) {
@@ -170,7 +208,13 @@ public class Tree {
         return result;
     }
 
-    public int addPerson(Person p) {
+    /**
+     * adds a new user to the tree
+     * @param p the user that is to be added
+     * @return an int that tells whether or not the addition was successful
+     */
+    public int addPerson(Person p)
+    {
         Node commit_node = null;
         Node sexuality_node = null;
         Node gender_node = null;
@@ -209,12 +253,13 @@ public class Tree {
             return -1;
         }
         gender_node.addPerson(p);
-
-        //get gender
-
         return p.getAge();
     }
 
+    /**
+     * returns the size of the Tree (# of people)
+     * @return the number of people in the Tree
+     */
     public int getSize() {
         return size;
     }

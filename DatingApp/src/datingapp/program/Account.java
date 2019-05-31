@@ -27,7 +27,8 @@ public class Account implements Serializable {
      * returns the email of this account
      * @return email
      */
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
@@ -35,7 +36,8 @@ public class Account implements Serializable {
      * returns the password of this account
      * @return password
      */
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
@@ -49,7 +51,12 @@ public class Account implements Serializable {
         return output;
     }
 
-    public void setPassword(String password) {
+    /**
+     * sets the user's password to a specified value
+     * @param password the value to set the new password to
+     */
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
