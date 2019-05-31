@@ -36,7 +36,7 @@ public class AccountService {
      */
     public AccountService() throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "app", "app");
+        con = DriverManager.getConnection("jdbc:mysql://10.18.80.173:3306/datingapp", "app", "app");
         globalTree = constructTree();
         processTree();
     }
@@ -51,7 +51,7 @@ public class AccountService {
     public AccountService(boolean login) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
-        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228/datingapp", "app", "app");
+        con = DriverManager.getConnection("jdbc:mysql://10.18.80.173:3306/datingapp", "app", "app");
     }
 
     /**
@@ -260,6 +260,14 @@ public class AccountService {
         while (rs2.next()) {
             potentialMatches.add(fetchUser(rs2.getString("user")));
         }
+
+        PreparedStatement stmt3 = con.prepareStatement("SELECT * FROM passes WHERE user = ?");
+        stmt3.setString(1 ,user.getEmail());
+        ResultSet rs = stmt3.executeQuery();
+        while (rs.next()) {
+            potentialMatches.add(fetchUser(rs.getString("other")));
+        }
+
         if (potentialMatches.isEmpty()) {
             return null;
         }
@@ -316,6 +324,20 @@ public class AccountService {
         stmt.setString(1, user.getEmail());
         stmt.setString(2, match.getEmail());
         stmt.execute();
+    }
+
+    public void addPass(Person user, Person other) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM passes WHERE user = ? AND other = ?");
+        stmt.setString(1, user.getEmail());
+        stmt.setString(2, other.getEmail());
+        ResultSet potentialMatches = stmt.executeQuery();
+        if (potentialMatches.next()) {
+            return;
+        }
+        PreparedStatement stmt2 = con.prepareStatement("INSERT INTO passes VALUES (?, ?)");
+        stmt2.setString(1, user.getEmail());
+        stmt2.setString(2, other.getEmail());
+        stmt2.execute();
     }
 
     /**

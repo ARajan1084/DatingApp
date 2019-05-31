@@ -24,10 +24,10 @@ public class SwipePanel extends JPanel
     private AccountService acctServ;
     //ArrayList<Person> myMatches;
     private JLabel labelTitle, labelName, labelBio;
-    private JTextArea textAreaBio;
     private JButton buttonYeah, buttonNah;
     public final Color redOxide = new Color(77, 21, 18);
     public final Color oysterPink = new Color(210, 176, 174);
+    private final Color backgroundColor = new Color(145, 229, 246);
     private final Font fontBold = new Font("Helvetica", Font.BOLD, 15);
     private final Font fontItal = new Font("Helvetica", Font.ITALIC, 15);
     private final Font fontNone = new Font("Helvetica", 0, 15);
@@ -76,20 +76,20 @@ public class SwipePanel extends JPanel
         removeAll();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(redOxide);
+        setBackground(backgroundColor);
         System.out.println("Displaying potential match, " + currentPerson.getName() + ", at index " + currentPersonIndex);
 
         labelName = new JLabel(currentPerson.getName() + ", " + currentPerson.getAge());
         labelName.setFont(fontBold);
-        labelName.setForeground(oysterPink);
+        //labelName.setForeground(oysterPink);
 
         labelBio = new JLabel(currentPerson.getBio());
         labelBio.setFont(fontItal);
-        labelBio.setForeground(oysterPink);
+        //labelBio.setForeground(oysterPink);
 
         labelTitle = new JLabel("Would you date them?");
         labelTitle.setFont(fontBold);
-        labelTitle.setForeground(oysterPink);
+        //labelTitle.setForeground(oysterPink);
 
         labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -103,10 +103,10 @@ public class SwipePanel extends JPanel
         labelProfilePic.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         buttonNah = createSimpleButton(buttonNah, "nah");
-        buttonNah.setBackground(oysterPink);
-        buttonNah.setForeground(redOxide);
+        //buttonNah.setBackground(oysterPink);
+        //buttonNah.setForeground(redOxide);
         buttonNah.addActionListener(new ButtonNahActionListener());
-        buttonNah.setForeground(Color.WHITE);
+        //buttonNah.setForeground(Color.WHITE);
         //buttonNah.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         buttonYeah = createSimpleButton(buttonYeah, "yeah!");
@@ -141,12 +141,13 @@ public class SwipePanel extends JPanel
      */
     public void displaySorryMessage()
     {
-        setBackground(redOxide);
+        setBackground(backgroundColor);
         System.out.println("No more matches for person "+ user);
         removeAll();
         JLabel labelSorry = new JLabel("Sorry, you have no potential matches at the moment. Come back later!");
         labelSorry.setFont(fontItal);
-        labelSorry.setForeground(oysterPink);
+        labelSorry.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //labelSorry.setForeground(backgroundColor);
 
         add(labelSorry);
     }

@@ -135,9 +135,12 @@ public class DashboardWindow extends JFrame {
     private JPanel centerNorthPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
+        centerNorthPanel.setBackground(new Color(201, 249, 255));
         centerNorthPanel.setMaximumSize(new Dimension(450, 40));
         centerNorthPanel.setLayout(layout);
+
         JPanel panelButtons = new JPanel();
+        panelButtons.setBackground(new Color(201, 249, 255));
         JButton buttonDeleteAccount = new JButton("Delete My Account");
         buttonDeleteAccount.addActionListener(new ButtonDeleteAccountActionListener());
         JButton buttonLogout = new JButton("Logout");
@@ -155,7 +158,7 @@ public class DashboardWindow extends JFrame {
      */
     private JPanel centerCenterPanel() {
 
-            return new SwipePanel(feed, potentialMatches, accountService);
+        return new SwipePanel(feed, potentialMatches, accountService);
         /*
         catch (SQLException ex) {
             ex.printStackTrace();
