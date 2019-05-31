@@ -57,7 +57,7 @@ public class MatchesPane extends JPanel {
                     ex.printStackTrace();
                 }
             }
-        }, 0, 15, TimeUnit.SECONDS);
+        }, 0, 1, TimeUnit.SECONDS);
     }
 
     public void displaySorryMessage () {
@@ -72,35 +72,28 @@ public class MatchesPane extends JPanel {
             super();
             GridLayout layout = new GridLayout(1, 2);
             this.setLayout(layout);
-            setMaximumSize(new Dimension(450, 100));
+            setMaximumSize(new Dimension(400, 100));
+            setBackground(blackPearl);
 
-            /* TODO remove comment
-            ImageIcon profilePic = p.getProfilePic();
+            ImageIcon profilePic = feed.getProfilePic();
             Image temp = profilePic.getImage();
             Image scaledTemp = temp.getScaledInstance(100, 100,  java.awt.Image.SCALE_SMOOTH);
             profilePic = new ImageIcon(scaledTemp);
             JLabel labelProfilePic = new JLabel(profilePic);
             add(labelProfilePic, BorderLayout.PAGE_START);
 
-             */
-
             JPanel panelInfo = new JPanel();
             panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
-
-            /*
-            JTextArea bio = new JTextArea();
-            bio.setLineWrap(true);
-            bio.setEditable(false);
-            bio.setWrapStyleWord(true);
-
-             */
+            panelInfo.setBackground(blackPearl);
 
             JLabel labelName = new JLabel(feed.getName() + ", " + feed.getAge());
+            labelName.setForeground(Color.WHITE);
             labelName.setFont(new Font("Helvetica", Font.BOLD, 15));
-
-            //panelInfo.add(new JLabel(p.getName() + ": " + p.getAge() + " years"));
-            //panelInfo.add(bio);
+            JLabel labelEmail = new JLabel(feed.getEmail());
+            labelEmail.setForeground(Color.WHITE);
+            labelEmail.setFont(new Font("Helvetica",0, 15));
             panelInfo.add(labelName);
+            panelInfo.add(labelEmail);
             add(panelInfo, BorderLayout.EAST);
         }
     }

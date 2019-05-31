@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import datingapp.*;
 import javafx.scene.image.Image;
 
@@ -21,10 +23,7 @@ public class Person implements Serializable {
     private String gender;
     private String sexuality;
     private String bio;
-    private String poolRootName;
-    private Node myNode;
     private ImageIcon profilePic;
-    ArrayList<Integer> path;
 
     public Person (String name, int age, String gender, String sexuality, String email, String password, boolean single,
                    String bio, ImageIcon profilePic) {
@@ -74,10 +73,6 @@ public class Person implements Serializable {
         return account.getEmail();
     }
 
-    public void updatePath (int path) {
-        this.path.add(path);
-    }
-
     public String getBio() {
         return bio;
     }
@@ -117,24 +112,6 @@ public class Person implements Serializable {
         bio = newBio;
     }
 
-
-
-    public void writeToFile (File file) {
-        try {
-
-            FileOutputStream fileOut = new FileOutputStream(file.getPath());
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(this);
-            objectOut.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void addToPath(int i) {
-        path.add(i);
-    }
-
     public String toString () {
         String output = "";
         output += "Name: " + name + "\n";
@@ -143,19 +120,16 @@ public class Person implements Serializable {
         output += "Status: " + single + "\n";
         output += "Gender: " + gender + "\n";
         output += "Bio: " + bio + "\n";
-        output += "TreeID: "+ poolRootName + "\n";
-        output += "Path: ";
-        if (path != null)
-        {
-            for (Integer i: path) {
-                output += i;
-            }
-        }
-        else
-        {
-            output += "none";
-        }
         output += "\n";
         return output;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(account, person.account);
+    }
+
 }

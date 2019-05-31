@@ -46,10 +46,6 @@ public class Node {
     public String getQuestion () {
         return argument;
     }
-    public void setQuestion (String question) {
-        this.argument = question;
-    }
-
 
     public void addChild(Node child)
     {

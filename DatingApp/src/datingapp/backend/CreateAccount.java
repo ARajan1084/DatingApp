@@ -68,7 +68,8 @@ public class CreateAccount {
         try {
             new AccountService().addUser(person);
         } catch (SQLException s) {
-            System.out.println("ERROR: Database error!"+s.getMessage());
+            System.out.println("ERROR: Database error!");
+            s.printStackTrace();
         }
         return person;
     }

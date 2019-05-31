@@ -2,7 +2,6 @@ package datingapp.gui;
 
 import datingapp.backend.Login;
 import datingapp.exceptions.AccountNotFoundException;
-import datingapp.program.Chat;
 import datingapp.program.Person;
 
 import javax.swing.*;
@@ -117,7 +116,7 @@ public class LoginWindow extends JFrame {
             try {
                 Person login = new Login().isValid(fieldEmail.getText(), new String(passwordField.getPassword()));
                 dispose();
-                new DashboardWindow(login, new ArrayList<Chat>());
+                new DashboardWindow(login);
             } catch (AccountNotFoundException ex) {
                 fieldEmail.setText("");
                 passwordField.setText("");
