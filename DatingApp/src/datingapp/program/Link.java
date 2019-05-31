@@ -24,7 +24,8 @@ public class Link {
      * returns the answer of the Link
      * @return answer
      */
-    public String getAnswer() {
+    public String getAnswer()
+    {
         return answer;
     }
 
@@ -32,7 +33,8 @@ public class Link {
      * returns the reference to the Node of the Link
      * @return node
      */
-    public Node getNode() {
+    public Node getNode()
+    {
         return node;
     }
 
