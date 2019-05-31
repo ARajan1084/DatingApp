@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86c3c3f8-add3-4fc3-97f7-45cc29287036" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/TinderButBetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/TinderButBetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/EditAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/EditAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/CreateAccountWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/CreateAccountWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/DeleteAccountConfirmationWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/DeleteAccountConfirmationWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/QuestionSpitter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/QuestionSpitter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/SearchNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/SearchNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Node.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,60 +21,49 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-889">
-              <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
+            <state>
+              <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/program/Person.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="201" column="22" lean-forward="true" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1503#1504#0" expanded="true" />
-                <element signature="e#1530#1531#0" expanded="true" />
-                <element signature="e#1668#1669#0" expanded="true" />
-                <element signature="e#1694#1695#0" expanded="true" />
-                <element signature="e#1812#1813#0" expanded="true" />
-                <element signature="e#1841#1842#0" expanded="true" />
-                <element signature="e#1979#1980#0" expanded="true" />
-                <element signature="e#2011#2012#0" expanded="true" />
-                <element signature="e#2194#2195#0" expanded="true" />
-                <element signature="e#2223#2224#0" expanded="true" />
-                <element signature="e#2356#2357#0" expanded="true" />
-                <element signature="e#2397#2398#0" expanded="true" />
-                <element signature="e#2508#2509#0" expanded="true" />
-                <element signature="e#2534#2535#0" expanded="true" />
-                <element signature="e#2678#2679#0" expanded="true" />
-                <element signature="e#2711#2712#0" expanded="true" />
-                <element signature="e#2838#2839#0" expanded="true" />
-                <element signature="e#2882#2883#0" expanded="true" />
-                <element signature="e#3020#3021#0" expanded="true" />
-                <element signature="e#3052#3053#0" expanded="true" />
-                <element signature="e#3090#3091#0" expanded="true" />
-                <element signature="e#3120#3121#0" expanded="true" />
-                <element signature="e#3186#3187#0" expanded="true" />
-                <element signature="e#3230#3231#0" expanded="true" />
-                <element signature="e#3280#3281#0" expanded="true" />
-                <element signature="e#3325#3326#0" expanded="true" />
-                <element signature="e#3416#3417#0" expanded="true" />
-                <element signature="e#3444#3445#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/program/Node.java">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="165">
+              <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+              <folding>
+                <element signature="e#462#463#0" expanded="true" />
+                <element signature="e#492#493#0" expanded="true" />
+                <element signature="e#571#572#0" expanded="true" />
+                <element signature="e#596#597#0" expanded="true" />
+                <element signature="e#672#673#0" expanded="true" />
+                <element signature="e#699#700#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/program/Link.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/program/Tree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,6 +100,8 @@
         <option value="$PROJECT_DIR$/src/datingapp/program/Tree.java" />
         <option value="$PROJECT_DIR$/src/datingapp/program/SearchNode.java" />
         <option value="$PROJECT_DIR$/src/datingapp/program/Person.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/program/Node.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/program/Message.java" />
       </list>
     </option>
   </component>
@@ -232,8 +209,8 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Messages" weight="0.32937366" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32937366" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -284,15 +261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/QuestionsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#1882#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -415,26 +383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Tree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4485">
-          <caret line="299" column="20" lean-forward="true" selection-start-line="299" selection-start-column="20" selection-end-line="299" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5368#5376#0" expanded="true" />
-            <element signature="e#9663#9664#0" expanded="true" />
-            <element signature="e#9690#9691#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/SearchNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -444,16 +392,6 @@
             <element signature="e#469#470#0" expanded="true" />
             <element signature="e#545#546#0" expanded="true" />
             <element signature="e#574#575#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-889">
-          <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -503,6 +441,72 @@
             <element signature="e#3325#3326#0" expanded="true" />
             <element signature="e#3416#3417#0" expanded="true" />
             <element signature="e#3444#3445#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding>
+            <element signature="e#1151#1152#0" expanded="true" />
+            <element signature="e#1222#1223#0" expanded="true" />
+            <element signature="e#1253#1254#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1422#1423#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1425#1426#0" expanded="true" />
+            <element signature="e#1828#1829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="e#462#463#0" expanded="true" />
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Link.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/QuestionsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="33" column="39" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Tree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
