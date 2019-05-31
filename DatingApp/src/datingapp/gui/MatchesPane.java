@@ -35,11 +35,18 @@ public class MatchesPane extends JPanel {
     public void createView() {
         //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         labelTitle = new JLabel("Matches (" + myMatches.size() + ")" );
+        labelTitle.setFont(new Font("Helvetica", Font.ITALIC, 15));
+        labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelTitle.setForeground(spindle);
         setBackground(blackPearl);
+
+        add(Box.createRigidArea(new Dimension(0, 15)));
         add(labelTitle);
+        add(Box.createRigidArea(new Dimension(0, 15)));
+
         for (Person p: myMatches) {
             add(new MatchPanel(p));
+            add(Box.createRigidArea(new Dimension(0, 5)));
         }
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(new Runnable() {

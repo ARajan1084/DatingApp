@@ -53,9 +53,8 @@ public class DashboardWindow extends JFrame {
     public DashboardWindow(Person person)
         throws SQLException, ClassNotFoundException, IOException {
         accountService = new AccountService();
-        Tree globalTree = accountService.getGlobalTree();
         feed = person;
-        potentialMatches = globalTree.getMatches(feed);
+        potentialMatches = accountService.fetchFeed(feed);
         /*
         Tree testTree = new Tree();
         Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
@@ -81,9 +80,6 @@ public class DashboardWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        // for random testing purposes
-        accountService.fetchFeed(feed);
     }
 
     /**
@@ -189,7 +185,7 @@ public class DashboardWindow extends JFrame {
      * @return completed south pane of centerPanel()
      */
     private JPanel centerSouthPanel() {
-        return null;
+        return new JPanel();
     }
 
     /**

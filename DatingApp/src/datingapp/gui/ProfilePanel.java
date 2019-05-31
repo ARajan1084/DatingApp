@@ -22,6 +22,7 @@ public class ProfilePanel extends JPanel {
 
     public ProfilePanel (Person person) {
         super();
+        setBackground(Color.PINK);
         myPerson = person;
         setPreferredSize(new Dimension(280, 800));
         createView();

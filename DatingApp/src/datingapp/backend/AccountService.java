@@ -238,6 +238,35 @@ public class AccountService {
     }
 
     /**
+     * fetches the potential matches for a given user
+     * @param user given user
+     * @return all potential matches for the given user
+     * @throws SQLException in case of errors with executing queries or processing result sets
+     * @throws IOException in case of erros with fetching users (see fetchUser() method)
+     */
+    public ArrayList<Person> fetchPotentialMatches(Person user) throws SQLException, IOException {
+        ArrayList<Person> potentialMatches = new ArrayList<>();
+        PreparedStatement stmt1 = con.prepareStatement("SELECT * FROM matches WHERE user = ?");
+        PreparedStatement stmt2 = con.prepareStatement("SELECT * FROM matches WHERE other = ? AND status = ?");
+        stmt1.setString(1, user.getEmail());
+        stmt2.setString(1, user.getEmail());
+        stmt2.setBoolean(2, true);
+
+        ResultSet rs1 = stmt1.executeQuery();
+        ResultSet rs2 = stmt2.executeQuery();
+        while (rs1.next()) {
+            potentialMatches.add(fetchUser(rs1.getString("other")));
+        }
+        while (rs2.next()) {
+            potentialMatches.add(fetchUser(rs2.getString("user")));
+        }
+        if (potentialMatches.isEmpty()) {
+            return null;
+        }
+        return potentialMatches;
+    }
+
+    /**
      * adds a match (Person object) for a user to the database
      *
      * @param user  user that match matches with
@@ -334,8 +363,24 @@ public class AccountService {
     private void processTree() throws SQLException, IOException {
         ArrayList<Person> users = fetchAllUsers();
         for (Person user: users) {
-            for (Person match: globalTree.getMatches(user)) {
+            ArrayList<Person> potentialMatches = fetchPotentialMatches(user);
+            if (potentialMatches == null) {
+                potentialMatches = new ArrayList<Person>();
+            }
+            for (Person match: globalTree.getMatches(user, potentialMatches)) {
                 addToFeed(user, match);
+            }
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM feed WHERE user = ?");
+            stmt.setString(1, user.getEmail());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                if (potentialMatches.contains(fetchUser(rs.getString("other")))) {
+                    PreparedStatement removeStmt = con.prepareStatement("DELETE FROM feed WHERE user = ? AND other = ?");
+                    removeStmt.setString(1, user.getEmail());
+                    removeStmt.setString(2, rs.getString("other"));
+                    removeStmt.execute();
+                }
             }
         }
     }
@@ -354,15 +399,6 @@ public class AccountService {
             users.add(fetchUser(rs.getString("email")));
         }
         return users;
-    }
-
-    /**
-     * getter function that returns the globalTree
-     * @return globalTree
-     */
-    public Tree getGlobalTree()
-    {
-        return globalTree;
     }
 
     // for testing purposes

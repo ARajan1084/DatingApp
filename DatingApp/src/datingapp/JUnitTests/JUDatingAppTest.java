@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.sun.tools.internal.jxc.ap.Const;
 import datingapp.backend.AccountService;
@@ -464,8 +465,8 @@ public class JUDatingAppTest
         Tree tree = new Tree();
         tree.addPerson(p2);
         tree.addPerson(p3);
-        tree.getMatches(p2);
-        tree.getMatches(p3);
+        tree.getMatches(p2, new ArrayList<Person>());
+        tree.getMatches(p3, new ArrayList<Person>());
     }
 
     @Test
