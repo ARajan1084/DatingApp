@@ -17,12 +17,6 @@ public class Tree {
      * constructor for the Tree object
      */
     public Tree () {
-        //root = new Node("What are you looking for?");
-        //root.addC(new Link("Long-Term", null));
-        //root.addLink(new Link("Short-Term", null));
-
-
-        //root = new Node("What are you looking for?");
         size = 1;
 
         //create the root
@@ -35,56 +29,48 @@ public class Tree {
         root.addChild(sterm);
 
         ArrayList<Node> children = root.getChildren();
-        for (int i = 0; i < children.size(); i++)
-        {
+        for (int i = 0; i < children.size(); i++) {
             Node child = children.get(i);
-            child.addChild( new Node(ConstantKey.STRAIGHT) );
-            child.addChild( new Node(ConstantKey.GAY) );
-            child.addChild( new Node(ConstantKey.BI) );
+            child.addChild(new Node(ConstantKey.STRAIGHT));
+            child.addChild(new Node(ConstantKey.GAY));
+            child.addChild(new Node(ConstantKey.BI));
 
             //Now add Male and Female
             ArrayList<Node> sub_children = child.getChildren();
-            for (int j = 0; j < sub_children.size(); j++)
-            {
-                Node sub_child = sub_children.get( j );
-                sub_child.addChild( new Node(ConstantKey.FEMALE) );
-                sub_child.addChild( new Node(ConstantKey.MALE) );
+            for (int j = 0; j < sub_children.size(); j++) {
+                Node sub_child = sub_children.get(j);
+                sub_child.addChild(new Node(ConstantKey.FEMALE));
+                sub_child.addChild(new Node(ConstantKey.MALE));
             }
         }
 
     }
 
-    /**
-     * prints out the Tree
-     */
-    public void print_tree()
-    {
+    /*
+    public void print_tree() {
         ArrayList<Node> children = root.getChildren();
         System.out.println(root.getQuestion());
-        for (int i = 0; i < children.size(); i++)
-        {
+        for (int i = 0; i < children.size(); i++) {
             Node child = children.get(i);
             System.out.println("\t" + child.getQuestion());
             //Now add Male and Female
             ArrayList<Node> sub_children = child.getChildren();
-            for (int j = 0; j < sub_children.size(); j++)
-            {
-                Node sub_child = sub_children.get( j );
+            for (int j = 0; j < sub_children.size(); j++) {
+                Node sub_child = sub_children.get(j);
                 System.out.println("\t\t" + sub_child.getQuestion());
                 //male andfemale
-                for (int k = 0; k < sub_child.getChildren().size(); k++)
-                {
+                for (int k = 0; k < sub_child.getChildren().size(); k++) {
                     Node sub_sub_child = sub_child.getChildren().get(k);
                     System.out.println("\t\t\t" + sub_sub_child.getQuestion());
                     ArrayList<Person> list = sub_sub_child.getPeople();
-                    for (Person a : list)
-                    {
-                        System.out.println("\t\t\t\t"+a.getName());
+                    for (Person a : list) {
+                        System.out.println("\t\t\t\t" + a.getName());
                     }
                 }
             }
         }
     }
+    */
 
 
     /*
@@ -116,7 +102,6 @@ public class Tree {
         }
     }
     */
-
     /*
     public static void main(String[] args)
     {
@@ -140,23 +125,6 @@ public class Tree {
      */
 
     /**
-     * returns the ArrayList of all other users who match the current user's preference
-     * @param commitment the user's commitment preference (long term or short term)
-     * @param gender the user's gender
-     * @param sexuality the user's sexual orientation
-     * @return an ArrayList of the users who match the current user's preference
-     */
-    public ArrayList<Person> getPoolbyParams(String commitment, String gender, String sexuality)
-    {
-        Node second = this.root.getNodeByArgument(commitment);
-        Node third = second.getNodeByArgument(sexuality);
-
-        Node finals = third.getNodeByArgument(gender);
-        //System.out.println(finals.getPeople());
-        return finals.getPeople();
-    }
-
-    /**
      * returns all the potential matches of a specific user
      * @param profile the user
      * @return all the potential matches of a specific user
@@ -174,22 +142,17 @@ public class Tree {
 
         ArrayList<SearchNode> matchRule = rules.get(sexuality + "_" + gender);
 
-        if (commit == true)
-        {
+        if (commit) {
 
-            for (int rI = 0; rI < matchRule.size(); rI++)
-            {
+            for (int rI = 0; rI < matchRule.size(); rI++) {
                 SearchNode type = matchRule.get(rI);
                 //System.out.println(type.getGender() + type.getSexuality());
                 ArrayList<Person> add = getPoolbyParams(ConstantKey.COMMITMENT_LONG, type.getGender(), type.getSexuality());
                 returner.addAll(add);
             }
-        }
-        else
-        {
+        } else {
 
-            for (int rI = 0; rI < matchRule.size(); rI++)
-            {
+            for (int rI = 0; rI < matchRule.size(); rI++) {
                 SearchNode type = matchRule.get(rI);
                 //System.out.println(type.getGender() + type.getSexuality());
                 ArrayList<Person> add = getPoolbyParams(ConstantKey.COMMITMENT_SHORT, type.getGender(), type.getSexuality());
@@ -204,13 +167,29 @@ public class Tree {
             as.addMatch(profile, p);
         }
         */
-        if (returner.contains(profile))
-        {
+        if (returner.contains(profile)) {
             returner.remove(profile);
         }
 
         return returner;
 
+    }
+
+    /**
+     * returns the ArrayList of all other users who match the current user's preference
+     * @param commitment the user's commitment preference (long term or short term)
+     * @param gender the user's gender
+     * @param sexuality the user's sexual orientation
+     * @return an ArrayList of the users who match the current user's preference
+     */
+    public ArrayList<Person> getPoolbyParams(String commitment, String gender, String sexuality)
+    {
+        Node second = this.root.getNodeByArgument(commitment);
+        Node third = second.getNodeByArgument(sexuality);
+
+        Node finals = third.getNodeByArgument(gender);
+        //System.out.println(finals.getPeople());
+        return finals.getPeople();
     }
 
     /**
@@ -222,8 +201,7 @@ public class Tree {
     {
         ArrayList<Person> i = getMatches(p);
         String result = "";
-        for (Person s : i)
-        {
+        for (Person s : i) {
             result += s.getName();
         }
 
@@ -242,56 +220,39 @@ public class Tree {
         Node gender_node = null;
         boolean status = p.getStatus();
         //person wants longterm relationship
-        if (status == true)
-        {
-            commit_node =  root.getNodeByArgument(ConstantKey.COMMITMENT_LONG);
+        if (status == true) {
+            commit_node = root.getNodeByArgument(ConstantKey.COMMITMENT_LONG);
+        } else {
+            commit_node = root.getNodeByArgument(ConstantKey.COMMITMENT_SHORT);
         }
-        else
-        {
-            commit_node =  root.getNodeByArgument(ConstantKey.COMMITMENT_SHORT);
-        }
-        if (commit_node == null)
-        {
+        if (commit_node == null) {
             System.out.println("commit doesn't work");
             return -1;
         }
         //get sexuality
         String sexuality = p.getSexuality();
-        if (sexuality.equals(ConstantKey.STRAIGHT))
-        {
+        if (sexuality.equals(ConstantKey.STRAIGHT)) {
             sexuality_node = commit_node.getNodeByArgument(ConstantKey.STRAIGHT);
-        }
-        else if (sexuality.equals(ConstantKey.GAY))
-        {
+        } else if (sexuality.equals(ConstantKey.GAY)) {
             sexuality_node = commit_node.getNodeByArgument(ConstantKey.GAY);
-        }
-        else if (sexuality.equals(ConstantKey.BI))
-        {
+        } else if (sexuality.equals(ConstantKey.BI)) {
             sexuality_node = commit_node.getNodeByArgument(ConstantKey.BI);
         }
-        if (sexuality_node == null)
-        {
+        if (sexuality_node == null) {
             System.out.println("sexuality doesn't work");
             return -1;
         }
         String gender = p.getGender();
-        if (gender.equals(ConstantKey.FEMALE))
-        {
+        if (gender.equals(ConstantKey.FEMALE)) {
             gender_node = sexuality_node.getNodeByArgument(ConstantKey.FEMALE);
-        }
-        else if (gender.equals(ConstantKey.MALE))
-        {
+        } else if (gender.equals(ConstantKey.MALE)) {
             gender_node = sexuality_node.getNodeByArgument(ConstantKey.MALE);
         }
-        if (gender_node == null)
-        {
+        if (gender_node == null) {
             System.out.println("gender doesn't work:" + gender);
             return -1;
         }
         gender_node.addPerson(p);
-
-        //get gender
-
         return p.getAge();
     }
 

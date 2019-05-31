@@ -12,7 +12,7 @@ public class MatchRules
     static HashMap<String, ArrayList<SearchNode>> rules;
 
     /**
-     *
+     * lists out all the match rules to be implemented in finding a list of all potential matches for a user
      */
     public MatchRules()
     {

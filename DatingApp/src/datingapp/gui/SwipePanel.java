@@ -165,12 +165,14 @@ public class SwipePanel extends JPanel
         buttonNah.setBackground(oysterPink);
         buttonNah.setForeground(redOxide);
         buttonNah.addActionListener(new ButtonNahActionListener());
+        buttonNah.setForeground(Color.WHITE);
         //buttonNah.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         buttonYeah = createSimpleButton(buttonYeah, "yeah!");
         buttonYeah.setBackground(oysterPink);
         buttonYeah.setForeground(redOxide);
         buttonYeah.addActionListener(new ButtonYeahActionListener());
+        buttonYeah.setForeground(Color.GREEN);
         //buttonYeah.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         BorderLayout layout = new BorderLayout();

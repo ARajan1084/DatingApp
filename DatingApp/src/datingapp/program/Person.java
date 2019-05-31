@@ -1,8 +1,7 @@
 package datingapp.program;
 
 import java.io.*;
-import java.util.ArrayList;
-
+import java.util.Objects;
 import javax.swing.*;
 
 /**
@@ -17,10 +16,7 @@ public class Person implements Serializable {
     private String gender;
     private String sexuality;
     private String bio;
-    private String poolRootName;
-    private Node myNode;
     private ImageIcon profilePic;
-    ArrayList<Integer> path;
 
     /**
      * constructs a Person, which represents a user
@@ -100,7 +96,6 @@ public class Person implements Serializable {
         return account.getEmail();
     }
 
-
     /**
      * returns the user's bio
      * @return the user's bio
@@ -173,7 +168,6 @@ public class Person implements Serializable {
         bio = newBio;
     }
 
-
     /**
      * toString() method for the Person object
      * @return the Person in the form of a String
@@ -186,19 +180,16 @@ public class Person implements Serializable {
         output += "Status: " + single + "\n";
         output += "Gender: " + gender + "\n";
         output += "Bio: " + bio + "\n";
-        output += "TreeID: "+ poolRootName + "\n";
-        output += "Path: ";
-        if (path != null)
-        {
-            for (Integer i: path) {
-                output += i;
-            }
-        }
-        else
-        {
-            output += "none";
-        }
         output += "\n";
         return output;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(account, person.account);
+    }
+
 }

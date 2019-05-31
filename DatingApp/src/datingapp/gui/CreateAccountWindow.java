@@ -18,7 +18,7 @@ import static datingapp.gui.DashboardWindow.FONT_1;
  * Represents a graphical interface for creating an account. Users can enter information such as their name, age, and
  * sexuality. Users can also upload a profile pic and set a password.
  *
- * @author Achintya
+ * @author Achintya and Akanksha
  * @version 05/20/19
  */
 public class CreateAccountWindow extends JFrame {

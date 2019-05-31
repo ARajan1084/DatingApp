@@ -1,6 +1,5 @@
 package datingapp.backend;
 
-//import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import datingapp.exceptions.AccountNotFoundException;
 import datingapp.program.Person;
 import datingapp.program.Tree;
@@ -51,7 +50,8 @@ public class AccountService {
      */
     public AccountService(boolean login) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "app", "app");
+        //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
+        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228/datingapp", "app", "app");
     }
 
     /**
@@ -82,7 +82,6 @@ public class AccountService {
         globalTree.addPerson(p);
         processTree();
         stmt.executeUpdate();
-        con.close();
     }
 
     /**
@@ -217,12 +216,20 @@ public class AccountService {
      */
     public ArrayList<Person> fetchMatches(Person user) throws SQLException, IOException {
         ArrayList<Person> matches = new ArrayList<>();
-        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE user = ? AND status = ?");
-        stmt.setString(1, user.getEmail());
-        stmt.setBoolean(2, true);
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            matches.add(fetchUser(rs.getString("match")));
+        PreparedStatement stmt1 = con.prepareStatement("SELECT * FROM matches WHERE user = ? AND status = ?");
+        PreparedStatement stmt2 = con.prepareStatement("SELECT * FROM matches WHERE other = ? AND status = ?");
+        stmt1.setString(1, user.getEmail());
+        stmt1.setBoolean(2, true);
+        stmt2.setString(1, user.getEmail());
+        stmt2.setBoolean(2, true);
+
+        ResultSet rs1 = stmt1.executeQuery();
+        ResultSet rs2 = stmt2.executeQuery();
+        while (rs1.next()) {
+            matches.add(fetchUser(rs1.getString("other")));
+        }
+        while (rs2.next()) {
+            matches.add(fetchUser(rs2.getString("user")));
         }
         if (matches.isEmpty()) {
             return null;
@@ -238,8 +245,8 @@ public class AccountService {
      * @throws SQLException in case of errors with executing queries
      */
     public void addMatch(Person user, Person match) throws SQLException {
-        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE (user = ? AND match = ?)" +
-                "OR (user = ? AND match = ?)");
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM matches WHERE (user = ? AND other = ?)" +
+                "OR (user = ? AND other = ?)");
         stmt.setString(1, user.getEmail());
         stmt.setString(2, match.getEmail());
         stmt.setString(3, match.getEmail());
@@ -252,7 +259,7 @@ public class AccountService {
             updateStmt.setInt(2, matchID);
             updateStmt.execute();
         } else { // if the pair is not already potentially matched
-            PreparedStatement stmt2 = con.prepareStatement("INSERT INTO matches VALUES ( ?, ?, ?)");
+            PreparedStatement stmt2 = con.prepareStatement("INSERT INTO matches VALUES ( null, ?, ?, ?)");
             stmt2.setString(1, user.getEmail());
             stmt2.setString(2, match.getEmail());
             stmt2.setBoolean(3, false);
@@ -272,7 +279,7 @@ public class AccountService {
         stmt1.setString(1, user.getEmail());
         ResultSet rs = stmt1.executeQuery();
         while (rs.next()) {
-            if (rs.getString("match").equals(match.getEmail())) {
+            if (rs.getString("other").equals(match.getEmail())) {
                 return;
             }
         }
@@ -296,7 +303,7 @@ public class AccountService {
         stmt.setString(1, user.getEmail());
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            feed.add(fetchUser(rs.getString("match")));
+            feed.add(fetchUser(rs.getString("other")));
         }
         return feed;
     }
@@ -356,5 +363,12 @@ public class AccountService {
     public Tree getGlobalTree()
     {
         return globalTree;
+    }
+
+    // for testing purposes
+
+    public ResultSet runQuery (String query) throws SQLException {
+        PreparedStatement s = con.prepareStatement(query);
+        return s.executeQuery();
     }
 }

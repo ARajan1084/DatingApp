@@ -53,14 +53,6 @@ public class Node {
     }
 
     /**
-     * sets the question to a specific value
-     * @param question the new question
-     */
-    public void setQuestion (String question) {
-        this.argument = question;
-    }
-
-    /**
      * adds a new node to the question tree
      * @param child the node to add
      */
