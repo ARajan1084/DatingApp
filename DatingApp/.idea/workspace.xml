@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86c3c3f8-add3-4fc3-97f7-45cc29287036" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/ConstantKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/ConstantKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/program/MatchRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/MatchRules.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+            <state relative-caret-position="150">
+              <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
               <folding>
                 <element signature="e#462#463#0" expanded="true" />
                 <element signature="e#492#493#0" expanded="true" />
@@ -41,6 +42,20 @@
                 <element signature="e#596#597#0" expanded="true" />
                 <element signature="e#672#673#0" expanded="true" />
                 <element signature="e#699#700#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/program/MatchRules.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="69" column="7" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2529#2530#0" expanded="true" />
+                <element signature="e#2557#2558#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,6 +97,7 @@
         <option value="$PROJECT_DIR$/src/datingapp/program/Message.java" />
         <option value="$PROJECT_DIR$/src/datingapp/program/Link.java" />
         <option value="$PROJECT_DIR$/src/datingapp/program/ConstantKey.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/program/MatchRules.java" />
       </list>
     </option>
   </component>
@@ -484,15 +500,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/ConstantKey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        <state relative-caret-position="135">
+          <caret line="9" column="51" lean-forward="true" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        <state relative-caret-position="150">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding>
             <element signature="e#462#463#0" expanded="true" />
             <element signature="e#492#493#0" expanded="true" />
@@ -500,6 +516,18 @@
             <element signature="e#596#597#0" expanded="true" />
             <element signature="e#672#673#0" expanded="true" />
             <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/program/MatchRules.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="69" column="7" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2529#2530#0" expanded="true" />
+            <element signature="e#2557#2558#0" expanded="true" />
           </folding>
         </state>
       </provider>
