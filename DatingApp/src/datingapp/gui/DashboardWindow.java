@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * The user's matches are displayed in the bottom half of the center panel and message requests are displayed in the
  * bottom left panel
  *
- * @author Akanksha and Achintya
+ * @author Akanksha
  */
 public class DashboardWindow extends JFrame {
 
