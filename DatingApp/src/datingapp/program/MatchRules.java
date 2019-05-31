@@ -3,10 +3,17 @@ package datingapp.program;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * sets up/defines the rules for the matching process
+ * @author Laasya
+ */
 public class MatchRules
 {
     static HashMap<String, ArrayList<SearchNode>> rules;
 
+    /**
+     * lists out all the match rules to be implemented in finding a list of all potential matches for a user
+     */
     public MatchRules()
     {
         rules = new HashMap<>();
@@ -58,6 +65,11 @@ public class MatchRules
         String gb_key = ConstantKey.GAY + "_" + ConstantKey.MALE;
         rules.put(gb_key,gb_list );
     }
+
+    /**
+     *
+     * @return
+     */
     public static HashMap<String, ArrayList<SearchNode>> getRules()
     {
         return rules;

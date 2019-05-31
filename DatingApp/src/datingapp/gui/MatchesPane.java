@@ -11,6 +11,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * THE MATCHBOX - displays all the user's matches
+ * @author Akanksha
+ */
 public class MatchesPane extends JPanel {
     private JLabel labelTitle;
     private Person user;
@@ -19,6 +23,12 @@ public class MatchesPane extends JPanel {
     public Color blackPearl = new Color(3, 34,54);
     public Color spindle = new Color(192, 200, 205);
 
+    /**
+     * constructs the MatchPane
+     * @param user the user
+     * @param matches the user's matches
+     * @param accountService the AccountService
+     */
     public MatchesPane(Person user, ArrayList<Person> matches, AccountService accountService) {
         super();
         this.accountService = accountService;
@@ -32,6 +42,9 @@ public class MatchesPane extends JPanel {
         }
     }
 
+    /**
+     * creates the view for the window and formats everything to make it all nice and pretty
+     */
     public void createView() {
         //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         labelTitle = new JLabel("Matches (" + myMatches.size() + ")" );
@@ -67,14 +80,23 @@ public class MatchesPane extends JPanel {
         }, 0, 1, TimeUnit.SECONDS);
     }
 
+    /**
+     * mini method that displays the sorry message for when a user has no matches
+     */
     public void displaySorryMessage () {
         JPanel panelSorry = new JPanel();
         panelSorry.add(new JLabel("Sorry. You have no matches yet."));
         add(panelSorry);
     }
 
+    /**
+     * creates a mini match panel for each of the user's other matches
+     */
     private class MatchPanel extends JPanel {
-
+        /**
+         * creates and formats the whole mini panel
+         * @param feed the user
+         */
         private MatchPanel(Person feed) {
             super();
             GridLayout layout = new GridLayout(1, 2);

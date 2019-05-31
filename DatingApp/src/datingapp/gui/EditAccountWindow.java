@@ -5,17 +5,16 @@ import datingapp.exceptions.*;
 import datingapp.program.Person;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static datingapp.gui.DashboardWindow.createSimpleButton;
+
 /**
- *
+ * creates and displays a window that enables the user to create an account
+ * @author Akanksha and Achintya
  */
 public class EditAccountWindow extends JFrame {
     private JLabel labelFirstName, labelLastName, labelProfilePic, labelAge, labelPassword, labelConfirmPassword,
@@ -30,6 +29,11 @@ public class EditAccountWindow extends JFrame {
     private Person myPerson;
     private ProfilePanel profilePanel;
 
+    /**
+     * CreateAccountWindow constructor
+     * @param person the user
+     * @param profilePanel the user's ProfilePanel
+     */
     public EditAccountWindow(Person person, ProfilePanel profilePanel) {
         super("Edit Your Profile!");
         myPerson = person;
@@ -43,6 +47,9 @@ public class EditAccountWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * creates the view for this window and formats everything
+     */
     private void createView() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -126,9 +133,9 @@ public class EditAccountWindow extends JFrame {
         JPanel panelButtons = new JPanel();
         panelButtons.setBackground(backgroundColor);
         panelButtons.setMaximumSize(new Dimension(400, 30));
-        buttonCancel = createSimpleButton("Cancel");
+        buttonCancel = createSimpleButton(buttonCancel, "Cancel");
         buttonCancel.addActionListener(new ButtonCancelActionListener());
-        buttonDone = createSimpleButton("Done");
+        buttonDone = createSimpleButton(buttonCancel, "Done");
         buttonDone.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonDone.setLocation(new Point(90, 90));
         buttonDone.addActionListener(new ButtonDoneActionListener());
@@ -149,26 +156,29 @@ public class EditAccountWindow extends JFrame {
         panel.add(labelError);
     }
 
-    private JButton createSimpleButton(String text) {
-        JButton button = new JButton(text);
-        button.setForeground(Color.BLACK);
-        button.setBackground(Color.WHITE);
-        button.setFont(new Font("Helvetica", Font.BOLD, 12));
-        Border line = new LineBorder(Color.WHITE);
-        Border margin = new EmptyBorder(5, 15, 5, 15);
-        Border compound = new CompoundBorder(line, margin);
-        button.setBorder(compound);
-        return button;
-    }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Cancel button
+     */
     private class ButtonCancelActionListener implements ActionListener {
+        /**
+         * closes the window
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
         }
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Done button
+     */
     private class ButtonDoneActionListener implements ActionListener {
+        /**
+         * saves all the info entered in and closes the window
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             try {

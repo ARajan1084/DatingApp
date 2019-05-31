@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import static datingapp.gui.DashboardWindow.*;
 
@@ -106,11 +105,15 @@ public class LoginWindow extends JFrame {
     }
 
     /**
-     * ActionListener for the Login button. Uses AccountService as a backend to check if the given information matches
-     * the database records. If it does, the window creates a DashBoardWindow, logging the user in. If it doesnt, the
-     * window displays an accurate error message.
+     * ActionListener for the Login button.
      */
     private class ButtonLoginActionListener implements ActionListener {
+        /**
+         * Uses AccountService as a backend to check if the given information matches
+         * the database records. If it does, the window creates a DashBoardWindow, logging the user in. If it doesnt, the
+         * window displays an accurate error message.
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -135,9 +138,13 @@ public class LoginWindow extends JFrame {
     }
 
     /**
-     * ActionListener for the Create Account button. Creates a CreateAccountWindow, disposing of this window.
+     * ActionListener for the Create Account button.
      */
     private class ButtonCreateAccountActionListener implements ActionListener {
+        /**
+         * Creates a CreateAccountWindow, disposing of this window.
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
@@ -146,9 +153,13 @@ public class LoginWindow extends JFrame {
     }
 
     /**
-     * ActionListener for the Forgot Password button. Creates a ForgotPasswordWindow
+     * ActionListener for the Forgot Password button.
      */
     private class ButtonForgotPasswordActionListener implements ActionListener {
+        /**
+         * Creates a ForgotPasswordWindow
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             setVisible(false);
@@ -157,9 +168,13 @@ public class LoginWindow extends JFrame {
     }
 
     /**
-     * ActionListener for the password field. Registers a loginAttempt when the user hits enter in the password field
+     * ActionListener for the password field.
      */
     private class PasswordFieldActionListener implements ActionListener {
+        /**
+         * Registers a loginAttempt when the user hits enter in the password field
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             buttonLogin.doClick();
