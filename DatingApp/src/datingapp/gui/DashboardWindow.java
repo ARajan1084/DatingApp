@@ -1,11 +1,9 @@
 package datingapp.gui;
 
 import datingapp.backend.AccountService;
-import datingapp.program.ConstantKey;
 import datingapp.program.Person;
 import datingapp.program.Tree;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -14,9 +12,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

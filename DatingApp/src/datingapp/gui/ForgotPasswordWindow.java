@@ -1,11 +1,6 @@
 package datingapp.gui;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +17,10 @@ public class ForgotPasswordWindow extends JFrame {
     private JButton buttonGoBack;
     private JFrame loginWindow;
 
+    /**
+     * constructs the ForgotPassword window
+     * @param loginWindow the main login window
+     */
     public ForgotPasswordWindow(JFrame loginWindow) {
         createView();
 
@@ -32,6 +31,9 @@ public class ForgotPasswordWindow extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * creates view + displays message
+     */
     private void createView() {
         JPanel panel = new JPanel();
         getContentPane().add(panel);
@@ -43,8 +45,14 @@ public class ForgotPasswordWindow extends JFrame {
         panel.add(buttonGoBack);
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Go Back button
+     */
     private class ButtonGoBackActionListener implements ActionListener {
-
+        /**
+         * closes the window
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             loginWindow.setVisible(true);

@@ -3,23 +3,26 @@ package datingapp.gui;
 import datingapp.program.Person;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static datingapp.gui.DashboardWindow.*;
-import static javax.swing.Box.createVerticalGlue;
 
+/**
+ * creates a ProfilePanel that displays a user's info for them to see
+ * @author Akanksha and Achintya
+ */
 public class ProfilePanel extends JPanel {
     Person myPerson;
     private JLabel labelTitle, labelName, labelEmail;
     private JTextArea textAreaBio;
     private JButton buttonEdit;
 
+    /**
+     * constructs a profile panel
+     * @param person the user
+     */
     public ProfilePanel (Person person) {
         super();
         myPerson = person;
@@ -27,6 +30,9 @@ public class ProfilePanel extends JPanel {
         createView();
     }
 
+    /**
+     * creates the view and does all the formatting
+     */
     public void createView () {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         ImageIcon profilePic = myPerson.getProfilePic();
@@ -75,6 +81,10 @@ public class ProfilePanel extends JPanel {
         add(buttonEdit);
     }
 
+    /**
+     * updates the view for a user
+     * @param p the user
+     */
     public void updateView(Person p) {
         myPerson = p;
         removeAll();
@@ -83,7 +93,14 @@ public class ProfilePanel extends JPanel {
         repaint();
     }
 
+    /**
+     * an ActionListener that tells what to do when the user clicks the Done button
+     */
     private class ButtonEditActionListener implements ActionListener {
+        /**
+         * edits and changes the user's info
+         * @param e the event in which the body of the code will be carried out
+         */
         @Override
         public void actionPerformed(ActionEvent e)
         {

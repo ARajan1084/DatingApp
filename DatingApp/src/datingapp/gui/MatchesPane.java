@@ -11,6 +11,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ *
+ * @author Akanksha
+ */
 public class MatchesPane extends JPanel {
     private JLabel labelTitle;
     private Person user;
