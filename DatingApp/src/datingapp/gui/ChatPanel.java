@@ -3,10 +3,12 @@ package datingapp.gui;
 import datingapp.program.Person;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 
+/**
+ * constructs a panel for the messaging are of this application
+ */
 public class ChatPanel extends JPanel {
     private Person user;
     private JLabel labelName;
@@ -14,6 +16,10 @@ public class ChatPanel extends JPanel {
     private JTextField fieldMessage;
     private JButton buttonSend;
 
+    /**
+     * constructs a ChatPanel
+     * @param user the user
+     */
     public ChatPanel (Person user) {
         super();
         this.user = user;
@@ -22,6 +28,9 @@ public class ChatPanel extends JPanel {
         createView();
     }
 
+    /**
+     * creates the view and formats the window and adds buttons
+     */
     private void createView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         labelName = new JLabel(user.getName());
