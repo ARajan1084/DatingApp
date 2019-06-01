@@ -1,4 +1,5 @@
 package datingapp.gui;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import datingapp.backend.AccountService;
 import datingapp.program.Person;
 
@@ -22,6 +23,7 @@ public class MatchesPane extends JPanel {
     private ArrayList<Person> myMatches;
     public Color blackPearl = new Color(3, 34,54);
     public Color spindle = new Color(192, 200, 205);
+    private Color backgroundColor = new Color(132, 210, 246);
 
     /**
      * constructs the MatchPane
@@ -48,11 +50,21 @@ public class MatchesPane extends JPanel {
     public void createView() {
         //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         labelTitle = new JLabel("Matches (" + myMatches.size() + ")" );
-        labelTitle.setForeground(spindle);
-        setBackground(blackPearl);
+        labelTitle.setFont(new Font("Helvetica", Font.ITALIC, 15));
+        //labelTitle.setForeground(spindle);
+        setBackground(backgroundColor);
+
+        add(Box.createRigidArea(new Dimension(0, 15)));
+        labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(labelTitle);
+        add(Box.createRigidArea(new Dimension(0, 15)));
+
         for (Person p: myMatches) {
+            //JButton button = new JButton();
+            //button.add(new MatchPanel(p));
             add(new MatchPanel(p));
+            //add(button);
+            add(Box.createRigidArea(new Dimension(0, 5)));
         }
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(new Runnable() {
@@ -95,7 +107,7 @@ public class MatchesPane extends JPanel {
             GridLayout layout = new GridLayout(1, 2);
             this.setLayout(layout);
             setMaximumSize(new Dimension(400, 100));
-            setBackground(blackPearl);
+            setBackground(backgroundColor);
 
             ImageIcon profilePic = feed.getProfilePic();
             Image temp = profilePic.getImage();
@@ -106,13 +118,13 @@ public class MatchesPane extends JPanel {
 
             JPanel panelInfo = new JPanel();
             panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
-            panelInfo.setBackground(blackPearl);
+            panelInfo.setBackground(backgroundColor);
 
             JLabel labelName = new JLabel(feed.getName() + ", " + feed.getAge());
-            labelName.setForeground(Color.WHITE);
+            //labelName.setForeground(Color.WHITE);
             labelName.setFont(new Font("Helvetica", Font.BOLD, 15));
             JLabel labelEmail = new JLabel(feed.getEmail());
-            labelEmail.setForeground(Color.WHITE);
+            //labelEmail.setForeground(Color.WHITE);
             labelEmail.setFont(new Font("Helvetica",0, 15));
             panelInfo.add(labelName);
             panelInfo.add(labelEmail);

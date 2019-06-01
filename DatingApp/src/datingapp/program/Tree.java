@@ -46,131 +46,52 @@ public class Tree {
 
     }
 
-    /*
-    public void print_tree() {
-        ArrayList<Node> children = root.getChildren();
-        System.out.println(root.getQuestion());
-        for (int i = 0; i < children.size(); i++) {
-            Node child = children.get(i);
-            System.out.println("\t" + child.getQuestion());
-            //Now add Male and Female
-            ArrayList<Node> sub_children = child.getChildren();
-            for (int j = 0; j < sub_children.size(); j++) {
-                Node sub_child = sub_children.get(j);
-                System.out.println("\t\t" + sub_child.getQuestion());
-                //male andfemale
-                for (int k = 0; k < sub_child.getChildren().size(); k++) {
-                    Node sub_sub_child = sub_child.getChildren().get(k);
-                    System.out.println("\t\t\t" + sub_sub_child.getQuestion());
-                    ArrayList<Person> list = sub_sub_child.getPeople();
-                    for (Person a : list) {
-                        System.out.println("\t\t\t\t" + a.getName());
-                    }
-                }
-            }
-        }
-    }
-    */
-
-
-    /*
-    public void addNode(String question, String[] answers) {
-        Node node = new Node(question, answers);
-        Node iter = root;
-        Stack<Node> stack = new Stack<>();
-
-        while (true) {
-            int checkNode = checkNode(iter);
-            if (checkNode >= 0) {
-                iter.getLink(checkNode).setNode(node);
-                size++;
-                return;
-            }
-            for (int linkIter = 0; linkIter < iter.getNumLinks(); linkIter++) {
-                for (int i = linkIter + 1; i < iter.getNumLinks(); i++) {
-                    stack.add(iter.getNode(i));
-                }
-                iter = iter.getNode(linkIter);
-                checkNode = checkNode(iter);
-                if (checkNode >= 0) {
-                    iter.getLink(checkNode).setNode(node);
-                    size++;
-                    return;
-                }
-            }
-            iter = stack.pop();
-        }
-    }
-    */
-    /*
-    public static void main(String[] args)
-    {
-        Tree newT = new Tree();
-        Person test = new Person("Jane Doe", 18, ConstantKey.FEMALE, ConstantKey.STRAIGHT, "jane.doe@gmail.com", "1234", false, "hello", null);
-        Person test2 = new Person("Bob Billy", 29, ConstantKey.MALE, ConstantKey.STRAIGHT, "bob.billy@gmail.com", "1234", false, "hello", null);
-        Person test3 = new Person("Donald Trump", 70, ConstantKey.MALE, ConstantKey.STRAIGHT, "donald.trump@gmail.com", "1234", false, "hello", null);
-        Person test4 = new Person("JoJo Siwa", 54, ConstantKey.FEMALE, ConstantKey.BI, "jo.siwa@gmail.com", "1234", false, "hello", null);
-        Person test5 = new Person("Justin Bieber", 68, ConstantKey.MALE, ConstantKey.GAY, "justin.bieber@gmail.com", "1234", false, "hello", null);
-        int size = newT.getSize();
-        newT.addPerson(test);
-        newT.addPerson(test2);
-        newT.addPerson(test3);
-        newT.addPerson(test4);
-        newT.addPerson(test5);
-        //System.out.println(age);
-        //newT.print_tree();
-        System.out.println(newT.printMatches(test2));
-
-    }
-     */
-
     /**
      * returns all the potential matches of a specific user
      * @param profile the user
      * @return all the potential matches of a specific user
      */
-    public ArrayList<Person> getMatches(Person profile)
+    public ArrayList<Person> getMatches(Person profile, ArrayList<Person> p)
     {
-        ArrayList<Person> returner = new ArrayList<Person>();
+        ArrayList<Person> returner = new ArrayList<>();
         boolean commit = profile.getStatus();
         String sexuality = profile.getSexuality();
         String gender = profile.getGender();
-        //MatchRules.InitRules();
         MatchRules i = new MatchRules();
         HashMap<String, ArrayList<SearchNode>> rules = i.getRules();
 
 
         ArrayList<SearchNode> matchRule = rules.get(sexuality + "_" + gender);
 
-        if (commit) {
-
-            for (int rI = 0; rI < matchRule.size(); rI++) {
+        if (commit == true)
+        {
+            for (int rI = 0; rI < matchRule.size(); rI++)
+            {
                 SearchNode type = matchRule.get(rI);
-                //System.out.println(type.getGender() + type.getSexuality());
                 ArrayList<Person> add = getPoolbyParams(ConstantKey.COMMITMENT_LONG, type.getGender(), type.getSexuality());
                 returner.addAll(add);
             }
-        } else {
-
-            for (int rI = 0; rI < matchRule.size(); rI++) {
+        }
+        else
+        {
+            for (int rI = 0; rI < matchRule.size(); rI++)
+            {
                 SearchNode type = matchRule.get(rI);
-                //System.out.println(type.getGender() + type.getSexuality());
                 ArrayList<Person> add = getPoolbyParams(ConstantKey.COMMITMENT_SHORT, type.getGender(), type.getSexuality());
-                //System.out.println(add.size());
 
                 returner.addAll(add);
             }
         }
-        /*
-        AccountService as = new AccountService();
-        for (Person p: returner) {
-            as.addMatch(profile, p);
-        }
-        */
         if (returner.contains(profile)) {
             returner.remove(profile);
         }
-
+        for (Person g : p)
+        {
+            if (returner.contains(g))
+            {
+                returner.remove(g);
+            }
+        }
         return returner;
 
     }
@@ -188,7 +109,6 @@ public class Tree {
         Node third = second.getNodeByArgument(sexuality);
 
         Node finals = third.getNodeByArgument(gender);
-        //System.out.println(finals.getPeople());
         return finals.getPeople();
     }
 
@@ -199,7 +119,7 @@ public class Tree {
      */
     public String printMatches(Person p)
     {
-        ArrayList<Person> i = getMatches(p);
+        ArrayList<Person> i = getMatches(p, new ArrayList<Person>());
         String result = "";
         for (Person s : i) {
             result += s.getName();

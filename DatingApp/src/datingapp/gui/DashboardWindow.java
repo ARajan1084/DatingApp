@@ -48,9 +48,8 @@ public class DashboardWindow extends JFrame {
     public DashboardWindow(Person person)
         throws SQLException, ClassNotFoundException, IOException {
         accountService = new AccountService();
-        Tree globalTree = accountService.getGlobalTree();
         feed = person;
-        potentialMatches = globalTree.getMatches(feed);
+        potentialMatches = accountService.fetchFeed(feed);
         /*
         Tree testTree = new Tree();
         Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
@@ -76,9 +75,6 @@ public class DashboardWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        // for random testing purposes
-        accountService.fetchFeed(feed);
     }
 
     /**
@@ -139,9 +135,12 @@ public class DashboardWindow extends JFrame {
     private JPanel centerNorthPanel() {
         BorderLayout layout = new BorderLayout();
         JPanel centerNorthPanel = new JPanel();
+        centerNorthPanel.setBackground(new Color(201, 249, 255));
         centerNorthPanel.setMaximumSize(new Dimension(450, 40));
         centerNorthPanel.setLayout(layout);
+
         JPanel panelButtons = new JPanel();
+        panelButtons.setBackground(new Color(201, 249, 255));
         JButton buttonDeleteAccount = new JButton("Delete My Account");
         buttonDeleteAccount.addActionListener(new ButtonDeleteAccountActionListener());
         JButton buttonLogout = new JButton("Logout");
@@ -159,7 +158,7 @@ public class DashboardWindow extends JFrame {
      */
     private JPanel centerCenterPanel() {
 
-            return new SwipePanel(feed, potentialMatches, accountService);
+        return new SwipePanel(feed, potentialMatches, accountService);
         /*
         catch (SQLException ex) {
             ex.printStackTrace();
@@ -184,7 +183,7 @@ public class DashboardWindow extends JFrame {
      * @return completed south pane of centerPanel()
      */
     private JPanel centerSouthPanel() {
-        return null;
+        return new JPanel();
     }
 
     /**

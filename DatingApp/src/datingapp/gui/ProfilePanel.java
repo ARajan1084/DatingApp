@@ -18,6 +18,7 @@ public class ProfilePanel extends JPanel {
     private JLabel labelTitle, labelName, labelEmail;
     private JTextArea textAreaBio;
     private JButton buttonEdit;
+    private Color backgroundColor = new Color(132, 210, 246);
 
     /**
      * constructs a profile panel
@@ -25,6 +26,7 @@ public class ProfilePanel extends JPanel {
      */
     public ProfilePanel (Person person) {
         super();
+        setBackground(backgroundColor);
         myPerson = person;
         setPreferredSize(new Dimension(280, 800));
         createView();
