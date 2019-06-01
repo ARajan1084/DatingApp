@@ -50,24 +50,6 @@ public class DashboardWindow extends JFrame {
         accountService = new AccountService();
         feed = person;
         potentialMatches = accountService.fetchFeed(feed);
-        /*
-        Tree testTree = new Tree();
-        Person p1 = new Person("Tommy Hilfiger", 32, ConstantKey.MALE, ConstantKey.BI, "th@gmail.com", "flagsand",
-                true, "t.h.", null);
-        Person p2 = new Person("Vera Wang", 31, ConstantKey.FEMALE, ConstantKey.STRAIGHT, "vera@gmail.com", "notbradley",
-                true, "v.w.", null);
-        Person p3 = new Person("Ralph Lauren", 35, ConstantKey.MALE, ConstantKey.GAY, "th@gmail.com", "polo",
-                true, "horsey", null);
-        Person p4 = new Person("Michael Kors", 34, ConstantKey.MALE, ConstantKey.STRAIGHT, "michaellllll@gmail.com", "kors",
-                true, "mmmmk", null);
-
-        testTree.addPerson(p1);
-        testTree.addPerson(p2);
-        testTree.addPerson(p3);
-        testTree.addPerson(p4);
-
-        potentialMatches = testTree.getMatches(user);
-        */
 
         createView();
         setSize(dashSize);
@@ -90,7 +72,6 @@ public class DashboardWindow extends JFrame {
         panelDash.add(centerPanel(), BorderLayout.CENTER);
         panelDash.add(westPanel(), BorderLayout.WEST);
         panelDash.add(eastPanel(), BorderLayout.EAST);
-        panelDash.setBackground(Color.PINK);
 
         //REMOVE centerPanel.add(centerCenterPanel());
         add(panelDash);
@@ -122,9 +103,6 @@ public class DashboardWindow extends JFrame {
         centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
         centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
-
-        centerPanel.setLayout(layout);
-        centerPanel.setPreferredSize(new Dimension(500, 30));
         return centerPanel;
     }
 
@@ -177,13 +155,27 @@ public class DashboardWindow extends JFrame {
 
     }
 
+    /**
+     * Default SouthPanel for Center panel
+     * @return returns a blank panel as a placeholder
+     */
+    public JPanel centerSouthPanel() {
+        JPanel centerSouthPanel = new JPanel();
+        centerSouthPanel.setBackground(Color.CYAN);
+        centerSouthPanel.setMaximumSize(new Dimension(450, 280));
+        centerSouthPanel.setPreferredSize(new Dimension(450, 280));
+        return centerSouthPanel;
+    }
+
 
     /**
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
      * @return completed south pane of centerPanel()
      */
-    private JPanel centerSouthPanel() {
-        return new JPanel();
+    public void updateCenterSouthPanel(Person user) {
+        ChatPanel chatPanel = new ChatPanel(user);
+        centerPanel.add(chatPanel, BorderLayout.SOUTH);
+        centerPanel.repaint();
     }
 
     /**
@@ -193,7 +185,7 @@ public class DashboardWindow extends JFrame {
      * @throws IOException in case of issues when converting the profile picture to a Blob in the DATABASE
      */
     private JPanel eastPanel() throws SQLException, IOException {
-        return new MatchesPane(feed, accountService.fetchMatches(feed), accountService);
+        return new MatchesPane(feed, accountService.fetchMatches(feed), accountService, this);
     }
 
     /**

@@ -37,7 +37,7 @@ public class AccountService {
      */
     public AccountService() throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.mysql.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://10.18.80.173:3306/datingapp", "app", "app");
+        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "app", "app");
         globalTree = constructTree();
         processTree();
     }
@@ -52,7 +52,7 @@ public class AccountService {
     public AccountService(boolean login) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/datingapp", "root", "");
-        con = DriverManager.getConnection("jdbc:mysql://10.18.80.173:3306/datingapp", "app", "app");
+        con = DriverManager.getConnection("jdbc:mysql://192.168.1.228:3306/datingapp", "app", "app");
     }
 
     /**
@@ -327,6 +327,13 @@ public class AccountService {
         stmt.execute();
     }
 
+    /**
+     * adds a person to a user's pass list
+     *
+     * @param user current user (the user that said no)
+     * @param other user to be added to the pass list
+     * @throws SQLException in case of errors with executing queries and processing result sets
+     */
     public void addPass(Person user, Person other) throws SQLException {
         PreparedStatement stmt = con.prepareStatement("SELECT * FROM passes WHERE user = ? AND other = ?");
         stmt.setString(1, user.getEmail());
@@ -426,6 +433,12 @@ public class AccountService {
 
     // for testing purposes
 
+    /**
+     * for testing purposes
+     * @param query query to run
+     * @return returns result set from executing the query
+     * @throws SQLException in case of errors with executing the query or creating the result set
+     */
     public ResultSet runQuery (String query) throws SQLException {
         PreparedStatement s = con.prepareStatement(query);
         return s.executeQuery();

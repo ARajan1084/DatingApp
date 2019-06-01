@@ -1,10 +1,11 @@
 package datingapp.gui;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import datingapp.backend.AccountService;
 import datingapp.program.Person;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class MatchesPane extends JPanel {
     private JLabel labelTitle;
     private Person user;
     private AccountService accountService;
+    private DashboardWindow dashboard;
     private ArrayList<Person> myMatches;
     public Color blackPearl = new Color(3, 34,54);
     public Color spindle = new Color(192, 200, 205);
@@ -31,9 +33,10 @@ public class MatchesPane extends JPanel {
      * @param matches the user's matches
      * @param accountService the AccountService
      */
-    public MatchesPane(Person user, ArrayList<Person> matches, AccountService accountService) {
+    public MatchesPane(Person user, ArrayList<Person> matches, AccountService accountService, DashboardWindow dash) {
         super();
         this.accountService = accountService;
+        dashboard = dash;
         if (matches == null) {
             displaySorryMessage();
         } else {
@@ -60,10 +63,15 @@ public class MatchesPane extends JPanel {
         add(Box.createRigidArea(new Dimension(0, 15)));
 
         for (Person p: myMatches) {
-            //JButton button = new JButton();
-            //button.add(new MatchPanel(p));
-            add(new MatchPanel(p));
-            //add(button);
+            JButton button = new JButton();
+            button.add(new MatchPanel(p));
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.setBackground(backgroundColor);
+            button.setOpaque(true);
+            button.setBorderPainted(false);
+            button.addActionListener(new ButtonMatchActionListener(p));
+            //add(new MatchPanel(p));
+            add(button);
             add(Box.createRigidArea(new Dimension(0, 5)));
         }
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
@@ -129,6 +137,20 @@ public class MatchesPane extends JPanel {
             panelInfo.add(labelName);
             panelInfo.add(labelEmail);
             add(panelInfo, BorderLayout.EAST);
+        }
+    }
+
+    private class ButtonMatchActionListener implements ActionListener {
+
+        private Person p;
+
+        public ButtonMatchActionListener(Person person) {
+            p = person;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dashboard.updateCenterSouthPanel(p);
         }
     }
 }

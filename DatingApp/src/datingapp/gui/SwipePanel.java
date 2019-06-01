@@ -22,12 +22,11 @@ public class SwipePanel extends JPanel
     private ArrayList<Person> potentialMatches;
     private int currentPersonIndex;
     private AccountService acctServ;
-    //ArrayList<Person> myMatches;
     private JLabel labelTitle, labelName, labelBio;
     private JButton buttonYeah, buttonNah;
     public final Color redOxide = new Color(77, 21, 18);
     public final Color oysterPink = new Color(210, 176, 174);
-    private final Color backgroundColor = new Color(145, 229, 246);
+    private final Color backgroundColor = new Color(200, 240, 255);
     private final Font fontBold = new Font("Helvetica", Font.BOLD, 15);
     private final Font fontItal = new Font("Helvetica", Font.ITALIC, 15);
     private final Font fontNone = new Font("Helvetica", 0, 15);
@@ -44,9 +43,8 @@ public class SwipePanel extends JPanel
         this.potentialMatches = potentialMatches;
         currentPersonIndex = 0;
         this.acctServ = acctServ;
-        setMaximumSize(new Dimension(280, 500));
-        //myMatches = user;
-        createView();
+        setMaximumSize(new Dimension(280, 380));
+        setPreferredSize(new Dimension(280, 380));
 
         if (potentialMatches == null || potentialMatches.isEmpty())
         {
@@ -56,15 +54,6 @@ public class SwipePanel extends JPanel
         {
             displayCurrentPerson();
         }
-    }
-
-    /**
-     * does absolutely nothing cause all the formatting is being done in the window's constructor, but I'm too attached
-     * to this method to delete it
-     */
-    public void createView ()
-    {
-        // B)
     }
 
     /**
@@ -193,18 +182,21 @@ public class SwipePanel extends JPanel
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println("Person " + user.getName() + " and potential match " + currentPerson.getName() +
-                    " did NOT match (no addition to table)");
-            currentPersonIndex++;
-            revalidate();
-            repaint();
-            if (currentPersonIndex < potentialMatches.size())
-            {
-                displayCurrentPerson();
-            }
-            else
-            {
-                displaySorryMessage();
+            try {
+                acctServ.addPass(user, currentPerson);
+                System.out.println("Person " + user.getName() + " and potential match " + currentPerson.getName() +
+                        " did NOT match (no addition to table)");
+                currentPersonIndex++;
+                revalidate();
+                repaint();
+                if (currentPersonIndex < potentialMatches.size()) {
+                    displayCurrentPerson();
+                } else {
+                    displaySorryMessage();
+                }
+            } catch (SQLException ex) {
+                System.out.println("Internal Error");
+                ex.printStackTrace();
             }
         }
     }
