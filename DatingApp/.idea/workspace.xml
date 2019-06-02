@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="947c3528-2153-482a-9c3a-2031bfd0fb76" name="Default Changelist" comment="Merge branch 'master' of https://github.com/ARajan1084/DatingApp&#10;&#10;# Conflicts:&#10;#&#9;DatingApp/.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/src/datingapp/exceptions/MessageLengthException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Message.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,9 +18,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DatingApp$TinderButBetter.ic" NAME="TinderButBetter Coverage Results" MODIFIED="1559337800612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>datingapp.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/DatingApp$datingapp_in_DatingApp.ic" NAME="datingapp in DatingApp Coverage Results" MODIFIED="1559268724288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>datingapp.*</FILTER>
     </SUITE>
@@ -34,7 +37,7 @@
     <session id="-2145641669">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="13161" />
+          <entry key="java" value="12865" />
           <entry key="puml" value="50" />
           <entry key="txt" value="42" />
           <entry key="xml" value="1" />
@@ -42,7 +45,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="13161" />
+          <entry key="JAVA" value="12865" />
           <entry key="PLAIN_TEXT" value="42" />
           <entry key="PlantUML file" value="50" />
           <entry key="XML" value="1" />
@@ -52,27 +55,30 @@
         <counts>
           <entry key="Questions" value="1" />
           <entry key="gitignore" value="1" />
-          <entry key="java" value="41" />
-          <entry key="png" value="2" />
-          <entry key="puml" value="2" />
-          <entry key="txt" value="3" />
+          <entry key="java" value="45" />
+          <entry key="png" value="1" />
+          <entry key="puml" value="1" />
+          <entry key="txt" value="2" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="2" />
-          <entry key="JAVA" value="41" />
-          <entry key="PLAIN_TEXT" value="5" />
-          <entry key="PlantUML file" value="2" />
+          <entry key="Image" value="1" />
+          <entry key="JAVA" value="45" />
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="PlantUML file" value="1" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.31" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
     </session>
@@ -80,23 +86,49 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-47">
-              <caret line="159" column="53" selection-start-line="159" selection-start-column="53" selection-end-line="159" selection-end-column="53" />
+            <state relative-caret-position="-490">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="808">
+              <caret line="101" column="50" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="docComment;method#centerNorthPanel#0;class#DashboardWindow#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ProfilePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="178">
+              <caret line="93" column="21" lean-forward="true" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/TinderButBetter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="180" column="30" selection-start-line="180" selection-start-column="30" selection-end-line="180" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,32 +137,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/program/qq.txt">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-964" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2265">
-              <caret line="151" column="52" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
+            <state relative-caret-position="208">
+              <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5470#5471#0" expanded="true" />
-                <element signature="e#5504#5505#0" expanded="true" />
-                <element signature="e#5619#5620#0" expanded="true" />
+                <element signature="e#4984#4985#0" expanded="true" />
+                <element signature="e#5028#5029#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ClassDesign.puml">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/javax/swing/JScrollPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+            <state relative-caret-position="177">
+              <caret line="884" column="22" selection-start-line="884" selection-start-column="22" selection-end-line="884" selection-end-column="22" />
+              <folding>
+                <element signature="e#30346#30347#0" expanded="true" />
+                <element signature="e#30386#30387#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/lang/Runnable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -138,22 +174,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/datingapp/backend/AccountService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6011">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="416">
+              <caret line="478" column="38" lean-forward="true" selection-start-line="478" selection-start-column="38" selection-end-line="478" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="docComment;class#AccountService#0" />
+                <element signature="docComment;method#AccountService#0;class#AccountService#0" />
+                <element signature="docComment;method#addUser#0;class#AccountService#0" />
+                <element signature="docComment;method#editUser#0;class#AccountService#0" />
+                <element signature="docComment;method#removeUser#0;class#AccountService#0" />
+                <element signature="docComment;method#isValid#0;class#AccountService#0" />
+                <element signature="docComment;method#getImage#0;class#AccountService#0" />
+                <element signature="docComment;method#fetchUser#0;class#AccountService#0" />
+                <element signature="docComment;method#fetchMatches#0;class#AccountService#0" />
+                <element signature="docComment;method#addMatch#0;class#AccountService#0" />
+                <element signature="docComment;method#addToFeed#0;class#AccountService#0" />
+                <element signature="docComment;method#fetchFeed#0;class#AccountService#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java">
+        <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
-              <caret line="198" column="37" selection-start-line="198" selection-start-column="37" selection-end-line="198" selection-end-column="37" />
+            <state relative-caret-position="287">
+              <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#956#957#0" expanded="true" />
+                <element signature="e#983#984#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,10 +227,6 @@
       <find>setla</find>
       <find>prof</find>
       <find>buttonNot</find>
-      <find>setFore</find>
-      <find>setForeground</find>
-      <find>SOUTH</find>
-      <find>size</find>
     </findStrings>
     <replaceStrings>
       <replace>buttonNah</replace>
@@ -208,9 +253,10 @@
         <option value="$PROJECT_DIR$/src/datingapp/program/Tree.java" />
         <option value="$PROJECT_DIR$/src/datingapp/JUnitTests/JUDatingAppTest.java" />
         <option value="$PROJECT_DIR$/src/datingapp/JUnitTests/GUITestLog.txt" />
-        <option value="$PROJECT_DIR$/src/datingapp/gui/ProfilePanel.java" />
-        <option value="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" />
         <option value="$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/exceptions/MessageLengthException.java" />
+        <option value="$PROJECT_DIR$/src/datingapp/program/Message.java" />
         <option value="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" />
         <option value="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" />
         <option value="$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java" />
@@ -230,12 +276,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="DatingApp" type="b2602c69:ProjectViewProjectNode" />
               <item name="DatingApp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DatingApp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DatingApp" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DatingApp" type="b2602c69:ProjectViewProjectNode" />
@@ -297,22 +349,21 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultPlantUmlFileTemplate" value="UML Object" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559360339337" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559445661949" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
@@ -435,6 +486,9 @@
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="All_in_DatingApp - 2019.05.30 at 19h 00m 41s.xml">
+      <configuration name="All in DatingApp" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="All_in_DatingApp - 2019.05.30 at 19h 04m 02s.xml">
       <configuration name="All in DatingApp" configurationId="JUnit" />
     </history-entry>
@@ -462,15 +516,12 @@
     <history-entry file="All_in_DatingApp - 2019.05.30 at 19h 38m 30s.xml">
       <configuration name="All in DatingApp" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_DatingApp - 2019.05.30 at 22h 04m 01s.xml">
-      <configuration name="All in DatingApp" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2714055" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2641357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -479,12 +530,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23150685" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.33150685" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23835616" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39863014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.04657534" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.25342464" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.22739726" />
@@ -512,10 +563,28 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java</url>
-          <line>152</line>
+          <url>file://$PROJECT_DIR$/src/datingapp/backend/AccountService.java</url>
+          <line>280</line>
           <properties />
-          <option name="timeStamp" value="14" />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/datingapp/backend/AccountService.java</url>
+          <line>281</line>
+          <properties />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/datingapp/backend/AccountService.java</url>
+          <line>283</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/datingapp/backend/AccountService.java</url>
+          <line>282</line>
+          <properties />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -560,13 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -594,26 +656,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ClassDesign.puml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/Link.java" />
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/Server.java" />
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/Chat.java" />
-    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" lean-forward="true" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/program/MatchRules.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
@@ -628,10 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="574">
           <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;method#setBio#0;class#Person#0" />
-            <element signature="method#toString#0;class#Person#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -682,19 +737,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/JUnitTests/GUITestLog.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/datingapp/JUnitTests/CodeCoverage.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/JUnitTests/JUDatingAppTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
+        <state relative-caret-position="2760">
           <caret line="272" selection-start-line="272" selection-end-line="272" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -723,96 +771,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/JUnitTests/CodeCoverage.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/src/datingapp/JUnitTests/GUITestLog.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="146" column="56" lean-forward="true" selection-start-line="146" selection-start-column="56" selection-end-line="146" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5451#5452#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/exceptions/MessageLengthException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#12063#12067#0" expanded="true" />
+            <element signature="e#12067#12071#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/program/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+          <folding>
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/TinderButBetter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ProfilePanel.java">
+    <entry file="file://$PROJECT_DIR$/src/datingapp/backend/CreateAccount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ClassDesign.puml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2265">
-          <caret line="151" column="52" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5470#5471#0" expanded="true" />
-            <element signature="e#5504#5505#0" expanded="true" />
-            <element signature="e#5619#5620#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-490">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/gui/SwipePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="198" column="37" selection-start-line="198" selection-start-column="37" selection-end-line="198" selection-end-column="37" />
+        <state relative-caret-position="808">
+          <caret line="101" column="50" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/QuestionsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#1882#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/backend/AccountService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6011">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="416">
+          <caret line="478" column="38" lean-forward="true" selection-start-line="478" selection-start-column="38" selection-end-line="478" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#AccountService#0" />
+            <element signature="docComment;method#AccountService#0;class#AccountService#0" />
+            <element signature="docComment;method#addUser#0;class#AccountService#0" />
+            <element signature="docComment;method#editUser#0;class#AccountService#0" />
+            <element signature="docComment;method#removeUser#0;class#AccountService#0" />
+            <element signature="docComment;method#isValid#0;class#AccountService#0" />
+            <element signature="docComment;method#getImage#0;class#AccountService#0" />
+            <element signature="docComment;method#fetchUser#0;class#AccountService#0" />
+            <element signature="docComment;method#fetchMatches#0;class#AccountService#0" />
+            <element signature="docComment;method#addMatch#0;class#AccountService#0" />
+            <element signature="docComment;method#addToFeed#0;class#AccountService#0" />
+            <element signature="docComment;method#fetchFeed#0;class#AccountService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ProfilePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="93" column="21" lean-forward="true" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="180" column="30" selection-start-line="180" selection-start-column="30" selection-end-line="180" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_65.jdk/Contents/Home/src.zip!/javax/swing/JScrollPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="159" column="53" selection-start-line="159" selection-start-column="53" selection-end-line="159" selection-end-column="53" />
+        <state relative-caret-position="177">
+          <caret line="884" column="22" selection-start-line="884" selection-start-column="22" selection-end-line="884" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#centerNorthPanel#0;class#DashboardWindow#0" />
+            <element signature="e#30346#30347#0" expanded="true" />
+            <element signature="e#30386#30387#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="208">
+          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#4984#4985#0" expanded="true" />
+            <element signature="e#5028#5029#0" expanded="true" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/datingapp/program/qq.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-964" />
       </provider>
     </entry>
   </component>
