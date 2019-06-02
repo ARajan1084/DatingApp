@@ -1,5 +1,7 @@
 package datingapp.program;
 
+import datingapp.exceptions.MessageLengthException;
+
 /**
  * constructs a Message object for the messaging system
  */
@@ -13,9 +15,13 @@ public class Message {
      * @param message the message's text
      * @param recipient the message's recipient
      * @param sender the message's sender
+     * @throws MessageLengthException in case message is too long for safe server storage
      */
-    public Message (String message, Person recipient, Person sender)
+    public Message (String message, Person sender, Person recipient) throws  MessageLengthException
     {
+        if (message.length() > 150) {
+            throw new MessageLengthException();
+        }
         to = recipient;
         from = sender;
         this.message = message;

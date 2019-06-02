@@ -70,7 +70,7 @@ public class MatchesPane extends JPanel {
             button.setOpaque(true);
             button.setBorderPainted(false);
             button.addActionListener(new ButtonMatchActionListener(p));
-            //add(new MatchPanel(p));
+            //add(new MatchPanel(match));
             add(button);
             add(Box.createRigidArea(new Dimension(0, 5)));
         }
@@ -142,15 +142,15 @@ public class MatchesPane extends JPanel {
 
     private class ButtonMatchActionListener implements ActionListener {
 
-        private Person p;
+        private Person match;
 
-        public ButtonMatchActionListener(Person person) {
-            p = person;
+        public ButtonMatchActionListener(Person match) {
+            this.match = match;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            dashboard.updateCenterSouthPanel(p);
+            dashboard.updateCenterSouthPanel(match);
         }
     }
 }

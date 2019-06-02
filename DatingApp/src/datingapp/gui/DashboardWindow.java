@@ -38,8 +38,7 @@ public class DashboardWindow extends JFrame {
     public static final Font FONT_3 = new Font("Helvetica", 0, 12);
     public static final Color NAVY_BLUE = new Color(36, 72, 104);
     private JPanel centerPanel;
-
-
+    private JPanel centerSouthPanel;
 
     /**
      * constructs a window that serves as the user's dashboard
@@ -101,7 +100,8 @@ public class DashboardWindow extends JFrame {
         centerPanel.setLayout(layout);
         centerPanel.add(centerNorthPanel(), BorderLayout.NORTH);
         centerPanel.add(centerCenterPanel(), BorderLayout.CENTER);
-        centerPanel.add(centerSouthPanel(), BorderLayout.SOUTH);
+        centerSouthPanel = centerSouthPanel();
+        centerPanel.add(centerSouthPanel, BorderLayout.SOUTH);
         centerPanel.setBackground(new Color	(222,237,242));
         return centerPanel;
     }
@@ -172,9 +172,12 @@ public class DashboardWindow extends JFrame {
      * helper method of centerPanel() that constructs the bottom half where matches are displayed
      * @return completed south pane of centerPanel()
      */
-    public void updateCenterSouthPanel(Person user) {
-        ChatPanel chatPanel = new ChatPanel(user);
-        centerPanel.add(chatPanel, BorderLayout.SOUTH);
+    public void updateCenterSouthPanel(Person match) {
+        ChatPanel chatPanel = new ChatPanel(accountService, feed, match);
+        centerPanel.remove(centerSouthPanel);
+        centerSouthPanel = chatPanel;
+        centerPanel.add(centerSouthPanel, BorderLayout.SOUTH);
+        centerPanel.revalidate();
         centerPanel.repaint();
     }
 

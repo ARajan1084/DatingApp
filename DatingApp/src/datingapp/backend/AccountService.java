@@ -2,6 +2,8 @@ package datingapp.backend;
 
 import datingapp.exceptions.AccountNotFoundException;
 
+import datingapp.exceptions.MessageLengthException;
+import datingapp.program.Message;
 import datingapp.program.Person;
 import datingapp.program.Tree;
 
@@ -429,6 +431,55 @@ public class AccountService {
             users.add(fetchUser(rs.getString("email")));
         }
         return users;
+    }
+
+    public void processMessage (Message message) throws SQLException {
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM messages WHERE " +
+                "(user = ? AND other = ?) OR " +
+                "(user = ? AND other = ?)");
+        stmt.setString(1, message.getSender().getEmail());
+        stmt.setString(2, message.getRecipient().getEmail());
+        stmt.setString(3, message.getRecipient().getEmail());
+        stmt.setString(4, message.getSender().getEmail());
+        ResultSet rs = stmt.executeQuery();
+
+        int messageNumber = 0;
+        while(rs.next()) {
+            if (rs.getInt("text_num") > messageNumber) {
+                messageNumber = rs.getInt("text_num");
+            }
+        }
+        messageNumber++;
+
+        PreparedStatement stmt2 = con.prepareStatement("INSERT INTO messages VALUES (?, ?, ?, ?)");
+        stmt2.setString(1, message.getSender().getEmail());
+        stmt2.setString(2, message.getRecipient().getEmail());
+        stmt2.setString(3, message.getMessage());
+        stmt2.setInt(4, messageNumber);
+        stmt2.execute();
+    }
+
+    public ArrayList<Message> fetchMessages (Person user, Person other) throws SQLException, MessageLengthException{
+        ArrayList<Message> messages = new ArrayList<>();
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM messages WHERE " +
+                "(user = ? AND other = ?) OR " +
+                "(user = ? AND other = ?) ORDER BY text_num");
+        stmt.setString(1, user.getEmail());
+        stmt.setString(2, other.getEmail());
+        stmt.setString(3, other.getEmail());
+        stmt.setString(4, user.getEmail());
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            if (rs.getString("user").equals(user.getEmail())) {
+                Message message = new Message(rs.getString("message"), user, other);
+                messages.add(message);
+            } else {
+                Message message = new Message(rs.getString("message"), other, user);
+                messages.add(message);
+            }
+        }
+        return messages;
     }
 
     // for testing purposes
