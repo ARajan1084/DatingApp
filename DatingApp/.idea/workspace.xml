@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="947c3528-2153-482a-9c3a-2031bfd0fb76" name="Default Changelist" comment="Merge branch 'master' of https://github.com/ARajan1084/DatingApp&#10;&#10;# Conflicts:&#10;#&#9;DatingApp/.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/src/datingapp/exceptions/MessageLengthException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/backend/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/DashboardWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/gui/MatchesPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datingapp/program/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datingapp/program/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/C:\Users\rajan\OneDrive\Documents\src\DatingApp\DatingApp\src\LoginData.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +31,7 @@
     <session id="-2145641669">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="12865" />
+          <entry key="java" value="12870" />
           <entry key="puml" value="50" />
           <entry key="txt" value="42" />
           <entry key="xml" value="1" />
@@ -45,7 +39,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12865" />
+          <entry key="JAVA" value="12870" />
           <entry key="PLAIN_TEXT" value="42" />
           <entry key="PlantUML file" value="50" />
           <entry key="XML" value="1" />
@@ -139,8 +133,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+            <state relative-caret-position="239">
+              <caret line="55" column="50" selection-start-line="55" selection-start-column="50" selection-end-line="55" selection-end-column="50" />
               <folding>
                 <element signature="e#4984#4985#0" expanded="true" />
                 <element signature="e#5028#5029#0" expanded="true" />
@@ -353,7 +347,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultPlantUmlFileTemplate" value="UML Object" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559445661949" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559446943708" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -897,8 +891,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/datingapp/gui/ChatPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+        <state relative-caret-position="239">
+          <caret line="55" column="50" selection-start-line="55" selection-start-column="50" selection-end-line="55" selection-end-column="50" />
           <folding>
             <element signature="e#4984#4985#0" expanded="true" />
             <element signature="e#5028#5029#0" expanded="true" />
