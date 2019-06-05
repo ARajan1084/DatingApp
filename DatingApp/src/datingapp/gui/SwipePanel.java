@@ -22,7 +22,8 @@ public class SwipePanel extends JPanel
     private ArrayList<Person> potentialMatches;
     private int currentPersonIndex;
     private AccountService acctServ;
-    private JLabel labelTitle, labelName, labelBio;
+    private JLabel labelTitle, labelName;
+    private JTextArea textAreaBio;
     private JButton buttonYeah, buttonNah;
     public final Color redOxide = new Color(77, 21, 18);
     public final Color oysterPink = new Color(210, 176, 174);
@@ -72,8 +73,11 @@ public class SwipePanel extends JPanel
         labelName.setFont(fontBold);
         //labelName.setForeground(oysterPink);
 
-        labelBio = new JLabel(currentPerson.getBio());
-        labelBio.setFont(fontItal);
+        textAreaBio = new JTextArea();
+        textAreaBio.setText(currentPerson.getBio());
+        textAreaBio.setMaximumSize(new Dimension(350, 100));
+        textAreaBio.setLineWrap(true);
+        textAreaBio.setWrapStyleWord(true);
         //labelBio.setForeground(oysterPink);
 
         labelTitle = new JLabel("Would you date them?");
@@ -82,7 +86,7 @@ public class SwipePanel extends JPanel
 
         labelTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelName.setAlignmentX(Component.CENTER_ALIGNMENT);
-        labelBio.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textAreaBio.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         ImageIcon profilePic = currentPerson.getProfilePic();
         Image temp = profilePic.getImage();
@@ -101,7 +105,7 @@ public class SwipePanel extends JPanel
         buttonYeah = createSimpleButton(buttonYeah, "yeah!");
         buttonYeah.setBackground(backgroundColor);
         buttonYeah.addActionListener(new ButtonYeahActionListener());
-        buttonYeah.setForeground(Color.GREEN);
+        buttonYeah.setForeground(Color.BLACK);
         //buttonYeah.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         BorderLayout layout = new BorderLayout();
@@ -120,7 +124,7 @@ public class SwipePanel extends JPanel
         add(labelTitle);
         add(labelProfilePic);
         add(labelName);
-        add(labelBio);
+        add(textAreaBio);
         add(buttonPanel, BorderLayout.PAGE_END);
     }
 
